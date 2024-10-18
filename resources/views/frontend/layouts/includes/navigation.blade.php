@@ -5,53 +5,45 @@
              <div class="row">
                  <div class="col-lg-6 col-sm-7 col-7">
                      <div class="preheader-left">
-                         @foreach($headers->where('type','text') as $header)
-                         <a><i class="{{ $header->icon }}" aria-hidden="true"></i> {{ $header->content }}</a>
+                         @foreach ($headers->where('type', 'text') as $header)
+                             <a><i class="{{ $header->icon }}" aria-hidden="true"></i> {{ $header->content }}</a>
                          @endforeach
                      </div>
                  </div>
 
                  <div class="col-lg-6 col-sm-5 col-5 text-right">
                      <div class="preheader-right">
-                        <ul>
-                            <li class="nav-item">
-                                <a class="nav-link" href="" data-toggle="modal" data-target="#loginModal">@lang('index.h-login')</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.register.index') }}">@lang('index.h-member')</a>
-                            </li>
-                            @if (config('app.locale') == 'en')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/locale/bn">Bangla</a>
-                            </li>
-                            @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="/locale/en">English</a>
-                            </li>
-
-                            @endif
-                        </ul>
+                         <ul>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="" data-toggle="modal"
+                                     data-target="#loginModal">@lang('index.h-login')</a>
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('frontend.register.index') }}">@lang('index.h-member')</a>
+                             </li>
+                             @if (config('app.locale') == 'en')
+                                 <li class="nav-item">
+                                     <a class="nav-link" href="/locale/bn">Bangla</a>
+                                 </li>
+                             @else
+                                 <li class="nav-item">
+                                     <a class="nav-link" href="/locale/en">English</a>
+                                 </li>
+                             @endif
+                         </ul>
                      </div>
                  </div>
              </div>
          </div>
      </div>
-     @if ($errors->any())
-     <div class="alert alert-danger">
-         <ul>
-             @foreach ($errors->all() as $error)
-                 <li>{{ $error }}</li>
-             @endforeach
-         </ul>
-     </div>
- @endif
+
      <div class="header-bottom-area" id="fixheader">
          <div class="container">
              <div class="row">
                  <div class="col-lg-12">
                      <nav class="main-menu navbar navbar-expand-lg navbar-light">
                          <a class="navbar-brand" href="{{ route('frontend.index') }}">
-                             <img src="{{ asset('uploads/images/icons/logo.jpg') }}" alt="Logo"
+                             <img src="{{ asset('uploads/images/icons/logo.jpg') }}" alt="Hridoye88"
                                  style="height: 101px; width: auto;">
                          </a>
                          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menucontent"
@@ -61,12 +53,18 @@
 
                          <div class="collapse navbar-collapse" id="menucontent">
                              <ul class="navbar-nav ml-auto">
-                                 <li class="nav-item active"><a class="nav-link"
+                                 <li class="nav-item {{ activeNav('frontend.index') }}"><a class="nav-link"
                                          href="{{ route('frontend.index') }}">@lang('index.m-home')</a>
-                                    </li>
-                                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.about.index') }}">@lang('index.m-about')</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.member.index') }}">@lang('index.m-member')</a></li>
-                                 <li class="nav-item dropdown">
+                                 </li>
+                                 <li class="nav-item {{ activeNav('frontend.about.index') }}">
+                                     <a class="nav-link"
+                                         href="{{ route('frontend.about.index') }}">@lang('index.m-about')</a>
+                                 </li>
+                                 <li class="nav-item {{ activeNav('frontend.member.index') }}">
+                                    <a class="nav-link"
+                                         href="{{ route('frontend.member.index') }}">@lang('index.m-member')</a>
+                                        </li>
+                                 <li class="nav-item dropdown {{ activeNav(['frontend.photoGallery.*','frontend.videoGallery.*']) }}">
                                      <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                          data-toggle="dropdown" role="button">@lang('index.m-gallery')</a>
                                      <ul class="dropdown-menu">
@@ -80,67 +78,17 @@
                                          </li>
                                      </ul>
                                  </li>
-                                 @php
-                                 $menus = App\Models\Menu::with('subMenus')->get(['id','name','name_b']);
-                                 @endphp
-
-                                {{-- @foreach ($menus as $menu)
-                                @if ($menu->subMenus->count() < 1)
-                                <li class="nav-item"><a class="nav-link"
-                                         href="{{ route('frontend.menu.show',$menu->id) }}">{{ config('app.locale') == 'en' ? $menu->name : $menu->name_b }}</a>
-                                     </li>
-                                 @endif
-                                @endforeach --}}
-
-                                     {{-- @foreach ($menus as $menu)
-                                     @if ($menu->subMenus->count() > 0)
-                                     <li class="nav-item dropdown">
-                                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                             href="{{ route('frontend.menu.show',$menu->id) }}">{{ config('app.locale') == 'en' ? $menu->name : $menu->name_b }}</a>
-                                         <ul class="dropdown-menu">
-                                             @foreach ($menu->subMenus as $submenu)
-                                             <li class="nav-item"><a class="nav-link"
-                                                     href="{{ route('frontend.menu.subShow',$submenu->id) }}">B{{ config('app.locale') == 'en' ? $submenu->name : $submenu->name_b }}</a>
-                                             </li>
-                                             @endforeach
-                                         </ul>
-                                     </li>
-                                     @endif
-                                     @endforeach --}}
-
-
-                                     {{-- <li class="nav-item dropdown">
-                                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-                                             role="button">Pages</a>
-                                         <ul class="dropdown-menu">
-                                             <li class="nav-item"><a class="nav-link dropdown-toggle"
-                                                     href="gallery.html" role="button">Gallery</a>
-                                                 <ul class="dropdown-menu">
-                                                     <li class="nav-item"><a class="nav-link"
-                                                             href="gallery.html">Gallery</a></li>
-                                                     <li class="nav-item"><a class="nav-link"
-                                                             href="single-album.html">Single Album</a></li>
-                                                 </ul>
-                                             </li>
-                                             <li class="nav-item"><a class="nav-link"
-                                                     href="committee.html">Committee</a></li>
-                                             <li class="nav-item"><a class="nav-link"
-                                                     href="directory.html">Directory</a></li>
-                                             <li class="nav-item"><a class="nav-link" href="register.html">Register</a>
-                                             </li>
-                                             <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
-                                             <li class="nav-item"><a class="nav-link" href="index-offcanvas.html">Off
-                                                     Canvas Menu</a></li>
-                                             <li class="nav-item"><a class="nav-link"
-                                                     href="typography.html">Typography</a></li>
-                                         </ul>
-                                     </li> --}}
-                                     <li class="nav-item"><a class="nav-link"
-                                             href="{{route('frontend.blog.index')}}">@lang('index.m-blog')</a></li>
-                                     {{-- <li class="nav-item"><a class="nav-link"
-                                             href="{{route('frontend.about.index')}}">@lang('index.m-about')</a></li> --}}
-                                     <li class="nav-item"><a class="nav-link"
-                                             href="{{route('frontend.about.index')}}">@lang('index.m-contact')</a></li>
+                                 {{-- @php
+                                     $menus = App\Models\Menu::with('subMenus')->get(['id', 'name', 'name_b']);
+                                 @endphp --}}
+                                 <li class="nav-item {{ activeNav('frontend.blog.index') }}">
+                                     <a class="nav-link"
+                                         href="{{ route('frontend.blog.index') }}">@lang('index.m-blog')</a>
+                                 </li>
+                                 <li class="nav-item {{ activeNav('frontend.about.index') }}">
+                                     <a class="nav-link"
+                                         href="{{ route('frontend.about.index') }}">@lang('index.m-contact')</a>
+                                 </li>
                              </ul>
                          </div>
                      </nav>
@@ -167,11 +115,13 @@
                  <div class="modal-body">
                      <div class="form-group">
                          <label for="email">@lang('register.email')</label>
-                         <input type="email" name="email"class="form-control" id="email" value="{{ old('email') }}">
+                         <input type="email" name="email"class="form-control" id="email"
+                             value="{{ old('email') }}">
                      </div>
                      <div class="form-group">
                          <label for="password">@lang('index.h-password')</label>
-                         <input type="password" name="password" class="form-control" id="password"  value="{{ old('password') }}">
+                         <input type="password" name="password" class="form-control" id="password"
+                             value="{{ old('password') }}">
                      </div>
                  </div>
                  <div class="modal-footer">

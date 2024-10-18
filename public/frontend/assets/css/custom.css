@@ -32,8 +32,18 @@
         padding: 70px 0;
     }
 }
+
+/* Nav Bar Start */
+.navbar-brand img {
+    border-radius: 5px;
+}
+/* Nav Bar End */
+
+
+
+
 #slider-area .single-slide-wrap:after {
-    opacity: 0.2;
+    opacity: 0.0;
 }
 
 .fixed img {

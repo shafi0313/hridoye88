@@ -12,9 +12,9 @@
                     <div class="col-lg-9">
                         <div class="slider-content">
                             {!! $slider->text !!}
-                            <div class="slider-btn">
+                            {{-- <div class="slider-btn">
                                 <a href="#about-area" class="btn btn-brand smooth-scroll">our mission</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
