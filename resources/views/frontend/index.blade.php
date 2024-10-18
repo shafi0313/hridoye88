@@ -28,7 +28,11 @@
     <div class="social-networks-icon">
         <ul>
             @foreach($socials as $social)
-            <li><a href="{{ $social->link }}" target="_blank"><i class="{{ $social->icon }}"></i></a></li>
+            <li>
+                <a href="{{ $social->link }}" target="_blank">
+                    <i class="{{ $social->icon }}"></i>
+                </a>
+            </li>
             @endforeach
         </ul>
     </div>
@@ -87,6 +91,7 @@
 <style>
     #about-area .about-area-wrapper:before {
         background-image: url('{{asset('uploads/images/message/'.$message->image)}}');
+        border-radius: 5px;
     }
 </style>
 <!--== About Area Start ==-->
