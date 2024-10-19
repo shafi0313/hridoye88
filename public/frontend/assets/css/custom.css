@@ -18,7 +18,7 @@
     }
     .btn-brand, .btn-brand-rev {
         padding: 7px 30px;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         line-height: 2.8800000000000003rem;
     }
     #about-area .about-area-wrapper .about-content-wrap {
@@ -29,8 +29,18 @@
     }
 
     .section-padding {
-        padding: 70px 0;
+        padding: 40px 0;
     }
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.video-gallery iframe {
+    border-radius: 5px;
+    width: 100% !important;
+    height: 200px !important;
 }
 
 /* Nav Bar Start */
@@ -38,6 +48,32 @@
     border-radius: 5px;
 }
 /* Nav Bar End */
+
+.gallery img {
+    border-radius: 5px;
+}
+
+.gallery-col {
+    position: relative;
+}
+
+.preview-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-col:hover .preview-text {
+    opacity: 1;
+}
 
 
 #slider-area .single-slide-wrap:after {

@@ -17,17 +17,15 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::whereStatus(1)->whereNotIn('id',[1])->get();
-        $message = Slider::find(1);
-        $events = Event::all();
-        $galleryCats = GalleryCat::all();
-        $photoGalleries = PhotoGallery::all();
-        $videoGalleries = VideoGallery::all();
-        $galleries = collect(array_merge($photoGalleries->toArray(), $videoGalleries->toArray()))->sortBy('id');
-        $socials = Header::whereType('social')->get();
-        $blogs = Blog::whereIs_published(1)->limit(6)->get();
-        $members = User::wherePermission(2)->count();
+        $data['sliders'] = Slider::whereStatus(1)->whereNotIn('id',[1])->get();
+        $data['message'] = Slider::find(1);
+        $data['events'] = Event::where('date', '>=', now())->get();
+        $data['photoGalleries'] = PhotoGallery::select('id', 'image')->take(8)->get();
+        $data['videoGalleries'] = VideoGallery::select('id','type','link')->whereType('Youtube')->take(6)->get();
+        $data['socials'] = Header::whereType('social')->get();
+        $data['blogs'] = Blog::whereIs_published(1)->limit(6)->get();
+        $data['members'] = User::wherePermission(2)->count();
 
-        return view('frontend.index', compact('sliders','message','events','galleryCats','photoGalleries','videoGalleries','socials','blogs','members'));
+        return view('frontend.index', $data);
     }
 }

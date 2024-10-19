@@ -42,6 +42,7 @@
     <!--== Slider Area End ==-->
 
     <!--== Upcoming Event Area Start ==-->
+    @if ($events->count() > 0)
     <section id="upcoming-area">
         <div class="container">
             <div class="row">
@@ -74,8 +75,6 @@
                                                             <p>Remaining</p>
                                                         </div>
                                                         {!! $event->text !!}
-                                                        {{-- <a href="single-event.html" class="btn btn-brand btn-brand-dark">join
-                                                    with us</a> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,6 +89,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!--== Upcoming Event Area End ==-->
     <style>
         #about-area .about-area-wrapper:before {
@@ -148,7 +148,7 @@
     </div>
 
     <!--== Our Responsibility Area Start ==-->
-    <section id="responsibility-area" class="section-padding">
+    {{-- <section id="responsibility-area" class="section-padding">
         <div class="container">
             <!--== Section Title Start ==-->
             <div class="row">
@@ -204,7 +204,7 @@
             </div>
             <!--== Responsibility Content Wrapper ==-->
         </div>
-    </section>
+    </section> --}}
     <!--== Our Responsibility Area End ==-->
 
     <!--== FunFact Area Start ==-->
@@ -426,90 +426,61 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Our gallery</h2>
+                        <h2>Photo gallery</h2>
                     </div>
                 </div>
             </div>
-            <!--== Section Title End ==-->
-
-            <!--== Gallery Container Warpper ==-->
-            <div class="gallery-content-wrapper">
+            <div class="gallery">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Gallery Menu Start -->
-                        <div class="gallery-menu text-center">
-                            <span class="active" data-filter="*">All</span>
-                            @foreach ($galleryCats as $key => $galleryCat)
-                                <span data-filter=".{{ $galleryCat->id }}">{{ $galleryCat->name }}</span>
-                            @endforeach
+                    @foreach ($photoGalleries as $photoGalley)
+                        <div class="col-md-3 mb-4">
+                            <a href="{{ getImg('gallery', $photoGalley->image) }}" class="image-popup  gallery-col">
+                                <img src="{{ getImg('gallery', $photoGalley->image) }}" alt="{{ $photoGalley->image }}"
+                                    width="100%" height="180px">
+                                <div class="preview-text">
+                                    Preview
+                                </div>
+                            </a>
                         </div>
-                        <!-- Gallery Menu End -->
-
-                        <!-- Gallery Item content Start -->
-                        <div class="row gallery-gird">
-                            <!-- Single Gallery Start -->
-                            @php
-                                $array = array_merge($photoGalleries->toArray(), $videoGalleries->toArray());
-                                array_multisort(array_column($array, 'id'), SORT_ASC, $array);
-                            @endphp
-                            @foreach ($array as $gallery)
-                                @if (!empty($gallery['type']))
-                                    @if ($gallery['type'] == 'File')
-                                        <div class="col-lg-4  col-sm-6  {{ $gallery['gallery_cat_id'] }}">
-                                            <div class="single-gallery-item video gallery-bg-2">
-                                                <video style="width: 100% !important; height: 300px !important" controls>
-                                                    <source src="{{ getImg('gallery', $gallery['link']) }}"
-                                                        type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                                <a href="https://player.vimeo.com/video/140182080?title=0&amp;portrait=0&amp;byline=0&amp;autoplay=1&amp;loop=1"
-                                                    class="btn btn-video-play video-popup"><i class="fa fa-play"></i></a>
-                                            </div>
-                                        </div>
-
-                                        {{-- <video style="width: 100% !important; height: 300px !important" controls>
-                                <source src="{{ getImg('gallery', $gallery['image']) }}" type="video/mp4">
-                              Your browser does not support the video tag.
-                              </video> --}}
-                                    @else
-                                        <div class="col-lg-4  col-sm-6  {{ $gallery['gallery_cat_id'] }}">
-                                            <div class="single-gallery-item video gallery-bg-2">
-                                                <div style="width: 100% !important; height: 300px !important">
-                                                    {!! $gallery['link'] !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @else
-                                    <div class="col-lg-3  col-sm-6  {{ $gallery['gallery_cat_id'] }}">
-                                        <div class="single-gallery-item"
-                                            style="background-image: url('{{ getImg('gallery', $gallery['image']) }}')">
-                                            <div class="gallery-hvr-wrap">
-                                                <div class="gallery-hvr-text">
-                                                    <h4>{{ $gallery['title'] }}</h4>
-                                                </div>
-                                                <a href="{{ getImg('gallery', $gallery['image']) }}"
-                                                    class="btn-zoom image-popup">
-                                                    <img src="{{ getImg('gallery', $gallery['image']) }}" alt="a">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                            <!-- Single Gallery End -->
-                        </div>
-                        <!-- Gallery Item content End -->
+                    @endforeach
+                    <div class="col-md-12 text-center">
+                        <a href="{{ route('frontend.photoGallery.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
                     </div>
                 </div>
             </div>
-            <!--== Gallery Container Warpper==-->
+        </div>
+    </section>
+    <!--== Gallery Area Start ==-->
+
+    <!--== Gallery Area Start ==-->
+    <section id="gallery-area" class="section-padding" style="background: #ecf1f5">
+        <div class="container">
+            <!--== Section Title Start ==-->
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Videos</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="video-gallery">
+                <div class="row">
+                    @foreach ($videoGalleries as $videoGalle)
+                        <div class="col-md-4 mb-4">
+                            {!! $videoGalle->link !!}
+                        </div>
+                    @endforeach
+                    <div class="col-md-12 text-center">
+                        <a href="{{ route('frontend.videoGallery.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!--== Gallery Area Start ==-->
 
     <!--== Blog Area Start ==-->
-    <section id="blog-area" class="section-padding">
+    <section id="blog-area" class="section-padding" style="background: #ffffff">
         <div class="container">
             <!--== Section Title Start ==-->
             <div class="row">
@@ -533,9 +504,11 @@
                                 </div>
                                 <figcaption class="blog-meta clearfix">
                                     <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
+                                        @if($blog->user->image)
                                         <div class="author-pic">
                                             <img src="{{ getImg('blog', $blog->user->image) }}" alt="Author">
                                         </div>
+                                        @endif
                                         <div class="author-info">
                                             <h5>{{ $blog->user->name }}</h5>
                                             <p>{{ bdDate($blog->created_at) }}</p>
@@ -565,5 +538,15 @@
 
 
     @push('custom_scripts')
+        <script>
+            $(document).ready(function() {
+                $('.image-popup').magnificPopup({
+                    type: 'image'
+                });
+                $('.video-popup').magnificPopup({
+                    type: 'iframe'
+                });
+            });
+        </script>
     @endpush
 @endsection
