@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Header;
-use App\Models\Layout;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HeaderController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('header-manage')) {
-            return $error;
-        }
         $headers = Header::all();
         return view('admin.header.index', compact('headers'));
     }
@@ -26,19 +22,14 @@ class HeaderController extends Controller
             'content' => 'required|max:191',
         ]);
         $data['type'] = 'text';
-        DB::beginTransaction();
 
-        try{
+        try {
             Header::create($data);
-            DB::commit();
-            toast('success','Success');
-            return back();
-        }catch(\Exception $ex){
-            return $ex->getMessage();
-            DB::rollBack();
-            toast('error','Error');
-            return redirect()->back();
+            Alert::success('The information has been inserted');
+        } catch (\Exception $ex) {
+            Alert::error('Opps. Something went wrong, please try again');
         }
+        return back();
     }
 
     public function socialStore(Request $request)
@@ -48,19 +39,14 @@ class HeaderController extends Controller
             'link' => 'required|max:191',
         ]);
         $data['type'] = 'social';
-        DB::beginTransaction();
 
-        try{
+        try {
             Header::create($data);
-            DB::commit();
-            toast('success','Success');
-            return back();
-        }catch(\Exception $ex){
-            return $ex->getMessage();
-            DB::rollBack();
-            toast('error','Error');
-            return redirect()->back();
+            Alert::success('The information has been inserted successfully');
+        } catch (\Exception $ex) {
+            Alert::error('Opps. Something went wrong, please try again');
         }
+        return back();
     }
 
     public function edit($id)
@@ -76,30 +62,25 @@ class HeaderController extends Controller
             'link' => 'nullable|max:191',
             'content' => 'nullable|max:191',
         ]);
-        DB::beginTransaction();
 
-        try{
+        try {
             Header::find($id)->update($data);
-            DB::commit();
-            toast('success','Success');
+            Alert::success('The information has been inserted updated');
             return redirect()->route('admin.header.index');
-        }catch(\Exception $ex){
-            return $ex->getMessage();
-            DB::rollBack();
-            toast('error','Error');
+        } catch (\Exception $ex) {
+            Alert::error('Opps. Something went wrong, please try again');
             return redirect()->back();
         }
     }
 
     public function destroy($id)
     {
-        try{
+        try {
             Header::find($id)->delete();
-            toast('Success!','success');
-            return redirect()->back();
-        }catch(\Exception $ex){
-            toast('Failed','error');
-            return redirect()->back();
+            Alert::success('The information has been deleted');
+        } catch (\Exception $ex) {
+            Alert::error('Opps. Something went wrong, please try again');
         }
+        return back();
     }
 }

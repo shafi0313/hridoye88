@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-    @php $headers = App\Models\Header::all() @endphp
+@php $headers = App\Models\Header::all() @endphp
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +25,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/animate/animate.css') }}" media="all">
 
     {{-- <!-- FONT AWESOME CSS --> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/fontawesome/css/font-awesome.min.css') }}">
 
     {{-- <!--owl carousel css --> --}}
@@ -42,7 +46,8 @@
     <script src="{{ asset('frontend/assets/vendor/modernizr/modernizr-custom.js') }}"></script>
 
     {{-- <!-- Main Master Style  CSS  --> --}}
-    <link id="cbx-style" data-layout="1" rel="stylesheet" href="{{ asset('frontend/assets/css/style-default.min.css') }}" media="all">
+    <link id="cbx-style" data-layout="1" rel="stylesheet"
+        href="{{ asset('frontend/assets/css/style-default.min.css') }}" media="all">
     <link id="cbx-style" rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}">
 </head>
 
