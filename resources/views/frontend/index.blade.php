@@ -1,21 +1,22 @@
 @extends('frontend.layouts.app')
 @section('title', 'Dashboard')
 @section('content')
+<style>
+    .single-slide-wra {
+    }
+</style>
     <!--== Slider Area Start ==-->
     <section id="slider-area">
         <div class="slider-active-wrap owl-carousel text-center text-md-left">
             <!-- Single Slide Item Start -->
             @foreach ($sliders as $slider)
                 <div class="single-slide-wrap"
-                    style="background: url('{{ asset('uploads/images/slider/' . $slider->image) }}'); background-size: cover">
+                    style="background: url('{{ asset('uploads/images/slider/' . $slider->image) }}') no-repeat center center / contain; background-color: #003366;  min-height: 400px !important;">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="slider-content">
                                     {!! $slider->text !!}
-                                    {{-- <div class="slider-btn">
-                                <a href="#about-area" class="btn btn-brand smooth-scroll">our mission</a>
-                            </div> --}}
                                 </div>
                             </div>
                         </div>
