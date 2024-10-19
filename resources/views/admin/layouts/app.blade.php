@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/atlantis.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
-    
+
 </head>
 
 <body data-background-color="bg1">
@@ -42,7 +42,7 @@
         <div class="main-header">
             {{-- <!-- Logo Header --> --}}
             <div class="logo-header" data-background-color="purple">
-                <a href="{{ route('admin.dashboard') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">Company Name</h4>
+                <a href="{{ route('admin.dashboard') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">Hridoye 88</h4>
 				</a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

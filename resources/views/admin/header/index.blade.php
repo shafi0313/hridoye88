@@ -141,7 +141,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="icon">Icon <span class="t_r">*</span></label>
-                                <input type="text" name="icon" class="form-control" value="{{ old('icon') }}" placeholder="Enter icon" required>
+                                <input type="text" name="icon" class="form-control" value="{{ old('icon') }}" placeholder="fa fa-facebook" required>
                                 @if ($errors->has('icon'))
                                 <div class="alert alert-danger">{{ $errors->first('icon') }}</div>
                             @endif

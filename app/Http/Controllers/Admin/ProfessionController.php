@@ -11,9 +11,6 @@ class ProfessionController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('profession-manage')) {
-            return $error;
-        }
         $professions = Profession::all();
         return view('admin.profession.index', compact('professions'));
     }
