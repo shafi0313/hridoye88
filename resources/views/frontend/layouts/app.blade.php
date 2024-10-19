@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Hridoye88</title>
+    <title>Hridoye 88</title>
 
     <meta name="description" content="Hridoye88">
     <meta name="keywords" content="Hridoye88">
@@ -65,17 +65,17 @@
     <script src="{{ asset('frontend/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/navbar/bootstrap-4-navbar.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/owl-carousel/owl.carousel.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/assets/vendor/waypoint/waypoints.min.js') }}"></script> --}}
+    <script src="{{ asset('frontend/assets/vendor/waypoint/waypoints.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/counterup/jquery.counterup.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/assets/vendor/isotope/isotope.pkgd.min.js') }}"></script> --}}
+    <script src="{{ asset('frontend/assets/vendor/isotope/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/magnific/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/smooth-scroll/jquery.smooth-scroll.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/jquery-easing/jquery.easing.1.3.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/assets/vendor/nice-select/jquery.nice-select.js') }}"></script> --}}
+    {{-- <script src="{{ asset('frontend/assets/vendor/jquery-easing/jquery.easing.1.3.min.js') }}"></script> --}}
+    <script src="{{ asset('frontend/assets/vendor/nice-select/jquery.nice-select.js') }}"></script>
     {{-- <script src="{{ asset('frontend/assets/vendor/validation/jquery.validate.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('frontend/assets/vendor/validation/additional-methods.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('frontend/assets/vendor/js-offcanvas/js/js-offcanvas.pkgd.min.js') }}"></script> --}}
-    <script src="{{ asset('frontend/assets/vendor/jquery.countdown/jquery.countdown.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/vendor/jquery.countdown/jquery.countdown.min.js') }}"></script> --}}
     <script src="{{ asset('frontend/assets/js/theme.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
 
