@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\ModelHasRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,35 +19,32 @@ class UserController extends Controller
             return $error;
         }
         if ($request->ajax()) {
-            $users = User::whereIn('type',['0','1']);
+            $users = User::whereIn('permission', ['0', '1', '2']);
             return DataTables::of($users)
                 ->addIndexColumn()
-                ->addColumn('check', function ($row) {
-                    return '<input type="checkbox" name="select[]" onclick="checkcheckbox()" id="check_'.$row->id.'" class="check" value="'.$row->id.'">';
+                ->addColumn('permission', function ($row) {
+                    return match ($row->permission) {
+                        0 => 'No Login',
+                        1 => 'Admin',
+                        2 => 'User',
+                        default => 'N/A',
+                    };
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->diffForHumans();
                 })
-                ->addColumn('age', function ($row) {
-                    return ageWithDays($row->d_o_b);
-                })
                 ->addColumn('image', function ($row) {
-                    $src = asset('uploads/images/users/'.$row->image);
-                    return '<img src="'.$src.'" width="100px">';
+                    $src = asset('uploads/images/users/' . $row->image);
+                    return '<img src="' . $src . '" width="100px">';
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '';
-                    if (userCan('user-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.user.edit', $row->id) , 'row' => $row]);
-                    }
-                    if (userCan('user-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.user.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
-                    }
+                    $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.user.edit', $row->id), 'row' => $row]);
+                    $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.user.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     return $btn;
                 })
-                ->rawColumns(['check', 'age', 'action', 'image', 'created_at'])
+                ->rawColumns(['action', 'image', 'created_at'])
                 ->make(true);
-
         }
         $roles = Role::all();
         return view('admin.user.index', compact('roles'));
@@ -67,7 +62,7 @@ class UserController extends Controller
 
         try {
             $user = User::create($data);
-            if($request->permission){
+            if ($request->permission) {
                 $permission = [
                     'role_id' =>  $request->permission,
                     'model_type' => "App\Models\User",
@@ -75,9 +70,9 @@ class UserController extends Controller
                 ];
                 ModelHasRole::create($permission);
             }
-            return response()->json(['message'=> 'Data Successfully Inserted'], 200);
+            return response()->json(['message' => 'Data Successfully Inserted'], 200);
         } catch (\Exception $e) {
-            return response()->json(['message'=>__('app.oops')], 500);
+            return response()->json(['message' => __('app.oops')], 500);
             // return response()->json(['message'=>$e->getMessage()], 500);
         }
     }
@@ -102,18 +97,18 @@ class UserController extends Controller
             return $error;
         }
         $data = $request->validated();
-        if(isset($request->password)){
+        if (isset($request->password)) {
             $data['password'] = bcrypt($request->password);
         }
 
         $image = User::find($user->id)->image;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $data['image'] = imageUpdate($request, 'user', 'uploads/images/users/', $image);
         }
 
         try {
             $user->update($data);
-            if($request->permission){
+            if ($request->permission) {
                 $permission = [
                     'role_id' =>  $request->permission,
                     'model_type' => "App\Models\User",
@@ -121,9 +116,9 @@ class UserController extends Controller
                 ];
                 ModelHasRole::whereModel_id($user->id)->update($permission);
             }
-            return response()->json(['message'=> 'Data Successfully Inserted'], 200);
+            return response()->json(['message' => 'Data Successfully Inserted'], 200);
         } catch (\Exception $e) {
-            return response()->json(['message'=>__('app.oops')], 500);
+            return response()->json(['message' => __('app.oops')], 500);
             // return response()->json(['message'=>$e->getMessage()], 500);
         }
 
@@ -151,9 +146,9 @@ class UserController extends Controller
         }
         try {
             $user->delete();
-            return response()->json(['message'=> 'Data Successfully Deleted'], 200);
+            return response()->json(['message' => 'Data Successfully Deleted'], 200);
         } catch (\Exception $e) {
-            return response()->json(['message'=>__('app.oops')], 500);
+            return response()->json(['message' => __('app.oops')], 500);
             // return response()->json(['message'=>$e->getMessage()], 500);
         }
     }

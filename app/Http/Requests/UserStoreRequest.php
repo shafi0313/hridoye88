@@ -27,9 +27,9 @@ class UserStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email',' unique:users','email'],
-            'phone' => ['required'],
+            'phone' => ['nullable'],
             'address' => ['required', 'string'],
-            'd_o_b' => ['required', 'date'],
+            // 'd_o_b' => ['required', 'date'],
             'image' => ['nullable', 'image',' mimes:jpeg,png,jpg,svg', 'max:2048'],
             'password' => ['required', 'confirmed', Password::min(6)
                                                             // ->letters()

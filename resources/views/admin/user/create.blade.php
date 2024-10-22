@@ -54,19 +54,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="phone">Phone <span class="t_r">*</span></label>
-                            <input type="text" name="phone" class="form-control" oninput="this.value = this.value.replace(/[a-zA-z\-*/]/g,'');" class="form-control" value="{{ old('phone') }}" placeholder="Enter phone" required>
+                            <label for="phone">Phone </label>
+                            <input type="text" name="phone" class="form-control" oninput="this.value = this.value.replace(/[a-zA-z\-*/]/g,'');" class="form-control" value="{{ old('phone') }}" placeholder="Enter phone">
                             @if ($errors->has('phone'))
                                 <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="d_o_b">Date of birth <span class="t_r">*</span></label>
-                            <input type="date" name="d_o_b" class="form-control" value="{{ old('d_o_b') }}" required >
-                            @if ($errors->has('d_o_b'))
-                                <div class="alert alert-danger">{{ $errors->first('d_o_b') }}</div>
                             @endif
                         </div>
                     </div>
