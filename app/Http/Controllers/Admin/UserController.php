@@ -23,7 +23,8 @@ class UserController extends Controller
             return DataTables::of($users)
                 ->addIndexColumn()
                 ->addColumn('permission', function ($row) {
-                    return match ($row->permission) {
+                    $permission = (int) $row->permission;
+                    return match ($permission) {
                         0 => 'No Login',
                         1 => 'Admin',
                         2 => 'User',
