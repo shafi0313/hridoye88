@@ -17,7 +17,7 @@ return [
     'm-media' => 'Media forum',
     'm-gallery' => 'Gallery',
     'm-photo' => 'Photo',
-    'm-video' => 'Photo',
+    'm-video' => 'Video',
     'm-blog' => 'Blog',
     'm-contact' => 'Contact',
     'm-about' => 'About',
