@@ -14,7 +14,7 @@ class UserStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return user()->can('user-add');
+        return true;
     }
 
     /**
