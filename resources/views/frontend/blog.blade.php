@@ -24,7 +24,7 @@
                     <!-- Blog content Area Start -->
                     <div class="col-lg-12">
                         <div class="blog-page-contant-start">
-                            <div class="row">
+                            <div class="row mb-3">
                                 <!--== Single Blog Post start ==-->
                                 @foreach ($blogs as $blog)
                                     <div class="col-lg-4 col-md-6">
@@ -36,10 +36,12 @@
                                                 </div>
                                                 <figcaption class="blog-meta clearfix">
                                                     <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
-                                                        <div class="author-pic">
-                                                            <img src="{{ getImg('blog', $blog->user->image) }}"
-                                                                alt="Author">
-                                                        </div>
+                                                        @if ($blog->user->image)
+                                                            <div class="author-pic">
+                                                                <img src="{{ getImg('user', $blog->user->image) }}"
+                                                                    alt="Author">
+                                                            </div>
+                                                        @endif
                                                         <div class="author-info">
                                                             <h5>{{ $blog->user->name }}</h5>
                                                             <p>{{ bdDate($blog->created_at) }}</p>
@@ -52,10 +54,11 @@
                                                 </figcaption>
                                             </figure>
                                             <div class="blog-content">
-                                                <h3><a
+                                                <h3>
+                                                    <a
                                                         href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a>
                                                 </h3>
-                                                <p>{!! Str::limit($blog->text, 100) !!}</p>
+                                                <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
                                                 <a href="{{ route('frontend.blog.show', $blog->id) }}"
                                                     class="btn btn-brand">More</a>
                                             </div>

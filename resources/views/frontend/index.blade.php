@@ -507,7 +507,7 @@
                                     <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
                                         @if($blog->user->image)
                                         <div class="author-pic">
-                                            <img src="{{ getImg('blog', $blog->user->image) }}" alt="Author">
+                                            <img src="{{ getImg('user', $blog->user->image) }}" alt="Author">
                                         </div>
                                         @endif
                                         <div class="author-info">
@@ -515,16 +515,16 @@
                                             <p>{{ bdDate($blog->created_at) }}</p>
                                         </div>
                                     </a>
-                                    <div class="like-comm pull-right">
+                                    {{-- <div class="like-comm pull-right">
                                         <a href="#"><i class="fa fa-comment-o"></i>77</a>
                                         <a href="#"><i class="fa fa-heart-o"></i>12</a>
-                                    </div>
+                                    </div> --}}
                                 </figcaption>
                             </figure>
 
                             <div class="blog-content">
                                 <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
-                                <p>{!! Str::limit($blog->text, 100) !!}</p>
+                                <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
                                 <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">More</a>
                             </div>
                         </article>
