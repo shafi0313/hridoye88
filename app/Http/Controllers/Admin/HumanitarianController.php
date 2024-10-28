@@ -43,7 +43,7 @@ class HumanitarianController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '';
-                    $btn .= view('button', ['type' => 'ajax-show', 'route' => route('admin.notices.show', $row->id), 'row' => $row]);
+                    // $btn .= view('button', ['type' => 'ajax-show', 'route' => route('admin.notices.show', $row->id), 'row' => $row]);
 
                     if (userCan('notice-edit')) {
                         $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.notices.edit', $row->id), 'row' => $row]);
