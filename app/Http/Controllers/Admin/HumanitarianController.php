@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Humanitarian;
 use Illuminate\Http\Request;
 use App\Traits\SummerNoteTrait;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHumanitarianRequest;
 use App\Http\Requests\UpdateHumanitarianRequest;
 
@@ -22,7 +23,7 @@ class HumanitarianController extends Controller
         }
 
         if ($request->ajax()) {
-            $notices = Notice::query()->latest();
+            $notices = Humanitarian::query()->latest();
 
             return DataTables::of($notices)
                 ->addIndexColumn()
