@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\HeaderController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\HumanitarianController;
+use App\Http\Controllers\Admin\HumanitarianController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubMenuController;

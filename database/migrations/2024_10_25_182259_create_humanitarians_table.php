@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDeleteSetNull();
             $table->string('title', 255);
-            $table->mediumText('text');
-            $table->string('image', 50);
-            $table->boolean('is_published')->default(1);
+            $table->longText('text');
+            $table->string('image', 64);
+            $table->date('date');
+            $table->boolean('is_active')->default(1)->index();
             $table->timestamps();
         });
     }

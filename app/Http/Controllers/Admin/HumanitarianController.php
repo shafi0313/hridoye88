@@ -6,6 +6,7 @@ use App\Models\Humanitarian;
 use Illuminate\Http\Request;
 use App\Traits\SummerNoteTrait;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreHumanitarianRequest;
 use App\Http\Requests\UpdateHumanitarianRequest;
 
@@ -18,7 +19,7 @@ class HumanitarianController extends Controller
      */
     public function index(Request $request)
     {
-        if ($error = $this->authorize('notice-manage')) {
+        if ($error = $this->authorize('humanitarian-assistance-manage')) {
             return $error;
         }
 
@@ -33,35 +34,32 @@ class HumanitarianController extends Controller
                 ->addColumn('date', function ($row) {
                     return bdDate($row->date);
                 })
-                ->addColumn('file', function ($row) {
-                    return '<a href="'.asset('uploads/images/notice/'.$row->file).'" download="'.$row->file.'">Download File</a>';
+                ->addColumn('image', function ($row) {
+                    return '<img src="'.imagePath('humanitarian', $row->image).'">';
                 })
                 ->addColumn('is_active', function ($row) {
-                    if (userCan('notice-edit')) {
-                        return view('button', ['type' => 'is_active', 'route' => route('admin.notices.is_active', $row->id), 'row' => $row->is_active]);
+                    if (userCan('humanitarian-assistance-edit')) {
+                        return view('button', ['type' => 'is_active', 'route' => route('admin.humanitarian-assistance.is_active', $row->id), 'row' => $row->is_active]);
                     }
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '';
-                    // $btn .= view('button', ['type' => 'ajax-show', 'route' => route('admin.notices.show', $row->id), 'row' => $row]);
-
-                    if (userCan('notice-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.notices.edit', $row->id), 'row' => $row]);
+                    if (userCan('humanitarian-assistance-edit')) {
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.humanitarian-assistance.edit', $row->id), 'row' => $row]);
                     }
-                    if (userCan('notice-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.notices.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
+                    if (userCan('humanitarian-assistance-delete')) {
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.humanitarian-assistance.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
-
                     return $btn;
                 })
-                ->rawColumns(['content', 'file', 'is_active', 'action'])
+                ->rawColumns(['content', 'image', 'is_active', 'action'])
                 ->make(true);
         }
 
-        return view('admin.notice.index');
+        return view('admin.humanitarian-assistance.index');
     }
 
-    public function status(Notice $notice)
+    public function status(Humanitarian $notice)
     {
         if ($error = $this->authorize('notice-edit')) {
             return $error;
@@ -79,24 +77,20 @@ class HumanitarianController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNoticeRequest $request)
+    public function store(StoreHumanitarianRequest $request)
     {
-        if ($error = $this->authorize('notice-add')) {
+        if ($error = $this->authorize('humanitarian-assistance-add')) {
             return $error;
         }
         $data = $request->validated();
-        $data['content'] = $this->summerNoteStore($request->content, 'notice');
+        $data['content'] = $this->summerNoteStore($request->content, 'content');
 
-        if ($request->file('file')) {
-            $fileName = uniqid(10).'.'.$request->file->getClientOriginalExtension();
-            // $type = $request->file->getClientMimeType();
-            // $size = $request->file->getSize();
-            $request->file->move(public_path('/uploads/images/notice/'), $fileName);
-            $data['file'] = $fileName;
+        if ($request->hasFile('image')) {
+            $data['image'] = imgProcessAndStore($request->image, 'humanitarian');
         }
 
         try {
-            Notice::create($data);
+            Humanitarian::create($data);
 
             return response()->json(['message' => 'The information has been inserted'], 200);
         } catch (\Exception $e) {

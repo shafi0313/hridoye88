@@ -359,6 +359,17 @@ if (!function_exists('getImg')) {
     }
 }
 
+
+if (!function_exists('userCan')) {
+    function userCan($permission)
+    {
+        if (auth()->check() && user()->can($permission)) {
+            return true;
+        }
+        return false;
+    }
+}
+
 if (! function_exists('slug')) {
     function slug($text)
     {

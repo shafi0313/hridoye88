@@ -1,7 +1,14 @@
+@php
+    if($height){
+        $height = $height;
+    }else {
+        $height = 300;
+    }
+@endphp
 <script>
     $(document).ready(function() {
         $('.note_content').summernote({
-            height: 300,
+            height: {{ $height }},
             callbacks: {
                 onMediaDelete: function(target) {
                     let imgSrc = target[0].src;
