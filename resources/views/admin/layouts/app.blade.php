@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    @php
-        $user = auth()->user();
-    @endphp
+@php
+    $user = auth()->user();
+@endphp
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@yield('title') | {{config('app.name')}}</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- <!-- Fonts and icons --> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
@@ -22,9 +25,9 @@
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular",
                     "Font Awesome 5 Brands", "simple-line-icons"
                 ],
-                urls: ['{{ asset("backend/css/fonts.min.css" )}}']
+                urls: ['{{ asset('backend/css/fonts.min.css') }}']
             },
-            active: function () {
+            active: function() {
                 sessionStorage.fonts = true;
             }
         });
@@ -33,6 +36,12 @@
     {{-- <!-- CSS Files --> --}}
     <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/atlantis.min.css') }}">
+
+    {{-- summer note --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css"
+        integrity="sha512-ZbehZMIlGA8CTIOtdE+M81uj3mrcgyrh6ZFeG33A4FHECakGrOsTPlPQ8ijjLkxgImrdmSVUHn1j+ApjodYZow=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 
 </head>
@@ -42,8 +51,9 @@
         <div class="main-header">
             {{-- <!-- Logo Header --> --}}
             <div class="logo-header" data-background-color="purple">
-                <a href="{{ route('admin.dashboard') }}" class="logo"> <h4 class="display:4 text-light" style="margin-top: 20px">Hridoye 88</h4>
-				</a>
+                <a href="{{ route('admin.dashboard') }}" class="logo">
+                    <h4 class="display:4 text-light" style="margin-top: 20px">Hridoye 88</h4>
+                </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -88,6 +98,12 @@
     <script src="{{ asset('backend/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
     {{-- <!-- Atlantis JS --> --}}
     <script src="{{ asset('backend/js/atlantis.min.js') }}"></script>
+
+    {{-- Summer Note --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"
+        integrity="sha512-lVkQNgKabKsM1DA/qbhJRFQU8TuwkLF2vSN3iU/c7+iayKs08Y8GXqfFxxTZr1IcpMovXnf2N/ZZoMgmZep1YQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     {{-- <!-- CUSTOM JS --> --}}
     <script src="{{ asset('backend/js/custom.js') }}"></script>
     <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
@@ -99,6 +115,7 @@
     </script> --}}
     @include('include.alert')
     @include('sweetalert::alert')
-	@stack('custom_scripts')
+    @stack('custom_scripts')
 </body>
+
 </html>

@@ -37,8 +37,6 @@ class BlogController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
-        DB::beginTransaction();
-
         $image_name = '';
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -50,11 +48,9 @@ class BlogController extends Controller
 
         try{
             Blog::create($data);
-            DB::commit();
             toast('success','Success');
             return redirect()->route('admin.blog.index');
         }catch(\Exception $ex){
-            DB::rollBack();
             toast('error','Error');
             return redirect()->back();
         }
@@ -80,8 +76,6 @@ class BlogController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
         ]);
 
-        DB::beginTransaction();
-
         $image_name = '';
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -93,11 +87,9 @@ class BlogController extends Controller
 
         try{
             Blog::find($id)->update($data);
-            DB::commit();
             toast('success','Success');
             return redirect()->route('admin.blog.index');
         }catch(\Exception $ex){
-            DB::rollBack();
             toast('error','Error');
             return redirect()->back();
         }

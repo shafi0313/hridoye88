@@ -86,7 +86,7 @@ Route::controller(BlogController::class)->prefix('blog')->group(function () {
     Route::get('/create', 'create')->name('blog.create');
     Route::post('/store', 'store')->name('blog.store');
     Route::get('/edit/{id}', 'edit')->name('blog.edit');
-    Route::post('/update/{id}', 'update')->name('blog.update');
+    Route::put('/update/{id}', 'update')->name('blog.update');
     Route::get('/destroy/{id}', 'destroy')->name('blog.destroy');
 });
 
