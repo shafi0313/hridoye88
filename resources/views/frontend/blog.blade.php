@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'Blog' )
+@section('title', 'Blog')
 @section('content')
     <!--== Page Title Area Start ==-->
     <section id="page-title-area">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8 m-auto text-center">
                     <div class="page-title-content">
-                        <h1 class="h2">{{__('index.m-blog')}}</h1>
+                        <h1 class="h2">{{ __('index.m-blog') }}</h1>
                         <a href="#page-content-wrap" class="btn btn-brand smooth-scroll">Let&apos;s See</a>
                     </div>
                 </div>
@@ -27,35 +27,40 @@
                             <div class="row">
                                 <!--== Single Blog Post start ==-->
                                 @foreach ($blogs as $blog)
-                                <div class="col-lg-4 col-md-6">
-                                    <article class="single-blog-post">
-                                        <figure class="blog-thumb">
-                                            <div class="blog-thumbnail">
-                                                <img src="{{ getImg('blog', $blog->image) }}" alt="Blog" class="img-fluid">
-                                            </div>
-                                            <figcaption class="blog-meta clearfix">
-                                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
-                                                    <div class="author-pic">
-                                                        <img src="{{ getImg('blog', $blog->user->image) }}" alt="Author">
-                                                    </div>
-                                                    <div class="author-info">
-                                                        <h5>{{ $blog->user->name }}</h5>
-                                                        <p>{{ bdDate( $blog->created_at) }}</p>
-                                                    </div>
-                                                </a>
-                                                {{-- <div class="like-comm pull-right">
+                                    <div class="col-lg-4 col-md-6">
+                                        <article class="single-blog-post">
+                                            <figure class="blog-thumb">
+                                                <div class="blog-thumbnail">
+                                                    <img src="{{ getImg('blog', $blog->image) }}" alt="Blog"
+                                                        class="img-fluid" width="100%">
+                                                </div>
+                                                <figcaption class="blog-meta clearfix">
+                                                    <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
+                                                        <div class="author-pic">
+                                                            <img src="{{ getImg('blog', $blog->user->image) }}"
+                                                                alt="Author">
+                                                        </div>
+                                                        <div class="author-info">
+                                                            <h5>{{ $blog->user->name }}</h5>
+                                                            <p>{{ bdDate($blog->created_at) }}</p>
+                                                        </div>
+                                                    </a>
+                                                    {{-- <div class="like-comm pull-right">
                                                     <a href="#"><i class="fa fa-comment-o"></i>77</a>
                                                     <a href="#"><i class="fa fa-heart-o"></i>12</a>
                                                 </div> --}}
-                                            </figcaption>
-                                        </figure>
-                                        <div class="blog-content">
-                                            <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
-                                            <p>{!! Str::limit($blog->text, 100) !!}</p>
-                                            <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">More</a>
-                                        </div>
-                                    </article>
-                                </div>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="blog-content">
+                                                <h3><a
+                                                        href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a>
+                                                </h3>
+                                                <p>{!! Str::limit($blog->text, 100) !!}</p>
+                                                <a href="{{ route('frontend.blog.show', $blog->id) }}"
+                                                    class="btn btn-brand">More</a>
+                                            </div>
+                                        </article>
+                                    </div>
                                 @endforeach
                                 <!--== Single Blog Post End ==-->
                             </div>
@@ -65,7 +70,7 @@
                                     <div class="pagination-wrap text-center">
                                         <nav>
                                             <ul class="pagination">
-                                                {{ $blogs->links( "pagination::bootstrap-4") }}
+                                                {{ $blogs->links('pagination::bootstrap-4') }}
                                             </ul>
                                         </nav>
                                     </div>
@@ -125,12 +130,12 @@
         </div>
     </div>
     <!-- Single Sidebar End --> --}}
-</div>
-                    </div>
-                    <!-- Sidebar Area End -->
                 </div>
             </div>
+            <!-- Sidebar Area End -->
         </div>
+    </div>
+    </div>
     </div>
     <!--== Blog Page Content End ==-->
 
@@ -138,6 +143,6 @@
 
 
 
-@push('custom_scripts')
-@endpush
+    @push('custom_scripts')
+    @endpush
 @endsection
