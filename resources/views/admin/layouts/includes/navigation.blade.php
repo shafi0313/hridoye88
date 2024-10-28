@@ -142,6 +142,14 @@
                     </a>
                 </li>
                 @endcan
+                @can('humanitarian-assistance-manage')
+                <li class="nav-item {{ activeNav('admin.blog.*') }}">
+                    <a href="{{ route('admin.humanitarian-assistance.index') }}">
+                        <i class="fab fa-blogger"></i>
+                        <p>Blog</p>
+                    </a>
+                </li>
+                @endcan
 
 
 

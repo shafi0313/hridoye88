@@ -43,10 +43,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
+    <link href="{{ asset('common/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body data-background-color="bg1">
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
     <div class="wrapper">
         <div class="main-header">
             {{-- <!-- Logo Header --> --}}
@@ -105,8 +109,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <!-- CUSTOM JS --> --}}
-    <script src="{{ asset('backend/js/custom.js') }}"></script>
-    <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
+    <script src="{{ asset('common/js/http.js') }}"></script>
+    <script src="{{ asset('common/js/custom.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/custom.js') }}"></script>
+    <script src="{{ asset('backend/js/plugins-init.js') }}"></script> --}}
 
     {{-- <script>
         $("form").on('submit', function(e){
@@ -116,6 +122,8 @@
     @include('include.alert')
     @include('sweetalert::alert')
     @stack('custom_scripts')
+    <div id="ajax_modal_container"></div>
+    <div id="ajax_show_modal_container"></div>
 </body>
 
 </html>

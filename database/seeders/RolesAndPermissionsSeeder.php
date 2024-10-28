@@ -136,6 +136,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'blog-edit',
                 'blog-delete'
             ],
+            'humanitarian-assistance'=>[
+                'humanitarian-assistance-manage',
+                'humanitarian-assistance-add',
+                'humanitarian-assistance-edit',
+                'humanitarian-assistance-delete'
+            ],
         ];
         foreach ($pers as $per => $val) {
             foreach ($val as $name) {
