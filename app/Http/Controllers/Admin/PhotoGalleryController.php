@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
+use App\Http\Controllers\Controller;
 use App\Models\GalleryCat;
 use App\Models\PhotoGallery;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 class PhotoGalleryController extends Controller
@@ -17,6 +16,7 @@ class PhotoGalleryController extends Controller
             return $error;
         }
         $galleries = PhotoGallery::all();
+
         return view('admin.photo_gallery.index', compact('galleries'));
     }
 
@@ -26,6 +26,7 @@ class PhotoGalleryController extends Controller
             return $error;
         }
         $galleryCats = GalleryCat::all();
+
         return view('admin.photo_gallery.create', compact('galleryCats'));
     }
 
@@ -40,24 +41,26 @@ class PhotoGalleryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             // 'image' => 'required|dimensions:max_width=1920,max_height=718',
         ]);
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $path = public_path('/uploads/images/gallery/');
-            if(!file_exists($path)){
+            if (! file_exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
             $image = $request->file('image');
-            $imageName = "gallery".rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/gallery/',$imageName);
+            $imageName = 'gallery'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/gallery/', $imageName);
             $data['image'] = $imageName;
         }
 
         try {
             PhotoGallery::create($data);
             toast('success', 'Success!');
+
             return redirect()->route('admin.photo-gallery.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -68,6 +71,7 @@ class PhotoGalleryController extends Controller
             return $error;
         }
         $data = PhotoGallery::find($id);
+
         return view('admin.photo_gallery.edit', compact('data'));
     }
 
@@ -81,24 +85,26 @@ class PhotoGalleryController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $files = PhotoGallery::where('id', $id)->first();
-            $path =  public_path('uploads/images/gallery/'.$files->image);
-            file_exists($path)?unlink($path):false;
+            $path = public_path('uploads/images/gallery/'.$files->image);
+            file_exists($path) ? unlink($path) : false;
 
             $image = $request->file('image');
-            $imageName = "gallery".rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/gallery/',$imageName);
+            $imageName = 'gallery'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/gallery/', $imageName);
             $data['image'] = $imageName;
         }
 
         try {
             PhotoGallery::find($id)->update($data);
             toast('success', 'Success!');
+
             return redirect()->route('admin.photoGallery.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -109,15 +115,17 @@ class PhotoGalleryController extends Controller
             return $error;
         }
         $data = PhotoGallery::find($id);
-        $path =  public_path('uploads/images/gallery/'.$data->image);
-        if(file_exists($path)){
+        $path = public_path('uploads/images/gallery/'.$data->image);
+        if (file_exists($path)) {
             unlink($path);
             $data->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }else{
+        } else {
             $data->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
         }
     }

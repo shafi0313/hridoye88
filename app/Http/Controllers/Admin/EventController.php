@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
@@ -19,6 +19,7 @@ class EventController extends Controller
             return $error;
         }
         $events = Event::all();
+
         return view('admin.event.index', compact('events'));
     }
 
@@ -32,13 +33,13 @@ class EventController extends Controller
         if ($error = $this->authorize('event-add')) {
             return $error;
         }
+
         return view('admin.event.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,17 +54,19 @@ class EventController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
         $data['user_id'] = user()->id;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $data['image'] = imageStore($request, 'event', 'uploads/images/events/');
         }
 
         try {
             Event::create($data);
             toast('Success', 'success');
+
             return redirect()->route('admin.event.index');
         } catch (\Exception $e) {
             // return $e->getMessage();
             toast('Error', 'error');
+
             return back();
         }
     }
@@ -91,13 +94,13 @@ class EventController extends Controller
             return $error;
         }
         $event = Event::find($id);
+
         return view('admin.event.edit', compact('event'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -113,16 +116,18 @@ class EventController extends Controller
         ]);
         $delPath = Event::find($id)->image;
         $data['user_id'] = user()->id;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $data['image'] = imageUpdate($request, 'event', 'uploads/images/events/', $delPath);
         }
         try {
             Event::find($id)->update($data);
             toast('Success!', 'success');
+
             return redirect()->route('admin.event.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('Error', 'error');
+
             return back();
         }
     }
@@ -139,17 +144,18 @@ class EventController extends Controller
             return $error;
         }
         $event = Event::find($id);
-        $path =  public_path('uploads/images/events/'.$event->image);
-        if(file_exists($path)){
+        $path = public_path('uploads/images/events/'.$event->image);
+        if (file_exists($path)) {
             unlink($path);
             $event->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }else{
+        } else {
             $event->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
         }
     }
-
 }

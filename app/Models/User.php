@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasFactory, HasRoles, Notifiable, SoftDeletes;
+
     protected $guarded = ['id'];
 
     /**
@@ -52,6 +52,7 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['ordered_at', 'created_at', 'updated_at'];
+
     public function getSomeDateAttribute($date)
     {
         return $date->format('d/m/Y');
@@ -59,17 +60,16 @@ class User extends Authenticatable
 
     public function accessPermission()
     {
-        return $this->hasOne(ModelHasRole::class, 'model_id','id');
+        return $this->hasOne(ModelHasRole::class, 'model_id', 'id');
     }
-    public function employee(){
+
+    public function employee()
+    {
         return $this->belongsTo(EmployeeInfo::class);
     }
 
-    public function designation(){
+    public function designation()
+    {
         return $this->belongsTo(Profession::class, 'profession', 'id');
     }
-
-
 }
-
-

@@ -18,14 +18,14 @@ class UserSeeder extends Seeder
             'name' => 'Developer',
             'email' => 'admin@shafi95.com',
             'permission' => '1',
-            'password' =>  bcrypt('##Zxc1234'),
+            'password' => bcrypt('##Zxc1234'),
         ]);
         $admin->assignRole(['admin']);
         $user = User::create([
             'name' => 'Developer',
             'email' => 'user@shafi95.com',
             'permission' => '2',
-            'password' =>  bcrypt('##Zxc1234'),
+            'password' => bcrypt('##Zxc1234'),
         ]);
         $user->assignRole(['user']);
     }

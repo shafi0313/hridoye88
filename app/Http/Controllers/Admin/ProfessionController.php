@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
+use App\Http\Controllers\Controller;
 use App\Models\Profession;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProfessionController extends Controller
 {
     public function index()
     {
         $professions = Profession::all();
+
         return view('admin.profession.index', compact('professions'));
     }
 
@@ -20,6 +20,7 @@ class ProfessionController extends Controller
         if ($error = $this->authorize('profession-add')) {
             return $error;
         }
+
         return view('admin.profession.create');
     }
 
@@ -35,10 +36,12 @@ class ProfessionController extends Controller
         try {
             Profession::create($data);
             toast('success', 'Success!');
+
             return redirect()->route('admin.profession.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -49,6 +52,7 @@ class ProfessionController extends Controller
             return $error;
         }
         $profession = Profession::find($id);
+
         return view('admin.profession.edit', compact('profession'));
     }
 
@@ -64,10 +68,12 @@ class ProfessionController extends Controller
         try {
             Profession::find($id)->update($data);
             toast('success', 'Success!');
+
             return redirect()->route('admin.profession.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -77,12 +83,14 @@ class ProfessionController extends Controller
         if ($error = $this->authorize('profession-delete')) {
             return $error;
         }
-        try{
+        try {
             Profession::find($id)->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }catch (\Exception $ex){
-            toast('Failed','error');
+        } catch (\Exception $ex) {
+            toast('Failed', 'error');
+
             return redirect()->back();
         }
     }

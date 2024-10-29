@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Layout;
-use App\Models\Profession;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GalleryCat;
+use App\Models\Profession;
+use Illuminate\Http\Request;
 
 class GalleryCatController extends Controller
 {
@@ -16,6 +15,7 @@ class GalleryCatController extends Controller
             return $error;
         }
         $galleryCats = GalleryCat::all();
+
         return view('admin.gallery_cat.index', compact('galleryCats'));
     }
 
@@ -24,6 +24,7 @@ class GalleryCatController extends Controller
         if ($error = $this->authorize('gallery-category-add')) {
             return $error;
         }
+
         return view('admin.gallery_cat.create');
     }
 
@@ -39,10 +40,12 @@ class GalleryCatController extends Controller
         try {
             GalleryCat::create($data);
             toast('Success!', 'success');
+
             return redirect()->route('admin.gallery-cat.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -53,6 +56,7 @@ class GalleryCatController extends Controller
             return $error;
         }
         $profession = Profession::find($id);
+
         return view('admin.profession.edit', compact('profession'));
     }
 
@@ -68,10 +72,12 @@ class GalleryCatController extends Controller
         try {
             Profession::find($id)->update($data);
             toast('success', 'Success!');
+
             return redirect()->route('admin.profession.index');
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }
@@ -81,12 +87,14 @@ class GalleryCatController extends Controller
         if ($error = $this->authorize('gallery-category-delete')) {
             return $error;
         }
-        try{
+        try {
             Profession::find($id)->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }catch (\Exception $ex){
-            toast('Failed','error');
+        } catch (\Exception $ex) {
+            toast('Failed', 'error');
+
             return redirect()->back();
         }
     }

@@ -1,21 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\BlogController;
-use App\Http\Controllers\Frontend\MenuController;
 use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\MemberController;
-use App\Http\Controllers\Frontend\GalleryController;
+use App\Http\Controllers\Frontend\MenuController;
 use App\Http\Controllers\Frontend\RegisterController;
-
-
+use Illuminate\Support\Facades\Route;
 
 Route::resource('/', IndexController::class)->only('index');
 
-Route::resource('/blog', BlogController::class)->only(['index','show']);
+Route::resource('/blog', BlogController::class)->only(['index', 'show']);
 Route::resource('/about', AboutController::class)->only('index');
-
 
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'index')->name('register.index');

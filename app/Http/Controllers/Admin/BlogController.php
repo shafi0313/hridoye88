@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {
@@ -15,6 +14,7 @@ class BlogController extends Controller
             return $error;
         }
         $blogs = Blog::paginate(10);
+
         return view('admin.blog.index', compact('blogs'));
     }
 
@@ -23,6 +23,7 @@ class BlogController extends Controller
         if ($error = $this->authorize('blog-add')) {
             return $error;
         }
+
         return view('admin.blog.create');
     }
 
@@ -38,20 +39,22 @@ class BlogController extends Controller
         ]);
 
         $image_name = '';
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = "blog_".rand(0,1000000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/blog/',$image_name);
+            $image_name = 'blog_'.rand(0, 1000000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/blog/', $image_name);
             $data['image'] = $image_name;
         }
         $data['user_id'] = auth()->user()->id;
 
-        try{
+        try {
             Blog::create($data);
-            toast('success','Success');
+            toast('success', 'Success');
+
             return redirect()->route('admin.blog.index');
-        }catch(\Exception $ex){
-            toast('error','Error');
+        } catch (\Exception $ex) {
+            toast('error', 'Error');
+
             return redirect()->back();
         }
     }
@@ -62,6 +65,7 @@ class BlogController extends Controller
             return $error;
         }
         $blog = Blog::find($id);
+
         return view('admin.blog.edit', compact('blog'));
     }
 
@@ -77,20 +81,22 @@ class BlogController extends Controller
         ]);
 
         $image_name = '';
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = "blog_".rand(0,1000000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/blog/',$image_name);
+            $image_name = 'blog_'.rand(0, 1000000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/blog/', $image_name);
             $data['image'] = $image_name;
         }
         $data['user_id'] = auth()->user()->id;
 
-        try{
+        try {
             Blog::find($id)->update($data);
-            toast('success','Success');
+            toast('success', 'Success');
+
             return redirect()->route('admin.blog.index');
-        }catch(\Exception $ex){
-            toast('error','Error');
+        } catch (\Exception $ex) {
+            toast('error', 'Error');
+
             return redirect()->back();
         }
     }
@@ -101,15 +107,17 @@ class BlogController extends Controller
             return $error;
         }
         $blog = Blog::find($id);
-        $path =  public_path('uploads/images/blog/'.$blog->image);
-        if(file_exists($path)){
+        $path = public_path('uploads/images/blog/'.$blog->image);
+        if (file_exists($path)) {
             unlink($path);
             $blog->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }else{
+        } else {
             $blog->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
         }
     }

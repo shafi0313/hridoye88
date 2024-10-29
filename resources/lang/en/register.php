@@ -20,4 +20,4 @@ return [
     'password' => 'Password',
     'cPassword' => 'Confirm Password',
 
-    ];
+];

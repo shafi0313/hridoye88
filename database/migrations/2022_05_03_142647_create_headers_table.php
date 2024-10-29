@@ -15,10 +15,10 @@ class CreateHeadersTable extends Migration
     {
         Schema::create('headers', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['text','social']);
-            $table->string('content',191)->nullable();
-            $table->string('icon',191)->nullable();
-            $table->string('link',191)->nullable();
+            $table->enum('type', ['text', 'social']);
+            $table->string('content', 191)->nullable();
+            $table->string('icon', 191)->nullable();
+            $table->string('link', 191)->nullable();
             $table->timestamps();
         });
     }

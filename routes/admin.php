@@ -1,28 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AjaxController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\BackupController;
-use App\Http\Controllers\Admin\HeaderController;
-use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\HumanitarianController;
-use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\SubMenuController;
-use App\Http\Controllers\Auth\Role\RoleController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryCatController;
-use App\Http\Controllers\Admin\ProfessionController;
-use App\Http\Controllers\Admin\VisitorInfoController;
+use App\Http\Controllers\Admin\HeaderController;
+use App\Http\Controllers\Admin\HumanitarianController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SubMenuController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoGalleryController;
+use App\Http\Controllers\Admin\VisitorInfoController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Auth\Permission\PermissionController;
+use App\Http\Controllers\Auth\Role\RoleController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -31,7 +31,6 @@ Route::controller(VisitorInfoController::class)->prefix('visitor-info')->name('v
     Route::get('/delete-selected', 'destroySelected')->name('destroySelected');
     Route::get('/delete-all', 'destroyAll')->name('destroyAll');
 });
-
 
 // !APP BACKUP
 Route::controller(BackupController::class)->prefix('app-backup')->name('backup.')->group(function () {
@@ -69,14 +68,12 @@ Route::controller(ProfileController::class)->prefix('my-profile')->group(functio
     Route::post('/update', 'update')->name('myProfile.profile.update');
 });
 
-
-Route::resource('user', UserController::class)->except(['show','create']);
-
+Route::resource('user', UserController::class)->except(['show', 'create']);
 
 Route::resource('/member', MemberController::class);
 
-Route::prefix('my-profile')->group(function(){
-    Route::prefix('profile')->group(function(){
+Route::prefix('my-profile')->group(function () {
+    Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('myProfile.profile.index');
         Route::post('/update', [ProfileController::class, 'update'])->name('myProfile.profile.update');
     });
@@ -95,22 +92,22 @@ Route::resource('/humanitarian-assistance', HumanitarianController::class);
 Route::patch('/humanitarian-assistance/is-active/{humanitarian}', [HumanitarianController::class, 'status'])->name('humanitarian_assistance.is_active');
 
 Route::resource('/slider', SliderController::class);
-Route::resource('/message', MessageController::class)->only('edit','update');
-Route::resource('/about', AboutController::class)->only('edit','update');
+Route::resource('/message', MessageController::class)->only('edit', 'update');
+Route::resource('/about', AboutController::class)->only('edit', 'update');
 Route::resource('/menu', MenuController::class);
 Route::resource('/sub-menu', SubMenuController::class);
-Route::resource('/photo-gallery', PhotoGalleryController::class,);
+Route::resource('/photo-gallery', PhotoGalleryController::class);
 Route::resource('/video-gallery', VideoGalleryController::class);
 
 Route::resource('/profession', ProfessionController::class);
 Route::resource('/event', EventController::class);
 Route::resource('/gallery-cat', GalleryCatController::class);
 
-Route::controller(HeaderController::class)->group(function(){
-    Route::get('/header','index')->name('header.index');
-    Route::post('/header/textStore','textStore')->name('header.textStore');
-    Route::post('/header/socialStore','socialStore')->name('header.socialStore');
-    Route::get('/header/edit/{id}','edit')->name('header.edit');
-    Route::post('/header/update/{id}','update')->name('header.update');
-    Route::get('/header/destroy/{id}','destroy')->name('header.destroy');
+Route::controller(HeaderController::class)->group(function () {
+    Route::get('/header', 'index')->name('header.index');
+    Route::post('/header/textStore', 'textStore')->name('header.textStore');
+    Route::post('/header/socialStore', 'socialStore')->name('header.socialStore');
+    Route::get('/header/edit/{id}', 'edit')->name('header.edit');
+    Route::post('/header/update/{id}', 'update')->name('header.update');
+    Route::get('/header/destroy/{id}', 'destroy')->name('header.destroy');
 });

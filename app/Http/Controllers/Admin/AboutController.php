@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\About;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
@@ -14,6 +14,7 @@ class AboutController extends Controller
             return $error;
         }
         $about = About::find($id);
+
         return view('admin.about.edit', compact('about'));
     }
 
@@ -26,9 +27,11 @@ class AboutController extends Controller
         try {
             About::find($id)->update($data);
             toast('Success', 'success');
+
             return back();
         } catch (\Exception $e) {
             toast('error', 'Error');
+
             return back();
         }
     }

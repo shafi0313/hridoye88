@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Layout;
-use App\Models\Profession;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Profession;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
 {
@@ -18,6 +17,7 @@ class MemberController extends Controller
             return $error;
         }
         $datum = User::wherePermission(2)->get();
+
         return view('admin.member.index', compact('datum'));
     }
 
@@ -27,6 +27,7 @@ class MemberController extends Controller
             return $error;
         }
         $professions = Profession::all();
+
         return view('admin.member.create', compact('professions'));
     }
 
@@ -49,43 +50,43 @@ class MemberController extends Controller
             'fb' => 'nullable|max:80',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'cv' => 'nullable|max:1024',
-            'password' => ['required', 'confirmed', Password::min(6)
-                                                            // ->letters()
-                                                            // ->mixedCase()
-                                                            // ->numbers()
-                                                            // ->symbols()
-                                                            // ->uncompromised()
-                                                        ],
+            'password' => ['required', 'confirmed', Password::min(6),
+                // ->letters()
+                // ->mixedCase()
+                // ->numbers()
+                // ->symbols()
+                // ->uncompromised()
+            ],
         ]);
         $data['permission'] = 1;
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = "user".rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/users/'. $imageName);
+            $imageName = 'user'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/users/'.$imageName);
             $data['image'] = $imageName;
         }
 
-        if($request->hasFile('cv')){
+        if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
-            $cvName = "user".rand(0, 10000).'.'.$cv->getClientOriginalExtension();
-            $request->cv->move('uploads/images/users/'. $cvName);
+            $cvName = 'user'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
+            $request->cv->move('uploads/images/users/'.$cvName);
             $data['cv'] = $cvName;
         }
 
-        try{
+        try {
             User::create($data);
-            toast('Success!','success');
+            toast('Success!', 'success');
+
             // Alert::success('Success!');
             return redirect()->route('admin.member.index');
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
-            toast('error','error');
+            toast('error', 'error');
+
             return redirect()->back();
         }
     }
-
-
 
     public function edit($id)
     {
@@ -94,7 +95,8 @@ class MemberController extends Controller
         }
         $data = User::find($id);
         $professions = Profession::all();
-        return view('admin.member.edit', compact('data','professions'));
+
+        return view('admin.member.edit', compact('data', 'professions'));
     }
 
     public function update(Request $request, $id)
@@ -117,41 +119,43 @@ class MemberController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'cv' => 'nullable|max:1024',
             // 'password' => ['required', 'confirmed', Password::min(6)
-                                                            // ->letters()
-                                                            // ->mixedCase()
-                                                            // ->numbers()
-                                                            // ->symbols()
-                                                            // ->uncompromised()
-                                                        // ],
+            // ->letters()
+            // ->mixedCase()
+            // ->numbers()
+            // ->symbols()
+            // ->uncompromised()
+            // ],
         ]);
         // $data['password'] = bcrypt($request->password);
         $data['permission'] = 2;
-        if($request->has('password')){
+        if ($request->has('password')) {
             $data['password'] = bcrypt($request->password);
         }
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = "user".rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/users/'. $imageName);
+            $imageName = 'user'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/users/'.$imageName);
             $data['image'] = $imageName;
         }
 
-        if($request->hasFile('cv')){
+        if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
-            $cvName = "user".rand(0, 10000).'.'.$cv->getClientOriginalExtension();
-            $request->cv->move('uploads/images/users/'. $cvName);
+            $cvName = 'user'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
+            $request->cv->move('uploads/images/users/'.$cvName);
             $data['cv'] = $cvName;
         }
 
-        try{
+        try {
             User::find($id)->update($data);
-            toast('success','Success');
+            toast('success', 'Success');
+
             // Alert::success('Success!');
             return redirect()->route('admin.member.index');
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
-            toast('error','error');
+            toast('error', 'error');
+
             return redirect()->back();
         }
     }

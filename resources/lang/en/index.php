@@ -26,4 +26,4 @@ return [
     'register-btn' => 'Click for registration',
 
     'upcomingEvent' => 'Upcoming Event',
-    ];
+];

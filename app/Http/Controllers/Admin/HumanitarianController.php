@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Humanitarian;
-use Illuminate\Http\Request;
-use App\Traits\SummerNoteTrait;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreHumanitarianRequest;
 use App\Http\Requests\UpdateHumanitarianRequest;
+use App\Models\Humanitarian;
+use App\Traits\SummerNoteTrait;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class HumanitarianController extends Controller
 {
@@ -29,13 +29,13 @@ class HumanitarianController extends Controller
             return DataTables::of($notices)
                 ->addIndexColumn()
                 ->addColumn('content', function ($row) {
-                    return '<div>' . $row->content . '</div>';
+                    return '<div>'.$row->content.'</div>';
                 })
                 ->addColumn('date', function ($row) {
                     return bdDate($row->date);
                 })
                 ->addColumn('image', function ($row) {
-                    return '<img src="' . imagePath('humanitarian', $row->image) . '" width="80px">';
+                    return '<img src="'.imagePath('humanitarian', $row->image).'" width="80px">';
                 })
                 ->addColumn('is_active', function ($row) {
                     if (userCan('humanitarian-assistance-edit')) {
@@ -50,6 +50,7 @@ class HumanitarianController extends Controller
                     if (userCan('humanitarian-assistance-delete')) {
                         $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.humanitarian-assistance.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
+
                     return $btn;
                 })
                 ->rawColumns(['content', 'image', 'is_active', 'action'])

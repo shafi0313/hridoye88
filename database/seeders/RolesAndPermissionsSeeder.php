@@ -1,10 +1,10 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\RoleToPermission;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -20,11 +20,11 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // create permissions
         $pers = [
-            'dashboard'=>[
+            'dashboard' => [
                 'access-dashboard',
                 'dashboard-manage',
             ],
-            'user'=>[
+            'user' => [
                 'user-manage',
                 'user-add',
                 'user-edit',
@@ -32,131 +32,130 @@ class RolesAndPermissionsSeeder extends Seeder
                 'user-impersonate',
                 'user-access-dashboard',
             ],
-            'activity'=>[
+            'activity' => [
                 'activity-manage',
                 'activity-add',
                 'activity-edit',
-                'activity-delete'
+                'activity-delete',
             ],
-            'permission'=>[
+            'permission' => [
                 'permission-manage',
                 'permission-add',
                 'permission-edit',
                 'permission-delete',
-                'permission-change'
+                'permission-change',
             ],
-            'role'=>[
+            'role' => [
                 'role-manage',
                 'role-add',
                 'role-edit',
                 'role-delete',
-                'role-change'
+                'role-change',
             ],
-            'backup'=>[
+            'backup' => [
                 'backup-manage',
-                'backup-delete'
+                'backup-delete',
             ],
-            'visitor'=>[
+            'visitor' => [
                 'visitor-manage',
-                'visitor-delete'
+                'visitor-delete',
             ],
-            'setting'=>[
+            'setting' => [
                 'setting-manage',
                 'language-manage',
             ],
-            'blog'=>[
+            'blog' => [
                 'blog-manage',
                 'blog-add',
                 'blog-edit',
-                'blog-delete'
+                'blog-delete',
             ],
-            'header'=>[
+            'header' => [
                 'header-manage',
                 'header-add',
                 'header-edit',
-                'header-delete'
+                'header-delete',
             ],
-            'member'=>[
+            'member' => [
                 'member-manage',
                 'member-add',
                 'member-edit',
-                'member-delete'
+                'member-delete',
             ],
-            'menu'=>[
+            'menu' => [
                 'menu-manage',
                 'menu-add',
                 'menu-edit',
-                'menu-delete'
+                'menu-delete',
             ],
-            'slider'=>[
+            'slider' => [
                 'slider-manage',
                 'slider-add',
                 'slider-edit',
-                'slider-delete'
+                'slider-delete',
             ],
-            'profession'=>[
+            'profession' => [
                 'profession-manage',
                 'profession-add',
                 'profession-edit',
-                'profession-delete'
+                'profession-delete',
             ],
-            'gallery-category'=>[
+            'gallery-category' => [
                 'gallery-category-manage',
                 'gallery-category-add',
                 'gallery-category-edit',
-                'gallery-category-delete'
+                'gallery-category-delete',
             ],
-            'photo-gallery'=>[
+            'photo-gallery' => [
                 'photo-gallery-manage',
                 'photo-gallery-add',
                 'photo-gallery-edit',
-                'photo-gallery-delete'
+                'photo-gallery-delete',
             ],
-            'video-gallery'=>[
+            'video-gallery' => [
                 'video-gallery-manage',
                 'video-gallery-add',
                 'video-gallery-edit',
-                'video-gallery-delete'
+                'video-gallery-delete',
             ],
-            'event'=>[
+            'event' => [
                 'event-manage',
                 'event-add',
                 'event-edit',
-                'event-delete'
+                'event-delete',
             ],
-            'message'=>[
+            'message' => [
                 'message-manage',
             ],
-            'about'=>[
+            'about' => [
                 'about-manage',
             ],
-            'blog'=>[
+            'blog' => [
                 'blog-manage',
                 'blog-add',
                 'blog-edit',
-                'blog-delete'
+                'blog-delete',
             ],
-            'humanitarian-assistance'=>[
+            'humanitarian-assistance' => [
                 'humanitarian-assistance-manage',
                 'humanitarian-assistance-add',
                 'humanitarian-assistance-edit',
-                'humanitarian-assistance-delete'
+                'humanitarian-assistance-delete',
             ],
         ];
         foreach ($pers as $per => $val) {
             foreach ($val as $name) {
                 Permission::create([
-                    'module'        => $per,
-                    'name'          => $name,
-                    'removable'     => 0,
+                    'module' => $per,
+                    'name' => $name,
+                    'removable' => 0,
                 ]);
             }
         }
 
-
         // $superadmin = Role::create(['name' => 'superadmin','removable'=> 0]);
-        $admin      = Role::create(['name' => 'admin','removable'=> 0]);
+        $admin = Role::create(['name' => 'admin', 'removable' => 0]);
         $admin->givePermissionTo(Permission::all());
-        $teacher    = Role::create(['name' => 'user','removable'=> 0]);
+        $teacher = Role::create(['name' => 'user', 'removable' => 0]);
     }
 }

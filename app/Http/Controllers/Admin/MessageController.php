@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 class MessageController extends Controller
@@ -15,6 +15,7 @@ class MessageController extends Controller
             return $error;
         }
         $message = Slider::find($id);
+
         return view('admin.message.edit', compact('message'));
     }
 
@@ -28,14 +29,14 @@ class MessageController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $files = Slider::find($id);
-            $path =  public_path('uploads/images/message/'.$files->image);
-            file_exists($path)?unlink($path):false;
+            $path = public_path('uploads/images/message/'.$files->image);
+            file_exists($path) ? unlink($path) : false;
             $image = $request->file('image');
-            $imageName = "message".rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $imageName = 'message'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
             $path = public_path('/uploads/images/message/');
-            if(!file_exists($path)){
+            if (! file_exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
             $request->image->move('uploads/images/message/', $imageName);
@@ -45,10 +46,12 @@ class MessageController extends Controller
         try {
             Slider::find($id)->update($data);
             toast('success', 'Success!');
+
             return back();
         } catch (\Exception $e) {
             return $e->getMessage();
             toast('error', 'Error');
+
             return back();
         }
     }

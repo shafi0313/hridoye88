@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Menu;
-use App\Models\Layout;
 use App\Models\SubMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,6 +18,7 @@ class MenuController extends Controller
             return $error;
         }
         $menus = Menu::with('subMenus')->get();
+
         return view('admin.menu.index', compact('menus'));
     }
 
@@ -49,15 +49,17 @@ class MenuController extends Controller
         //     $data['image'] = $image_name;
         // }
 
-        try{
+        try {
             Menu::create($data);
             DB::commit();
-            toast('success','Success');
+            toast('success', 'Success');
+
             return back();
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
             DB::rollBack();
-            toast('error','Error');
+            toast('error', 'Error');
+
             return redirect()->back();
         }
     }
@@ -76,26 +78,28 @@ class MenuController extends Controller
         DB::beginTransaction();
 
         $image_name = '';
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_name = "menu_".rand(0,1000000).'.'.$image->getClientOriginalExtension();
+            $image_name = 'menu_'.rand(0, 1000000).'.'.$image->getClientOriginalExtension();
             $path = public_path().'/uploads/images/menu';
-            if(!file_exists($path)){
+            if (! file_exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
-            $request->image->move('uploads/images/menu/',$image_name);
+            $request->image->move('uploads/images/menu/', $image_name);
             $data['image'] = $image_name;
         }
 
-        try{
+        try {
             SubMenu::create($data);
             DB::commit();
-            toast('success','Success');
+            toast('success', 'Success');
+
             return back();
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
             DB::rollBack();
-            toast('error','Error');
+            toast('error', 'Error');
+
             return back();
         }
     }
@@ -106,6 +110,7 @@ class MenuController extends Controller
             return $error;
         }
         $menu = Menu::find($id);
+
         return view('admin.menu.edit', compact('menu'));
     }
 
@@ -136,15 +141,17 @@ class MenuController extends Controller
         //     $data['image'] = $image_name;
         // }
 
-        try{
+        try {
             Menu::find($id)->update($data);
             DB::commit();
-            toast('success','Success');
+            toast('success', 'Success');
+
             return back();
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
             DB::rollBack();
-            toast('error','Error');
+            toast('error', 'Error');
+
             return redirect()->back();
         }
     }
@@ -154,21 +161,23 @@ class MenuController extends Controller
         if ($error = $this->authorize('menu-delete')) {
             return $error;
         }
-        if(SubMenu::whereMenu_id($id)->count() > 0)
-        {
+        if (SubMenu::whereMenu_id($id)->count() > 0) {
             Alert::info('First Remove All Sun Menu');
+
             return back();
         }
         $menu = Menu::find($id);
-        $path =  public_path('uploads/images/menu/'.$menu->image);
-        if(file_exists($path)){
+        $path = public_path('uploads/images/menu/'.$menu->image);
+        if (file_exists($path)) {
             unlink($path);
             $menu->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
-        }else{
+        } else {
             $menu->delete();
-            toast('Successfully Deleted','success');
+            toast('Successfully Deleted', 'success');
+
             return redirect()->back();
         }
     }

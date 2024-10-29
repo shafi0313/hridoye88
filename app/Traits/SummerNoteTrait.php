@@ -9,7 +9,7 @@ trait SummerNoteTrait
     public function summerNoteStore($content, $path)
     {
         if ($content) {
-            $dom = new \DomDocument();
+            $dom = new \DomDocument;
             $dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $imageFile = $dom->getElementsByTagName('img');
 

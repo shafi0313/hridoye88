@@ -16,9 +16,9 @@ class CreateVideoGalleriesTable extends Migration
         Schema::create('video_galleries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('gallery_cat_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('type',['File','Facebook','Youtube']);
-            $table->text('link',191);
-            $table->string('title',191)->nullable();
+            $table->enum('type', ['File', 'Facebook', 'Youtube']);
+            $table->text('link', 191);
+            $table->string('title', 191)->nullable();
             $table->timestamps();
         });
     }

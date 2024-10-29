@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\User;
-use App\Models\Profession;
-use Illuminate\Http\Request;
-use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Profession;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
     public function index()
     {
         $professions = Profession::all();
+
         return view('frontend.register', compact('professions'));
     }
 
@@ -34,42 +34,44 @@ class RegisterController extends Controller
             'fb' => 'nullable|max:80',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'cv' => 'nullable|max:1024',
-            'password' => ['required', 'confirmed', Password::min(6)
-                                                            // ->letters()
-                                                            // ->mixedCase()
-                                                            // ->numbers()
-                                                            // ->symbols()
-                                                            // ->uncompromised()
-                                                        ],
-        ],[
+            'password' => ['required', 'confirmed', Password::min(6),
+                // ->letters()
+                // ->mixedCase()
+                // ->numbers()
+                // ->symbols()
+                // ->uncompromised()
+            ],
+        ], [
             'email.unique' => 'The email address already used',
             'email.confirmed' => 'The password dose not matched',
         ]);
         // $data['password'] = bcrypt($request->password);
         $data['permission'] = 1;
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = "user".rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/users/'. $imageName);
+            $imageName = 'user'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
+            $request->image->move('uploads/images/users/'.$imageName);
             $data['image'] = $imageName;
         }
 
-        if($request->hasFile('cv')){
+        if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
-            $cvName = "user".rand(0, 10000).'.'.$cv->getClientOriginalExtension();
-            $request->cv->move('uploads/images/users/'. $cvName);
+            $cvName = 'user'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
+            $request->cv->move('uploads/images/users/'.$cvName);
             $data['cv'] = $cvName;
         }
 
-        try{
+        try {
             User::create($data);
             // toast('success','Success');
             Alert::success('Success!');
+
             return redirect()->back();
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
-            toast('error','error');
+            toast('error', 'error');
+
             return redirect()->back();
         }
     }

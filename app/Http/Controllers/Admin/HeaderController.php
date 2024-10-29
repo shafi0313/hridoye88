@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Header;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HeaderController extends Controller
@@ -12,6 +12,7 @@ class HeaderController extends Controller
     public function index()
     {
         $headers = Header::all();
+
         return view('admin.header.index', compact('headers'));
     }
 
@@ -29,6 +30,7 @@ class HeaderController extends Controller
         } catch (\Exception $ex) {
             Alert::error('Opps. Something went wrong, please try again');
         }
+
         return back();
     }
 
@@ -46,12 +48,14 @@ class HeaderController extends Controller
         } catch (\Exception $ex) {
             Alert::error('Opps. Something went wrong, please try again');
         }
+
         return back();
     }
 
     public function edit($id)
     {
         $header = Header::find($id);
+
         return view('admin.header.edit', compact('header'));
     }
 
@@ -66,9 +70,11 @@ class HeaderController extends Controller
         try {
             Header::find($id)->update($data);
             Alert::success('The information has been inserted updated');
+
             return redirect()->route('admin.header.index');
         } catch (\Exception $ex) {
             Alert::error('Opps. Something went wrong, please try again');
+
             return redirect()->back();
         }
     }
@@ -81,6 +87,7 @@ class HeaderController extends Controller
         } catch (\Exception $ex) {
             Alert::error('Opps. Something went wrong, please try again');
         }
+
         return back();
     }
 }
