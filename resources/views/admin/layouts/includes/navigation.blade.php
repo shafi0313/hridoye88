@@ -16,18 +16,28 @@
                     <h4 class="text-section">Components</h4>
                 </li>
 
-                <li class="nav-item{{ activeNav(['admin.user.*']) }} ">
+                @php
+                    $admin = ['admin.user.*', 'admin.profession.*'];
+                @endphp
+                <li class="nav-item{{ activeNav($admin) }} ">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-users-cog"></i>
                         <p>Admin</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ openNav(['admin.user.*']) }}" id="base">
+                    <div class="collapse {{ openNav($admin) }}" id="base">
                         <ul class="nav nav-collapse">
                             @can('user-manage')
                                 <li class="{{ activeSubNav('admin.user.*') }}">
                                     <a href="{{ route('admin.user.index') }}">
                                         <span class="sub-item">User</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('profession-manage')
+                                <li class="{{ activeSubNav('admin.profession.*') }}">
+                                    <a href="{{ route('admin.profession.index') }}">
+                                        <span class="sub-item">Profession</span>
                                     </a>
                                 </li>
                             @endcan
@@ -71,14 +81,14 @@
                     </li>
                 @endcan
 
-                @can('profession-manage')
+                {{-- @can('profession-manage')
                     <li class="nav-item {{ activeNav('admin.profession.*') }}">
                         <a href="{{ route('admin.profession.index') }}">
                             <i class="fa-solid fa-business-time"></i>
                             <p>Profession</p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 {{-- @can('gallery-category-manage')
                     <li class="nav-item {{ activeNav('admin.gallery-cat.*') }}">
