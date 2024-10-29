@@ -28,8 +28,9 @@ class UserController extends Controller
 
                     return match ($permission) {
                         0 => 'No Login',
-                        1 => 'Admin',
-                        2 => 'User',
+                        1 => 'Super Admin',
+                        2 => 'Admin',
+                        3 => 'User',
                         default => 'N/A',
                     };
                 })
@@ -37,9 +38,9 @@ class UserController extends Controller
                     return $row->created_at->diffForHumans();
                 })
                 ->addColumn('image', function ($row) {
-                    $src = asset('uploads/images/users/'.$row->image);
+                    $src = imagePath('user', $row->image);
 
-                    return '<img src="'.$src.'" width="100px">';
+                    return '<img src="' . $src . '" width="80px">';
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '';
@@ -62,8 +63,9 @@ class UserController extends Controller
             return $error;
         }
         $data = $request->validated();
-        $data['type'] = '1';
-        $data['image'] = imageStore($request, 'user', 'uploads/images/users/');
+        if ($request->hasFile('image')) {
+            $data['image'] = imgProcessAndStore($request->image, 'user', [300, 300]);
+        }
 
         try {
             $user = User::create($data);
@@ -111,7 +113,7 @@ class UserController extends Controller
 
         $image = User::find($user->id)->image;
         if ($request->hasFile('image')) {
-            $data['image'] = imageUpdate($request, 'user', 'uploads/images/users/', $image);
+            $data['image'] = imgProcessAndStore($request->image, 'user', [300, 300],  $image);
         }
 
         try {
@@ -128,23 +130,7 @@ class UserController extends Controller
             return response()->json(['message' => 'Data Successfully Inserted'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => __('app.oops')], 500);
-            // return response()->json(['message'=>$e->getMessage()], 500);
         }
-
-        // if($request->hasFile('image')){
-        //     $files = User::where('id', $id)->first();
-        //     $path =  public_path('uploads/images/users/'.$files->image);
-        //     file_exists($path) ? unlink($path) : false;
-
-        //     $path = public_path().'/uploads/images/users/';
-        //     !file_exists($path) ?? File::makeDirectory($path, 0777, true, true);
-
-        //     $image = $request->file('image');
-        //     $image_name = "admin_user_".rand(0,1000).'.'.$image->getClientOriginalExtension();
-        //     $request->image->move('uploads/images/users/',$image_name);
-
-        //     $data['image'] = $image_name;
-        // }
     }
 
     public function destroy(User $user)

@@ -24,11 +24,12 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:100'],
-            'email' => ['nullable', 'email', ' unique:users,email'.$this->user->id],
-            'phone' => ['nullable'],
-            'address' => ['required', 'string'],
-            'image' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg', 'max:2048'],
+            'name'       => ['required', 'string', 'max:100'],
+            'email'      => ['nullable', 'email', ' unique:users,email'.$this->user->id],
+            'phone'      => ['nullable'],
+            'permission' => ['required', 'in:0,1,2,3'],
+            'address'    => ['required', 'string'],
+            'image'      => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
         ];
     }
 }

@@ -25,19 +25,13 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', ' unique:users', 'email'],
-            'phone' => ['nullable'],
-            'address' => ['required', 'string'],
-            // 'd_o_b' => ['required', 'date'],
-            'image' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg', 'max:2048'],
-            'password' => ['required', 'confirmed', Password::min(6),
-                // ->letters()
-                // ->mixedCase()
-                // ->numbers()
-                // ->symbols()
-                // ->uncompromised()
-            ],
+            'name'       => ['required', 'string', 'max:100'],
+            'email'      => ['required', 'email', ' unique:users', 'email'],
+            'phone'      => ['nullable'],
+            'address'    => ['required', 'string'],
+            'permission' => ['required', 'in:0,1,2,3'],
+            'image'      => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
+            'password'   => ['required', 'confirmed', Password::min(6)],
         ];
     }
 }

@@ -25,7 +25,7 @@ class User extends Authenticatable
         'type',
         'phone',
         'profession',
-        'd_o_b',
+        'permission',
         'address',
         'image',
         'remember_token',

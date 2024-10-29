@@ -7,22 +7,19 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('admin.user.update', $user->id) }}" method="post" onsubmit="ajaxStore(event, this, 'POST', 'editModal')" enctype="multipart/form-data" class="form-horizontal">
+        <form action="{{ route('admin.user.update', $user->id) }}" method="post" onsubmit="ajaxStoreModal(event, this, 'editModal')" enctype="multipart/form-data" class="form-horizontal">
             @csrf @method('PUT')
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <div id="permissionShow">
                             <label for="permission">Permission <span class="t_r">*</span></label>
-                            <select name="permission" class="form-control @error('permission') is-invalid @enderror">
+                            <select name="permission" class="form-control">
                                 <option selected >Select</option>
                                 @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" @selected($role->id==$modelHasRole)>{{ $role->name }}</option>
                                 @endforeach
                             </select>
-                            @error('permission')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
