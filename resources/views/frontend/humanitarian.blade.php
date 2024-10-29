@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8 m-auto text-center">
                     <div class="page-title-content">
-                        <h1 class="h2">{{ __('index.m-blog') }}</h1>
+                        <h1 class="h2">@lang('Humanitarian Assistance')</h1>
                         <a href="#page-content-wrap" class="btn btn-brand smooth-scroll">Let&apos;s See</a>
                     </div>
                 </div>

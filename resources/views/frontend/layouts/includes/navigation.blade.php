@@ -81,9 +81,13 @@
                                  {{-- @php
                                      $menus = App\Models\Menu::with('subMenus')->get(['id', 'name', 'name_b']);
                                  @endphp --}}
-                                 <li class="nav-item {{ activeNav('frontend.blog.index') }}">
+                                 <li class="nav-item {{ activeNav('frontend.blog.*') }}">
                                      <a class="nav-link"
                                          href="{{ route('frontend.blog.index') }}">@lang('index.m-blog')</a>
+                                 </li>
+                                 <li class="nav-item {{ activeNav('frontend.humanitarian-assistance.*') }}">
+                                     <a class="nav-link"
+                                         href="{{ route('frontend.humanitarian-assistance.index') }}">@lang('Humanitarian Assistance')</a>
                                  </li>
                                  <li class="nav-item {{ activeNav('frontend.about.index') }}">
                                      <a class="nav-link"
