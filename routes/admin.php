@@ -26,12 +26,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-Route::controller(VisitorInfoController::class)->prefix('visitor-info')->name('visitorInfo.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/delete-selected', 'destroySelected')->name('destroySelected');
-    Route::get('/delete-all', 'destroyAll')->name('destroyAll');
-});
-
 // !APP BACKUP
 Route::controller(BackupController::class)->prefix('app-backup')->name('backup.')->group(function () {
     Route::get('/password', 'password')->name('password');

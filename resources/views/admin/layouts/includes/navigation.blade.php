@@ -80,16 +80,16 @@
                     </li>
                 @endcan
 
-                @can('gallery-category-manage')
+                {{-- @can('gallery-category-manage')
                     <li class="nav-item {{ activeNav('admin.gallery-cat.*') }}">
                         <a href="{{ route('admin.gallery-cat.index') }}">
                             <i class="far fa-images"></i>
                             <p>Gallery Category</p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
-                @can('photo-gallery-manage')
+                {{-- @can('photo-gallery-manage')
                     <li class="nav-item {{ activeNav('admin.photo-gallery.*') }}">
                         <a href="{{ route('admin.photo-gallery.index') }}">
                             <i class="far fa-images"></i>
@@ -105,7 +105,55 @@
                             <p>Video Galleries</p>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
+
+
+
+                @php
+                    $gallery = ['admin.gallery-cat.*', 'admin.photo-gallery.*', 'admin.video-gallery.*'];
+                @endphp
+                <li class="nav-item {{ activeNav($gallery) }}">
+                    <a data-toggle="collapse" href="#gallery">
+                        <i class="far fa-images"></i>
+                        <p>Gallery</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ openNav($gallery) }}" id="gallery">
+                        <ul class="nav nav-collapse">
+                            @can('gallery-category-manage')
+                                <li class="{{ activeSubNav('admin.gallery-cat.*') }}">
+                                    <a href="{{ route('admin.gallery-cat.index') }}">
+                                        <span class="sub-item">Category</span>
+                                    </a>
+                                </li>
+                            @endcanany
+                            @canany('photo-gallery-manage')
+                                <li class="{{ activeSubNav('admin.photo-gallery.*') }}">
+                                    <a href="{{ route('admin.photo-gallery.index') }}">
+                                        <span class="sub-item">Photo</span>
+                                    </a>
+                                </li>
+                            @endcanany
+                            @canany('video-gallery-manage')
+                                <li class="{{ activeSubNav('admin.video-gallery.*') }}">
+                                    <a href="{{ route('admin.video-gallery.index') }}">
+                                        <span class="sub-item">Video</span>
+                                    </a>
+                                </li>
+                            @endcanany
+                        </ul>
+                    </div>
+                </li>
+
+
+
+
+
+
+
+
+
+
 
                 @can('event-manage')
                     <li class="nav-item {{ activeNav('admin.event.*') }}">
@@ -175,13 +223,6 @@
                                     </a>
                                 </li>
                             @endcanany
-                            {{-- @canany('visitor-manage')
-                                <li class="{{ activeSubNav('admin.visitorInfo.*') }}">
-                                    <a href="{{ route('admin.visitorInfo.index') }}">
-                                        <span class="sub-item">Visitor Info</span>
-                                    </a>
-                                </li>
-                            @endcanany --}}
                         </ul>
                     </div>
                 </li>
