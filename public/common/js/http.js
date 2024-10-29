@@ -106,7 +106,6 @@ function ajaxShow(arg, type) {
 
 function ajaxStoreModal(e, form, modal) {
     e.preventDefault();
-    // let formData = $(form).serialize();
     let formData = new FormData(form);
     showLoadingAnimation();
     $.ajax({
@@ -124,9 +123,9 @@ function ajaxStoreModal(e, form, modal) {
             }).then((confirm) => {
                 if (confirm) {
                     $(".table").DataTable().ajax.reload();
-                    $('.note_content').summernote('reset');
-                    $("#" + modal).modal("hide");
+                    $('.note_content').summernote('reset')
                     $(form).trigger("reset");
+                    $("#" + modal).modal("hide");
                 }
             });
         },

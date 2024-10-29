@@ -35,11 +35,11 @@ class HumanitarianController extends Controller
                     return bdDate($row->date);
                 })
                 ->addColumn('image', function ($row) {
-                    return '<img src="'.imagePath('humanitarian', $row->image).'">';
+                    return '<img src="'.imagePath('humanitarian', $row->image).'" width="80px">';
                 })
                 ->addColumn('is_active', function ($row) {
                     if (userCan('humanitarian-assistance-edit')) {
-                        return view('button', ['type' => 'is_active', 'route' => route('admin.humanitarian-assistance.is_active', $row->id), 'row' => $row->is_active]);
+                        return view('button', ['type' => 'is_active', 'route' => route('admin.humanitarian_assistance.is_active', $row->id), 'row' => $row->is_active]);
                     }
                 })
                 ->addColumn('action', function ($row) {
@@ -59,14 +59,14 @@ class HumanitarianController extends Controller
         return view('admin.humanitarian-assistance.index');
     }
 
-    public function status(Humanitarian $notice)
+    public function status(Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('notice-edit')) {
+        if ($error = $this->authorize('humanitarian-assistance-edit')) {
             return $error;
         }
-        $notice->is_active = $notice->is_active == 1 ? 0 : 1;
+        $humanitarianAssistance->is_active = $humanitarianAssistance->is_active == 1 ? 0 : 1;
         try {
-            $notice->save();
+            $humanitarianAssistance->save();
 
             return response()->json(['message' => 'The status has been updated'], 200);
         } catch (\Exception $e) {
@@ -157,33 +157,20 @@ class HumanitarianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Notice $notice)
+    public function destroy(Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('notice-delete')) {
+        if ($error = $this->authorize('humanitarian-assistance-delete')) {
             return $error;
         }
-        $this->summerNoteAllImageDestroy($notice->content);
+        $this->summerNoteAllImageDestroy($humanitarianAssistance->content);
 
         try {
-            imgUnlink('notice', $notice->file);
-            $notice->delete();
+            imgUnlink('notice', $humanitarianAssistance->file);
+            $humanitarianAssistance->delete();
 
             return response()->json(['message' => 'The information has been deleted'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Oops something went wrong, Please try again'], 500);
         }
-    }
-
-    public function noticePdfView($noticeId)
-    {
-        $notice = Notice::findOrFail($noticeId);
-        $path = public_path('uploads/images/notice/'.$notice->file);
-        if (! file_exists($path)) {
-            abort(404);
-        }
-
-        return response()->file($path, [
-            'Content-Type' => 'application/pdf',
-        ]);
     }
 }

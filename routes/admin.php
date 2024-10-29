@@ -92,6 +92,7 @@ Route::controller(BlogController::class)->prefix('blog')->group(function () {
 });
 
 Route::resource('/humanitarian-assistance', HumanitarianController::class);
+Route::patch('/humanitarian-assistance/is-active/{humanitarian}', [HumanitarianController::class, 'status'])->name('humanitarian_assistance.is_active');
 
 Route::resource('/slider', SliderController::class);
 Route::resource('/message', MessageController::class)->only('edit','update');

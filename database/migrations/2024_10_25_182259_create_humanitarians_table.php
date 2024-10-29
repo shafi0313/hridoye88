@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDeleteSetNull();
             $table->string('title', 255);
-            $table->longText('text');
+            $table->longText('content');
             $table->string('image', 64);
             $table->date('date');
             $table->boolean('is_active')->default(1)->index();

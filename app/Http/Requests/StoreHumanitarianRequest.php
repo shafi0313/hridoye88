@@ -25,7 +25,7 @@ class StoreHumanitarianRequest extends FormRequest
     {
         return [
             'title'     => ['required', 'string', 'min:1', 'max:255'],
-            'text'      => ['required'],
+            'content'   => ['required'],
             'image'     => ['required', 'image', 'mimes:jpeg,jpg,JPG,png,webp,svg'],
             'date'      => ['required', 'date'],
             'is_active' => ['nullable', 'boolean'],

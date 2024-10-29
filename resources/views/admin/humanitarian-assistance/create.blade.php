@@ -7,15 +7,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form ction="{{ route('admin.' . $route . '.store') }}" method="post"
-                onsubmit="ajaxStore(event, this, 'POST', 'createModal')" enctype="multipart/form-data">
+            <form action="{{ route('admin.' . $route . '.store') }}" method="post"
+                onsubmit="ajaxStoreModal(event, this, 'createModal')" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name" class="required">Name </label>
-                                <input type="text" name="name" class="form-control" id="name" required>
+                                <label for="title" class="required">title </label>
+                                <input type="text" name="title" class="form-control" id="title" required>
                             </div>
                         </div>
                         <div class="col-md-6">

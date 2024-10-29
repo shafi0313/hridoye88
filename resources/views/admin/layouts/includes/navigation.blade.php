@@ -1,4 +1,4 @@
-<div class="sidebar"  data-background-color="white">
+<div class="sidebar" data-background-color="white">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-primary">
@@ -25,163 +25,163 @@
                     <div class="collapse {{ openNav(['admin.user.*']) }}" id="base">
                         <ul class="nav nav-collapse">
                             @can('user-manage')
-                            <li class="{{ activeSubNav('admin.user.*')}}">
-                                <a href="{{ route('admin.user.index') }}">
-                                    <span class="sub-item">User</span>
-                                </a>
-                            </li>
+                                <li class="{{ activeSubNav('admin.user.*') }}">
+                                    <a href="{{ route('admin.user.index') }}">
+                                        <span class="sub-item">User</span>
+                                    </a>
+                                </li>
                             @endcan
                         </ul>
                     </div>
                 </li>
 
                 @can('header-manage')
-                <li class="nav-item {{ activeNav('admin.header.*') }}">
-                    <a href="{{ route('admin.header.index') }}">
-                        <i class="fa-solid fa-heading"></i>
-                        <p>Header</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.header.*') }}">
+                        <a href="{{ route('admin.header.index') }}">
+                            <i class="fa-solid fa-heading"></i>
+                            <p>Header</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('member-manage')
-                <li class="nav-item {{ activeNav('admin.member.*') }}">
-                    <a href="{{ route('admin.member.index') }}">
-                        <i class="fa-solid fa-users"></i>
-                        <p>Member</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.member.*') }}">
+                        <a href="{{ route('admin.member.index') }}">
+                            <i class="fa-solid fa-users"></i>
+                            <p>Member</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('menu-manage')
-                <li class="nav-item {{ activeNav('admin.menu.*') }}">
-                    <a href="{{ route('admin.menu.index') }}">
-                        <i class="fas fa-bars"></i>
-                        <p>Menu</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.menu.*') }}">
+                        <a href="{{ route('admin.menu.index') }}">
+                            <i class="fas fa-bars"></i>
+                            <p>Menu</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('slider-manage')
-                <li class="nav-item {{ activeNav('admin.slider.*') }}">
-                    <a href="{{ route('admin.slider.index') }}">
-                        <i class="far fa-images"></i>
-                        <p>Slider</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.slider.*') }}">
+                        <a href="{{ route('admin.slider.index') }}">
+                            <i class="far fa-images"></i>
+                            <p>Slider</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('profession-manage')
-                <li class="nav-item {{ activeNav('admin.profession.*') }}">
-                    <a href="{{ route('admin.profession.index') }}">
-                        <i class="fa-solid fa-business-time"></i>
-                        <p>Profession</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.profession.*') }}">
+                        <a href="{{ route('admin.profession.index') }}">
+                            <i class="fa-solid fa-business-time"></i>
+                            <p>Profession</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('gallery-category-manage')
-                <li class="nav-item {{ activeNav('admin.gallery-cat.*') }}">
-                    <a href="{{ route('admin.gallery-cat.index') }}">
-                        <i class="far fa-images"></i>
-                        <p>Gallery Category</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.gallery-cat.*') }}">
+                        <a href="{{ route('admin.gallery-cat.index') }}">
+                            <i class="far fa-images"></i>
+                            <p>Gallery Category</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('photo-gallery-manage')
-                <li class="nav-item {{ activeNav('admin.photo-gallery.*') }}">
-                    <a href="{{ route('admin.photo-gallery.index') }}">
-                        <i class="far fa-images"></i>
-                        <p>Photo Galleries</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.photo-gallery.*') }}">
+                        <a href="{{ route('admin.photo-gallery.index') }}">
+                            <i class="far fa-images"></i>
+                            <p>Photo Galleries</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('video-gallery-manage')
-                <li class="nav-item {{ activeNav('admin.video-gallery.*') }}">
-                    <a href="{{ route('admin.video-gallery.index') }}">
-                        <i class="fas fa-video"></i>
-                        <p>Video Galleries</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.video-gallery.*') }}">
+                        <a href="{{ route('admin.video-gallery.index') }}">
+                            <i class="fas fa-video"></i>
+                            <p>Video Galleries</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('event-manage')
-                <li class="nav-item {{ activeNav('admin.event.*') }}">
-                    <a href="{{ route('admin.event.index') }}">
-                        <i class="fas fa-envelope"></i>
-                        <p>Event</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.event.*') }}">
+                        <a href="{{ route('admin.event.index') }}">
+                            <i class="fas fa-envelope"></i>
+                            <p>Event</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('message-manage')
-                <li class="nav-item {{ activeNav('admin.message.*') }}">
-                    <a href="{{ route('admin.message.edit',1) }}">
-                        <i class="fas fa-envelope"></i>
-                        <p>Message</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.message.*') }}">
+                        <a href="{{ route('admin.message.edit', 1) }}">
+                            <i class="fas fa-envelope"></i>
+                            <p>Message</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('about-manage')
-                <li class="nav-item {{ activeNav('admin.about.*') }}">
-                    <a href="{{ route('admin.about.edit',1) }}">
-                        <i class="fas fa-info-circle"></i>
-                        <p>About</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.about.*') }}">
+                        <a href="{{ route('admin.about.edit', 1) }}">
+                            <i class="fas fa-info-circle"></i>
+                            <p>About</p>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('blog-manage')
-                <li class="nav-item {{ activeNav('admin.blog.*') }}">
-                    <a href="{{ route('admin.blog.index') }}">
-                        <i class="fab fa-blogger"></i>
-                        <p>Blog</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.blog.*') }}">
+                        <a href="{{ route('admin.blog.index') }}">
+                            <i class="fab fa-blogger"></i>
+                            <p>Blog</p>
+                        </a>
+                    </li>
                 @endcan
                 @can('humanitarian-assistance-manage')
-                <li class="nav-item {{ activeNav('admin.blog.*') }}">
-                    <a href="{{ route('admin.humanitarian-assistance.index') }}">
-                        <i class="fab fa-blogger"></i>
-                        <p>Blog</p>
-                    </a>
-                </li>
+                    <li class="nav-item {{ activeNav('admin.blog.*') }}">
+                        <a href="{{ route('admin.humanitarian-assistance.index') }}">
+                            <i class="fab fa-blogger"></i>
+                            <p>Humanitarian Assistance</p>
+                        </a>
+                    </li>
                 @endcan
 
-
-
-                <li class="nav-item {{ activeNav(['admin.role.*','admin.backup.*','admin.visitorInfo.*','admin.permission.*']) }}">
+                <li
+                    class="nav-item {{ activeNav(['admin.role.*', 'admin.backup.*', 'admin.visitorInfo.*', 'admin.permission.*']) }}">
                     <a data-toggle="collapse" href="#settings">
                         <i class="fa-solid fa-gears"></i>
                         <p>Settings</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{openNav(['admin.role.*','admin.backup.*','admin.visitorInfo.*','admin.permission.*'])}}" id="settings">
+                    <div class="collapse {{ openNav(['admin.role.*', 'admin.backup.*', 'admin.visitorInfo.*', 'admin.permission.*']) }}"
+                        id="settings">
                         <ul class="nav nav-collapse">
-                            @canany('role-manage','permission-manage')
-                            <li class="{{ activeSubNav('admin.role.*','admin.permission.*')}}">
-                                <a href="{{ route('admin.role.index') }}">
-                                    <span class="sub-item">@lang('nav.role-permission')</span>
-                                </a>
-                            </li>
+                            @canany('role-manage', 'permission-manage')
+                                <li class="{{ activeSubNav('admin.role.*', 'admin.permission.*') }}">
+                                    <a href="{{ route('admin.role.index') }}">
+                                        <span class="sub-item">@lang('nav.role-permission')</span>
+                                    </a>
+                                </li>
                             @endcanany
                             @canany('backup-manage')
-                            <li class="{{ activeSubNav('admin.backup.*')}}">
-                                <a href="{{ route('admin.backup.password') }}">
-                                    <span class="sub-item">App Backup</span>
-                                </a>
-                            </li>
+                                <li class="{{ activeSubNav('admin.backup.*') }}">
+                                    <a href="{{ route('admin.backup.password') }}">
+                                        <span class="sub-item">App Backup</span>
+                                    </a>
+                                </li>
                             @endcanany
-                            @canany('visitor-manage')
-                            <li class="{{ activeSubNav('admin.visitorInfo.*')}}">
-                                <a href="{{ route('admin.visitorInfo.index') }}">
-                                    <span class="sub-item">Visitor Info</span>
-                                </a>
-                            </li>
-                            @endcanany
+                            {{-- @canany('visitor-manage')
+                                <li class="{{ activeSubNav('admin.visitorInfo.*') }}">
+                                    <a href="{{ route('admin.visitorInfo.index') }}">
+                                        <span class="sub-item">Visitor Info</span>
+                                    </a>
+                                </li>
+                            @endcanany --}}
                         </ul>
                     </div>
                 </li>
@@ -194,7 +194,7 @@
                 </li>
 
 
-{{--
+                {{--
                 <li class="nav-item">
                     <a href="widgets.html">
                         <i class="fas fa-desktop"></i>
