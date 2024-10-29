@@ -531,11 +531,75 @@
                     </div>
                 @endforeach
                 <!--== Single Blog Post End ==-->
+                <div class="col-md-12 mt-5 text-center">
+                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                </div>
             </div>
             <!--== Blog Content Wrapper ==-->
         </div>
     </section>
     <!--== Blog Area EndBlog ==-->
+
+
+    <!--== humanitarian Area Start ==-->
+    <section id="blog-area" class="section-padding" style="background: #ecf1f5">
+        <div class="container">
+            <!--== Section Title Start ==-->
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Recent @lang('Humanitarian Assistance')</h2>
+                    </div>
+                </div>
+            </div>
+            <!--== Section Title End ==-->
+
+            <!--== Blog Content Wrapper ==-->
+            <div class="row">
+                <!--== Single Blog Post start ==-->
+                @foreach ($humanitarians as $humanitarian)
+                    <div class="col-lg-4 col-md-6">
+                        <article class="single-blog-post">
+                            <figure class="blog-thumb">
+                                <div class="blog-thumbnail">
+                                    <img src="{{ getImg('humanitarian', $humanitarian->image) }}" alt="humanitarian" class="img-fluid">
+                                </div>
+                                <figcaption class="blog-meta clearfix">
+                                    <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="author">
+                                        @if($humanitarian->user->image)
+                                        <div class="author-pic">
+                                            <img src="{{ getImg('user', $humanitarian->user->image) }}" alt="Author">
+                                        </div>
+                                        @endif
+                                        <div class="author-info">
+                                            <h5>{{ $humanitarian->user->name }}</h5>
+                                            <p>{{ bdDate($humanitarian->created_at) }}</p>
+                                        </div>
+                                    </a>
+                                    {{-- <div class="like-comm pull-right">
+                                        <a href="#"><i class="fa fa-comment-o"></i>77</a>
+                                        <a href="#"><i class="fa fa-heart-o"></i>12</a>
+                                    </div> --}}
+                                </figcaption>
+                            </figure>
+
+                            <div class="blog-content">
+                                <h3><a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a></h3>
+                                <p>{{ strip_tags(Str::limit($humanitarian->content, 100)) }}</p>
+                                <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="btn btn-brand">More</a>
+                            </div>
+                        </article>
+                    </div>
+                @endforeach
+                <!--== Single Blog Post End ==-->
+                <div class="col-md-12 mt-5 text-center">
+                    <a href="{{ route('frontend.humanitarian-assistance.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                </div>
+            </div>
+            <!--== Blog Content Wrapper ==-->
+        </div>
+    </section>
+    <!--== humanitarian Area End ==-->
 
 
     @push('custom_scripts')

@@ -9,14 +9,14 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::whereIs_published(1)->paginate(6);
+        $blogs = Blog::with('user:id,name,image')->whereIsPublished(1)->paginate(12);
 
         return view('frontend.blog', compact('blogs'));
     }
 
     public function show($id)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::with('user:id,name,image')->find($id);
 
         return view('frontend.blog_show', compact('blog'));
     }

@@ -84,6 +84,7 @@ class HumanitarianController extends Controller
             return $error;
         }
         $data = $request->validated();
+        $data['user_id'] = user()->id;
         $data['content'] = $this->summerNoteStore($request->content, 'content');
 
         if ($request->hasFile('image')) {

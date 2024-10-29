@@ -2128,33 +2128,6 @@ blockquote:before,
 
 /*--== Page Title Area Start ==--*/
 
-#page-title-area {
-  background-image: url("http://placehold.it/1918x789");
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-  padding: 100px 0;
-  z-index: 1;
-}
-
-#page-title-area:after {
-  background-color: #000;
-  content: '';
-  height: 100%;
-  left: 0;
-  top: 0;
-  width: 100%;
-  position: absolute;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  -moz-opacity: 0.8;
-  -khtml-opacity: 0.8;
-  -webkit-opacity: 0.8;
-  opacity: 0.8;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
-  filter: alpha(opacity=80);
-  z-index: -1;
-}
-
 #page-title-area .page-title-content {
   color: #fff;
 }

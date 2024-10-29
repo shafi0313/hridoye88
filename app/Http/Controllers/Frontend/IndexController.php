@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Header;
-use App\Models\PhotoGallery;
 use App\Models\Slider;
-use App\Models\User;
+use App\Models\Humanitarian;
+use App\Models\PhotoGallery;
 use App\Models\VideoGallery;
+use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
@@ -21,7 +22,8 @@ class IndexController extends Controller
         $data['photoGalleries'] = PhotoGallery::select('id', 'image')->take(8)->get();
         $data['videoGalleries'] = VideoGallery::select('id', 'type', 'link')->whereType('Youtube')->take(6)->get();
         $data['socials'] = Header::whereType('social')->get();
-        $data['blogs'] = Blog::whereIs_published(1)->limit(6)->get();
+        $data['blogs'] = Blog::with('user:id,name,image')->whereIsPublished(1)->limit(6)->get();
+        $data['humanitarians'] = Humanitarian::with('user:id,name,image')->whereIsActive(1)->limit(6)->get();
         $data['members'] = User::wherePermission(2)->count();
 
         return view('frontend.index', $data);
