@@ -29,13 +29,13 @@ class HumanitarianController extends Controller
             return DataTables::of($notices)
                 ->addIndexColumn()
                 ->addColumn('content', function ($row) {
-                    return '<div>'.$row->content.'</div>';
+                    return '<div>' . $row->content . '</div>';
                 })
                 ->addColumn('date', function ($row) {
                     return bdDate($row->date);
                 })
                 ->addColumn('image', function ($row) {
-                    return '<img src="'.imagePath('humanitarian', $row->image).'" width="80px">';
+                    return '<img src="' . imagePath('humanitarian', $row->image) . '" width="80px">';
                 })
                 ->addColumn('is_active', function ($row) {
                     if (userCan('humanitarian-assistance-edit')) {
@@ -100,24 +100,13 @@ class HumanitarianController extends Controller
         }
     }
 
-    public function show(Request $request, Notice $notice)
+    public function edit(Request $request, Humanitarian $humanitarianAssistance)
     {
-        if ($request->ajax()) {
-            $modal = view('admin.notice.show')->with(['notice' => $notice])->render();
-
-            return response()->json(['modal' => $modal], 200);
-        }
-
-        return abort(500);
-    }
-
-    public function edit(Request $request, Notice $notice)
-    {
-        if ($error = $this->authorize('notice-edit')) {
+        if ($error = $this->authorize('humanitarianAssistance-edit')) {
             return $error;
         }
         if ($request->ajax()) {
-            $modal = view('admin.notice.edit')->with(['notice' => $notice])->render();
+            $modal = view('admin.humanitarian-assistance.edit')->with(['humanitarianAssistance' => $humanitarianAssistance])->render();
 
             return response()->json(['modal' => $modal], 200);
         }
@@ -128,25 +117,29 @@ class HumanitarianController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNoticeRequest $request, Notice $notice)
+    public function update(UpdateHumanitarianRequest $request, Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('notice-edit')) {
+        if ($error = $this->authorize('humanitarian-assistance-edit')) {
             return $error;
         }
         $data = $request->validated();
-        $data['content'] = $this->summerNoteStore($request->content, 'notice');
+        $data['content'] = $this->summerNoteStore($request->content, 'humanitarian');
 
-        if ($request->hasFile('file')) {
-            $fileName = uniqid(10).'.'.$request->file->getClientOriginalExtension();
-            // $type = $request->file->getClientMimeType();
-            // $size = $request->file->getSize();
-            $request->file->move(public_path('/uploads/images/notice/'), $fileName);
-            imgUnlink('notice', $notice->file);
-            $data['file'] = $fileName;
+        if ($request->hasFile('image')) {
+            $data['image'] = imgProcessAndStore($request->image, 'humanitarian', [null, null], $humanitarianAssistance->image);
         }
 
+        // if ($request->hasFile('file')) {
+        //     $fileName = uniqid(10).'.'.$request->file->getClientOriginalExtension();
+        //     // $type = $request->file->getClientMimeType();
+        //     // $size = $request->file->getSize();
+        //     $request->file->move(public_path('/uploads/images/humanitarian/'), $fileName);
+        //     imgUnlink('notice', $humanitarianAssistance->file);
+        //     $data['file'] = $fileName;
+        // }
+
         try {
-            $notice->update($data);
+            $humanitarianAssistance->update($data);
 
             return response()->json(['message' => 'The information has been updated'], 200);
         } catch (\Exception $e) {
@@ -165,7 +158,7 @@ class HumanitarianController extends Controller
         $this->summerNoteAllImageDestroy($humanitarianAssistance->content);
 
         try {
-            imgUnlink('notice', $humanitarianAssistance->file);
+            imgUnlink('humanitarian', $humanitarianAssistance->image);
             $humanitarianAssistance->delete();
 
             return response()->json(['message' => 'The information has been deleted'], 200);
