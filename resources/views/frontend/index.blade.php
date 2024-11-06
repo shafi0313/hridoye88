@@ -109,7 +109,7 @@
                     <div class="col-lg-10 ml-auto">
                         <div class="about-content-wrap">
                             <div class="section-title text-center text-lg-left">
-                                <h2>Our Mission</h2>
+                                <h2>@lang('Our Mission')</h2>
                             </div>
                             <div class="about-thumb">
                                 <img src="{{ getImg('message', $message->image) }}" alt="" class="img-fluid">
@@ -117,7 +117,7 @@
                             {!! Str::limit($message->text, 800) !!}
                             <br>
                             <button type="button" class="btn btn-brand about-btn" data-toggle="modal"
-                                data-target="#exampleModal">More</button>
+                                data-target="#exampleModal">@lang('More')</button>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Our Mission</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('Our Mission')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -142,71 +142,11 @@
                     {!! $message->text !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--== Our Responsibility Area Start ==-->
-    {{-- <section id="responsibility-area" class="section-padding">
-        <div class="container">
-            <!--== Section Title Start ==-->
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <h2>Our Responsibility</h2>
-                    </div>
-                </div>
-            </div>
-            <!--== Section Title End ==-->
-
-            <!--== Responsibility Content Wrapper ==-->
-            <div class="row text-center text-sm-left">
-                <!--== Single Responsibility Start ==-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-responsibility">
-                        <img src="{{ asset('frontend/assets/img/responsibility/01.png') }}" alt="Responsibility">
-                        <h4>Scholarship</h4>
-                        <p>De create building thinking about your requirment and latest treand on our marketplace area</p>
-                    </div>
-                </div>
-                <!--== Single Responsibility End ==-->
-
-                <!--== Single Responsibility Start ==-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-responsibility">
-                        <img src="{{ asset('frontend/assets/img/responsibility/02.png') }}" alt="Responsibility">
-                        <h4>Help Current Students</h4>
-                        <p>De create building thinking about your requirment and latest treand on our marketplace area</p>
-                    </div>
-                </div>
-                <!--== Single Responsibility End ==-->
-
-                <!--== Single Responsibility Start ==-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-responsibility">
-                        <img src="{{ asset('frontend/assets/img/responsibility/03.png') }}" alt="Responsibility">
-                        <h4>Help Our University</h4>
-                        <p>De create building thinking about your requirment and latest treand on our marketplace area</p>
-                    </div>
-                </div>
-                <!--== Single Responsibility End ==-->
-
-                <!--== Single Responsibility Start ==-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-responsibility">
-                        <img src="{{ asset('frontend/assets/img/responsibility/04.png') }}" alt="Responsibility">
-                        <h4>Build Our Community</h4>
-                        <p>De create building thinking about your requirment and latest treand on our marketplace area</p>
-                    </div>
-                </div>
-                <!--== Single Responsibility End ==-->
-            </div>
-            <!--== Responsibility Content Wrapper ==-->
-        </div>
-    </section> --}}
-    <!--== Our Responsibility Area End ==-->
 
     <!--== FunFact Area Start ==-->
     <section id="funfact-area">
@@ -220,7 +160,7 @@
                         </div>
                         <div class="funfact-info">
                             <h5 class="funfact-count">{{ $members }}</h5>
-                            <p>Members</p>
+                            <p>@lang('Members')</p>
                         </div>
                     </div>
                 </div>
@@ -234,7 +174,7 @@
                         </div>
                         <div class="funfact-info">
                             <h5 class="funfact-count">{{ $photoGalleries->count() }}</h5>
-                            <p>Photos</p>
+                            <p>@lang('Photos')</p>
                         </div>
                     </div>
                 </div>
@@ -248,7 +188,7 @@
                         </div>
                         <div class="funfact-info">
                             <h5 class="funfact-count">{{ $photoGalleries->count() }}</h5>
-                            <p>Videos</p>
+                            <p>@lang('Videos')</p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +202,7 @@
                         </div>
                         <div class="funfact-info">
                             <h5><span class="funfact-count">{{ $events->count() }}</span>+</h5>
-                            <p>Events</p>
+                            <p>@lang('Events')</p>
                         </div>
                     </div>
                 </div>
@@ -411,7 +351,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="career.html" class="btn btn-brand btn-loadmore">All job list</a>
+                    <a href="career.html" class="btn btn-brand btn-load@lang('More')">All job list</a>
                 </div>
             </div>
         </div>
@@ -427,7 +367,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Photo gallery</h2>
+                        <h2>@lang('Photo') @lang('Gallery')</h2>
                     </div>
                 </div>
             </div>
@@ -445,7 +385,7 @@
                         </div>
                     @endforeach
                     <div class="col-md-12 text-center">
-                        <a href="{{ route('frontend.photoGallery.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                        <a href="{{ route('frontend.photoGallery.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
                     </div>
                 </div>
             </div>
@@ -460,7 +400,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Videos</h2>
+                        <h2>@lang('Videos')</h2>
                     </div>
                 </div>
             </div>
@@ -472,7 +412,7 @@
                         </div>
                     @endforeach
                     <div class="col-md-12 text-center">
-                        <a href="{{ route('frontend.videoGallery.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                        <a href="{{ route('frontend.videoGallery.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
                     </div>
                 </div>
             </div>
@@ -487,7 +427,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Recent Blog</h2>
+                        <h2>@lang('Recent') @lang('Blog') </h2>
                     </div>
                 </div>
             </div>
@@ -525,14 +465,14 @@
                             <div class="blog-content">
                                 <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
                                 <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
-                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">More</a>
+                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">@lang('More')</a>
                             </div>
                         </article>
                     </div>
                 @endforeach
                 <!--== Single Blog Post End ==-->
                 <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
             <!--== Blog Content Wrapper ==-->
@@ -548,7 +488,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Recent @lang('Humanitarian Assistance')</h2>
+                        <h2>@lang('Recent') @lang('Humanitarian Assistance')</h2>
                     </div>
                 </div>
             </div>
@@ -586,14 +526,14 @@
                             <div class="blog-content">
                                 <h3><a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a></h3>
                                 <p>{{ strip_tags(Str::limit($humanitarian->content, 100)) }}</p>
-                                <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="btn btn-brand">More</a>
+                                <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="btn btn-brand">@lang('More')</a>
                             </div>
                         </article>
                     </div>
                 @endforeach
                 <!--== Single Blog Post End ==-->
                 <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('frontend.humanitarian-assistance.index') }}" class="btn btn-brand" style="width: 250px">More..</a>
+                    <a href="{{ route('frontend.humanitarian-assistance.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
             <!--== Blog Content Wrapper ==-->

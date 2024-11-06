@@ -22,7 +22,7 @@
                 <!-- Single Widget Start -->
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-widget-wrap">
-                        <h4 class="widget-title">Useful Link</h4>
+                        <h4 class="widget-title">@lang('Useful Link')</h4>
                         <div class="widgei-body">
                             <ul class="footer-list clearfix">
                                 @foreach ($menus as $menu)
@@ -44,7 +44,7 @@
                 <!-- Single Widget Start -->
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-widget-wrap">
-                        <h4 class="widget-title">Get In Touch</h4>
+                        <h4 class="widget-title">@lang('Get In Touch')</h4>
                         <div class="widgei-body">
                             <div class="footer-social-icons">
                                 @foreach($headers->where('type','social') as $header)
