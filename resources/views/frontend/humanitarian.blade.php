@@ -31,11 +31,12 @@
                                         <article class="single-blog-post">
                                             <figure class="blog-thumb">
                                                 <div class="blog-thumbnail">
-                                                    <img src="{{ getImg('humanitarian', $humanitarian->image) }}" alt="Blog"
-                                                        class="img-fluid" width="100%">
+                                                    <img src="{{ getImg('humanitarian', $humanitarian->image) }}"
+                                                        alt="Blog" class="img-fluid" width="100%">
                                                 </div>
                                                 <figcaption class="blog-meta clearfix">
-                                                    <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="author">
+                                                    <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}"
+                                                        class="author">
                                                         @if ($humanitarian->user->image)
                                                             <div class="author-pic">
                                                                 <img src="{{ getImg('user', $humanitarian->user->image) }}"
@@ -58,7 +59,7 @@
                                                     <a
                                                         href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a>
                                                 </h3>
-                                                <p>{{ strip_tags(Str::limit($humanitarian->text, 100)) }}</p>
+                                                <p>{{ strip_tags(Str::limit($humanitarian->content, 100)) }}</p>
                                                 <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}"
                                                     class="btn btn-brand">More</a>
                                             </div>
