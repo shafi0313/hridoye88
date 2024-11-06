@@ -10,7 +10,8 @@ trait SummerNoteTrait
     {
         if ($content) {
             $dom = new \DomDocument;
-            $dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            // $dom->loadHtml(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHtml(mb_convert_encoding($content, 'UTF-8', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $imageFile = $dom->getElementsByTagName('img');
 
             foreach ($imageFile as $item => $image) {
@@ -38,6 +39,7 @@ trait SummerNoteTrait
             return $dom->saveHTML();
         }
     }
+
 
     public function summerNoteAllImageDestroy($content)
     {
