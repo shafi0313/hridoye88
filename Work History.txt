@@ -1,0 +1,19 @@
+Hridoy 88
+
+24/10/2024
+1. Slider modify
+
+25/10/2024 - 27/10/2024
+1. Home page photo and video gallery change
+
+28/10/2024
+1. Laravel 9 to 11 Upgrade
+2. Blog Page Fix
+
+29/10/2024
+1. Humanitarian Assistance backend
+2. Humanitarian Assistance Frontend
+3. Fix user add and update
+
+06/11/2024
+1. Language problem fix
