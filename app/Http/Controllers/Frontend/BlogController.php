@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use Jorenvh\Share\Share;
+use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {

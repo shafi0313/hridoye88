@@ -16,7 +16,6 @@
     </section>
     <!--== Page Title Area End ==-->
 
-
     <!--== Blog Page Content Start ==-->
     <div id="page-content-wrap">
         <div class="blog-page-content-wrap section-padding">
@@ -34,6 +33,11 @@
                                     <div class="posting-info">
                                         <a href="#">{{ bdDate($blog->created_at) }}</a> &#x2022; Posted by: <a
                                             href="#">{{ $blog->user->name }}</a>
+
+                                            {!! Share::currentPage()->facebook()
+                                                ->twitter()
+                                                ->linkedin()
+                                                ->whatsapp() !!}
                                     </div>
                                 </div>
                             </header>

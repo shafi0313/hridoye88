@@ -34,6 +34,10 @@
                                     <div class="posting-info">
                                         <a href="#">{{ bdDate($humanitarian->created_at) }}</a> &#x2022; Posted by: <a
                                             href="#">{{ $humanitarian->user->name }}</a>
+                                            {!! Share::currentPage()->facebook()
+                                                ->twitter()
+                                                ->linkedin()
+                                                ->whatsapp() !!}
                                     </div>
                                 </div>
                             </header>
