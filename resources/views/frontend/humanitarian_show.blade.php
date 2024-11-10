@@ -42,7 +42,7 @@
                                 </div>
                             </header>
                             <section class="blog-details">
-                                {!! $humanitarian->text !!}
+                                {!! $humanitarian->content !!}
                             </section>
                         </article>
                     </div>
