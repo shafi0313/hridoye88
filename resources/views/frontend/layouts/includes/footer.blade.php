@@ -53,6 +53,24 @@
                                 </div>
                             </div>
                         </div>
+                        <style>
+                            .count p {
+                                margin-top: 10px;
+                                margin-bottom: -25px;
+                                font-size: 20px;
+                                color: #fff;
+                                font-weight: 600;
+
+                            }
+                            .count img {
+                                width: 150px;
+                            }
+                        </style>
+                        <div class="count">
+                            <p>Visitor Counter</p>
+                            <a href='https://www.free-counters.org/'>Hit Counter</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=6b5bd480a5977d18e020ff1f00de19bbe373acb3'></script>
+                            <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1269397/t/1"></script>
+                        </div>
                     </div>
                     <!-- Single Widget End -->
                 </div>
