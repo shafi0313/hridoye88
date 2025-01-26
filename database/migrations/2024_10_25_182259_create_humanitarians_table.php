@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('humanitarians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDeleteSetNull();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title', 255);
             $table->longText('content');
             $table->string('image', 64);

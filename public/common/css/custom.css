@@ -51,9 +51,9 @@ table .required::after {
     width: 100% !important;
 }
 
-.form-group {
+/* .form-group {
     margin: 10px 0;
-}
+} */
 
 .select2-container {
     display: block !important;

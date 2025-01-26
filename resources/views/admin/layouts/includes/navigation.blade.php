@@ -81,6 +81,15 @@
                     </li>
                 @endcan
 
+              
+                    <li class="nav-item {{ activeNav('admin.literatures.*') }}">
+                        <a href="{{ route('admin.literatures.index') }}">
+                            <i class="far fa-images"></i>
+                            <p>Literature</p>
+                        </a>
+                    </li>
+             
+
                 {{-- @can('profession-manage')
                     <li class="nav-item {{ activeNav('admin.profession.*') }}">
                         <a href="{{ route('admin.profession.index') }}">

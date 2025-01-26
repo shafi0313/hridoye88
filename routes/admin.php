@@ -1,28 +1,28 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\Admin\BackupController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\EventController;
-use App\Http\Controllers\Admin\GalleryCatController;
-use App\Http\Controllers\Admin\HeaderController;
-use App\Http\Controllers\Admin\HumanitarianController;
-use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\PhotoGalleryController;
-use App\Http\Controllers\Admin\ProfessionController;
-use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\SubMenuController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\VideoGalleryController;
-use App\Http\Controllers\Admin\VisitorInfoController;
-use App\Http\Controllers\AjaxController;
-use App\Http\Controllers\Auth\Permission\PermissionController;
-use App\Http\Controllers\Auth\Role\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\BackupController;
+use App\Http\Controllers\Admin\HeaderController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SubMenuController;
+use App\Http\Controllers\Auth\Role\RoleController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryCatController;
+use App\Http\Controllers\Admin\LiteratureController;
+use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\HumanitarianController;
+use App\Http\Controllers\Admin\PhotoGalleryController;
+use App\Http\Controllers\Admin\VideoGalleryController;
+use App\Http\Controllers\Auth\Permission\PermissionController;
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -65,6 +65,7 @@ Route::controller(ProfileController::class)->prefix('my-profile')->group(functio
 Route::resource('user', UserController::class)->except(['show', 'create']);
 
 Route::resource('/member', MemberController::class);
+Route::resource('/literatures', LiteratureController::class)->except(['show', 'create']);
 
 Route::prefix('my-profile')->group(function () {
     Route::prefix('profile')->group(function () {
