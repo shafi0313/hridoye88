@@ -14,8 +14,5 @@ jobs:
           server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          # local-dir: ./home/ggegosjj/peoplesvetcare.com/
-          # source: "."
-          # target: "/home/ggegosjj/peoplesvetcare.com"
           local-dir: "./" # Source directory on your local machine (root of the repository)
           server-dir: "/public_html/"
