@@ -541,6 +541,67 @@
     </section>
     <!--== humanitarian Area End ==-->
 
+    
+    <!--== Blog Area Start ==-->
+    <section id="blog-area" class="section-padding" style="background: #ffffff">
+        <div class="container">
+            <!--== Section Title Start ==-->
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>@lang('Literary publisher')</h2>
+                    </div>
+                </div>
+            </div>
+            <!--== Section Title End ==-->
+
+            <!--== Blog Content Wrapper ==-->
+            <div class="row">
+                <!--== Single Blog Post start ==-->
+                @foreach ($blogs as $blog)
+                    <div class="col-lg-4 col-md-6">
+                        <article class="single-blog-post">
+                            <figure class="blog-thumb">
+                                <div class="blog-thumbnail">
+                                    <img src="{{ getImg('blog', $blog->image) }}" alt="Blog" class="img-fluid">
+                                </div>
+                                <figcaption class="blog-meta clearfix">
+                                    <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
+                                        @if($blog->user->image)
+                                        <div class="author-pic">
+                                            <img src="{{ getImg('user', $blog->user->image) }}" alt="Author">
+                                        </div>
+                                        @endif
+                                        <div class="author-info">
+                                            <h5>{{ $blog->user->name }}</h5>
+                                            <p>{{ bdDate($blog->created_at) }}</p>
+                                        </div>
+                                    </a>
+                                    {{-- <div class="like-comm pull-right">
+                                        <a href="#"><i class="fa fa-comment-o"></i>77</a>
+                                        <a href="#"><i class="fa fa-heart-o"></i>12</a>
+                                    </div> --}}
+                                </figcaption>
+                            </figure>
+
+                            <div class="blog-content">
+                                <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
+                                <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
+                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">@lang('More')</a>
+                            </div>
+                        </article>
+                    </div>
+                @endforeach
+                <!--== Single Blog Post End ==-->
+                <div class="col-md-12 mt-5 text-center">
+                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                </div>
+            </div>
+            <!--== Blog Content Wrapper ==-->
+        </div>
+    </section>
+    <!--== Blog Area EndBlog ==-->
+
 
     @push('custom_scripts')
         <script>
