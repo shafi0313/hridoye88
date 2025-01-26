@@ -542,10 +542,9 @@
     <!--== humanitarian Area End ==-->
 
     
-    <!--== Blog Area Start ==-->
+    <!--== Literary Area Start ==-->
     <section id="blog-area" class="section-padding" style="background: #ffffff">
         <div class="container">
-            <!--== Section Title Start ==-->
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
@@ -553,54 +552,116 @@
                     </div>
                 </div>
             </div>
-            <!--== Section Title End ==-->
+            <style>
+                .book-card {
+                    background: #fff;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    overflow: hidden;
+                    position: relative;
+                    width: 100%;
+                }
 
-            <!--== Blog Content Wrapper ==-->
+                .book-card .img {
+                    position: relative;
+                    overflow: hidden;
+                    height: 350px;
+                }
+
+                .book-card .img img {
+                    width: 100%;
+                    object-fit: fill;
+                    transition: transform 0.5s;
+                }
+
+                .book-card:hover .img img {
+                    transform: scale(1.1);
+                }
+                .book-card .content {
+                    padding: 12px;
+                    text-align: center;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    line-height: 1.2;
+                }
+
+                .book-card .content h3 {
+                    font-size: 20px;
+                }
+
+                .book-card .content p {
+                    font-size: 14px;
+                    line-height: 1;
+                    margin: 5px 0px;
+                }
+                .book-card {
+                    color: #000
+                }                
+            </style>
             <div class="row">
-                <!--== Single Blog Post start ==-->
-                @foreach ($blogs as $blog)
-                    <div class="col-lg-4 col-md-6">
-                        <article class="single-blog-post">
-                            <figure class="blog-thumb">
-                                <div class="blog-thumbnail">
-                                    <img src="{{ getImg('blog', $blog->image) }}" alt="Blog" class="img-fluid">
-                                </div>
-                                <figcaption class="blog-meta clearfix">
-                                    <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
-                                        @if($blog->user->image)
-                                        <div class="author-pic">
-                                            <img src="{{ getImg('user', $blog->user->image) }}" alt="Author">
-                                        </div>
-                                        @endif
-                                        <div class="author-info">
-                                            <h5>{{ $blog->user->name }}</h5>
-                                            <p>{{ bdDate($blog->created_at) }}</p>
-                                        </div>
-                                    </a>
-                                    {{-- <div class="like-comm pull-right">
-                                        <a href="#"><i class="fa fa-comment-o"></i>77</a>
-                                        <a href="#"><i class="fa fa-heart-o"></i>12</a>
-                                    </div> --}}
-                                </figcaption>
-                            </figure>
-
-                            <div class="blog-content">
-                                <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
-                                <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
-                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">@lang('More')</a>
+                <div class="col-md-3">
+                    <a href="#">
+                        <div class="book-card">
+                            <div class="img">
+                                <img src="{{ asset('book1.jpg') }}" alt="Book">
                             </div>
-                        </article>
-                    </div>
-                @endforeach
-                <!--== Single Blog Post End ==-->
+                            <div class="content">
+                                <h3>Ruddho Dar</h3>
+                                <p>Rehena Roshid</p>
+                                <p><b>&#x09F3 500</b></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#">
+                        <div class="book-card">
+                            <div class="img">
+                                <img src="{{ asset('book1.jpg') }}" alt="Book">
+                            </div>
+                            <div class="content">
+                                <h3>Ruddho Dar</h3>
+                                <p>Rehena Roshid</p>
+                                <p><b>&#x09F3 500</b></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#">
+                        <div class="book-card">
+                            <div class="img">
+                                <img src="{{ asset('book1.jpg') }}" alt="Book">
+                            </div>
+                            <div class="content">
+                                <h3>Ruddho Dar</h3>
+                                <p>Rehena Roshid</p>
+                                <p><b>&#x09F3 500</b></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#">
+                        <div class="book-card">
+                            <div class="img">
+                                <img src="{{ asset('book1.jpg') }}" alt="Book">
+                            </div>
+                            <div class="content">
+                                <h3>Ruddho Dar</h3>
+                                <p>Rehena Roshid</p>
+                                <p><b>&#x09F3 500</b></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-md-12 mt-5 text-center">
                     <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
-            <!--== Blog Content Wrapper ==-->
         </div>
     </section>
-    <!--== Blog Area EndBlog ==-->
+    <!--== Literary Area EndBlog ==-->
 
 
     @push('custom_scripts')
