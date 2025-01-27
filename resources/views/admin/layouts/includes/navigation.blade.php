@@ -81,53 +81,6 @@
                     </li>
                 @endcan
 
-              
-                    <li class="nav-item {{ activeNav('admin.literatures.*') }}">
-                        <a href="{{ route('admin.literatures.index') }}">
-                            <i class="far fa-images"></i>
-                            <p>Literature</p>
-                        </a>
-                    </li>
-             
-
-                {{-- @can('profession-manage')
-                    <li class="nav-item {{ activeNav('admin.profession.*') }}">
-                        <a href="{{ route('admin.profession.index') }}">
-                            <i class="fa-solid fa-business-time"></i>
-                            <p>Profession</p>
-                        </a>
-                    </li>
-                @endcan --}}
-
-                {{-- @can('gallery-category-manage')
-                    <li class="nav-item {{ activeNav('admin.gallery-cat.*') }}">
-                        <a href="{{ route('admin.gallery-cat.index') }}">
-                            <i class="far fa-images"></i>
-                            <p>Gallery Category</p>
-                        </a>
-                    </li>
-                @endcan --}}
-
-                {{-- @can('photo-gallery-manage')
-                    <li class="nav-item {{ activeNav('admin.photo-gallery.*') }}">
-                        <a href="{{ route('admin.photo-gallery.index') }}">
-                            <i class="far fa-images"></i>
-                            <p>Photo Galleries</p>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('video-gallery-manage')
-                    <li class="nav-item {{ activeNav('admin.video-gallery.*') }}">
-                        <a href="{{ route('admin.video-gallery.index') }}">
-                            <i class="fas fa-video"></i>
-                            <p>Video Galleries</p>
-                        </a>
-                    </li>
-                @endcan --}}
-
-
-
                 @php
                     $gallery = ['admin.gallery-cat.*', 'admin.photo-gallery.*', 'admin.video-gallery.*'];
                 @endphp
@@ -163,16 +116,6 @@
                         </ul>
                     </div>
                 </li>
-
-
-
-
-
-
-
-
-
-
 
                 @can('event-manage')
                     <li class="nav-item {{ activeNav('admin.event.*') }}">
@@ -217,6 +160,13 @@
                         </a>
                     </li>
                 @endcan
+
+                <li class="nav-item {{ activeNav('admin.literatures.*') }}">
+                    <a href="{{ route('admin.literatures.index') }}">
+                        <i class="fa-solid fa-book"></i>
+                        <p>Literature</p>
+                    </a>
+                </li>
 
                 <li
                     class="nav-item {{ activeNav(['admin.role.*', 'admin.backup.*', 'admin.visitorInfo.*', 'admin.permission.*']) }}">

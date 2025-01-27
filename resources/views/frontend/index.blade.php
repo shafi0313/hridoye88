@@ -1,10 +1,9 @@
 @extends('frontend.layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-<style>
-    .single-slide-wra {
-    }
-</style>
+    <style>
+        .single-slide-wra {}
+    </style>
     <!--== Slider Area Start ==-->
     <section id="slider-area">
         <div class="slider-active-wrap owl-carousel text-center text-md-left">
@@ -44,52 +43,53 @@
 
     <!--== Upcoming Event Area Start ==-->
     @if ($events->count() > 0)
-    <section id="upcoming-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="upcoming-event-wrap">
-                        <div class="up-event-titile">
-                            <h3>Upcoming event</h3>
-                        </div>
-                        <div class="upcoming-event-content owl-carousel">
-                            <!-- No 1 Event -->
-                            @foreach ($events as $event)
-                                <div class="single-upcoming-event">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="up-event-thumb">
-                                                <img src="{{ getImg('events', $event->image) }}" class="img-fluid"
-                                                    alt="Upcoming Event">
-                                                <h4 class="up-event-date">It&#x2019;s {{ $event->date->format('d M Y') }}
-                                                </h4>
+        <section id="upcoming-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="upcoming-event-wrap">
+                            <div class="up-event-titile">
+                                <h3>Upcoming event</h3>
+                            </div>
+                            <div class="upcoming-event-content owl-carousel">
+                                <!-- No 1 Event -->
+                                @foreach ($events as $event)
+                                    <div class="single-upcoming-event">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <div class="up-event-thumb">
+                                                    <img src="{{ getImg('events', $event->image) }}" class="img-fluid"
+                                                        alt="Upcoming Event">
+                                                    <h4 class="up-event-date">It&#x2019;s
+                                                        {{ $event->date->format('d M Y') }}
+                                                    </h4>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-7">
-                                            <div class="display-table">
-                                                <div class="display-table-cell">
-                                                    <div class="up-event-text">
-                                                        <div class="event-countdown">
-                                                            <div class="event-countdown-counter"
-                                                                data-date="{{ $event->date->format('Y/m/d') }}"></div>
-                                                            <p>Remaining</p>
+                                            <div class="col-lg-7">
+                                                <div class="display-table">
+                                                    <div class="display-table-cell">
+                                                        <div class="up-event-text">
+                                                            <div class="event-countdown">
+                                                                <div class="event-countdown-counter"
+                                                                    data-date="{{ $event->date->format('Y/m/d') }}"></div>
+                                                                <p>Remaining</p>
+                                                            </div>
+                                                            {!! $event->text !!}
                                                         </div>
-                                                        {!! $event->text !!}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                            <!-- partial -->
+                                @endforeach
+                                <!-- partial -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     @endif
     <!--== Upcoming Event Area End ==-->
     <style>
@@ -385,7 +385,8 @@
                         </div>
                     @endforeach
                     <div class="col-md-12 text-center">
-                        <a href="{{ route('frontend.photoGallery.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                        <a href="{{ route('frontend.photoGallery.index') }}" class="btn btn-brand"
+                            style="width: 250px">@lang('More')..</a>
                     </div>
                 </div>
             </div>
@@ -412,7 +413,8 @@
                         </div>
                     @endforeach
                     <div class="col-md-12 text-center">
-                        <a href="{{ route('frontend.videoGallery.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                        <a href="{{ route('frontend.videoGallery.index') }}" class="btn btn-brand"
+                            style="width: 250px">@lang('More')..</a>
                     </div>
                 </div>
             </div>
@@ -445,10 +447,10 @@
                                 </div>
                                 <figcaption class="blog-meta clearfix">
                                     <a href="{{ route('frontend.blog.show', $blog->id) }}" class="author">
-                                        @if($blog->user->image)
-                                        <div class="author-pic">
-                                            <img src="{{ getImg('user', $blog->user->image) }}" alt="Author">
-                                        </div>
+                                        @if ($blog->user->image)
+                                            <div class="author-pic">
+                                                <img src="{{ getImg('user', $blog->user->image) }}" alt="Author">
+                                            </div>
                                         @endif
                                         <div class="author-info">
                                             <h5>{{ $blog->user->name }}</h5>
@@ -465,14 +467,16 @@
                             <div class="blog-content">
                                 <h3><a href="{{ route('frontend.blog.show', $blog->id) }}">{{ $blog->title }}</a></h3>
                                 <p>{{ strip_tags(Str::limit($blog->text, 100)) }}</p>
-                                <a href="{{ route('frontend.blog.show', $blog->id) }}" class="btn btn-brand">@lang('More')</a>
+                                <a href="{{ route('frontend.blog.show', $blog->id) }}"
+                                    class="btn btn-brand">@lang('More')</a>
                             </div>
                         </article>
                     </div>
                 @endforeach
                 <!--== Single Blog Post End ==-->
                 <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand"
+                        style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
             <!--== Blog Content Wrapper ==-->
@@ -502,14 +506,17 @@
                         <article class="single-blog-post">
                             <figure class="blog-thumb">
                                 <div class="blog-thumbnail">
-                                    <img src="{{ getImg('humanitarian', $humanitarian->image) }}" alt="humanitarian" class="img-fluid">
+                                    <img src="{{ getImg('humanitarian', $humanitarian->image) }}" alt="humanitarian"
+                                        class="img-fluid">
                                 </div>
                                 <figcaption class="blog-meta clearfix">
-                                    <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="author">
-                                        @if($humanitarian->user->image)
-                                        <div class="author-pic">
-                                            <img src="{{ getImg('user', $humanitarian->user->image) }}" alt="Author">
-                                        </div>
+                                    <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}"
+                                        class="author">
+                                        @if ($humanitarian->user->image)
+                                            <div class="author-pic">
+                                                <img src="{{ getImg('user', $humanitarian->user->image) }}"
+                                                    alt="Author">
+                                            </div>
                                         @endif
                                         <div class="author-info">
                                             <h5>{{ $humanitarian->user->name }}</h5>
@@ -524,16 +531,20 @@
                             </figure>
 
                             <div class="blog-content">
-                                <h3><a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a></h3>
+                                <h3><a
+                                        href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a>
+                                </h3>
                                 <p>{{ strip_tags(Str::limit($humanitarian->content, 100)) }}</p>
-                                <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}" class="btn btn-brand">@lang('More')</a>
+                                <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}"
+                                    class="btn btn-brand">@lang('More')</a>
                             </div>
                         </article>
                     </div>
                 @endforeach
                 <!--== Single Blog Post End ==-->
                 <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('frontend.humanitarian-assistance.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                    <a href="{{ route('frontend.humanitarian-assistance.index') }}" class="btn btn-brand"
+                        style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
             <!--== Blog Content Wrapper ==-->
@@ -541,7 +552,7 @@
     </section>
     <!--== humanitarian Area End ==-->
 
-    
+
     <!--== Literary Area Start ==-->
     <section id="blog-area" class="section-padding" style="background: #ffffff">
         <div class="container">
@@ -577,11 +588,18 @@
                 .book-card:hover .img img {
                     transform: scale(1.1);
                 }
+
                 .book-card .content {
                     padding: 12px;
                     text-align: center;
                 }
-                h1, h2, h3, h4, h5, h6 {
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
                     line-height: 1.2;
                 }
 
@@ -594,69 +612,32 @@
                     line-height: 1;
                     margin: 5px 0px;
                 }
+
                 .book-card {
                     color: #000
-                }                
+                }
             </style>
             <div class="row">
-                <div class="col-md-3">
-                    <a href="#">
-                        <div class="book-card">
-                            <div class="img">
-                                <img src="{{ asset('book1.jpg') }}" alt="Book">
+                @foreach ($literatures as $literature)
+                    <div class="col-md-3">
+                        <a href="#">
+                            <div class="book-card">
+                                <div class="img">
+                                    <img src="{{ imagePath('book', $literature->cover_img) }}" alt="{{ $literature->name }}">
+                                </div>
+                                <div class="content">
+                                    <h3>{{ $literature->name }}</h3>
+                                    <p>{{ $literature->writer }}</p>
+                                    <p><b>&#x09F3 {{ $literature->price }}</b></p>
+                                </div>
                             </div>
-                            <div class="content">
-                                <h3>Ruddho Dar</h3>
-                                <p>Rehena Roshid</p>
-                                <p><b>&#x09F3 500</b></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#">
-                        <div class="book-card">
-                            <div class="img">
-                                <img src="{{ asset('book1.jpg') }}" alt="Book">
-                            </div>
-                            <div class="content">
-                                <h3>Ruddho Dar</h3>
-                                <p>Rehena Roshid</p>
-                                <p><b>&#x09F3 500</b></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#">
-                        <div class="book-card">
-                            <div class="img">
-                                <img src="{{ asset('book1.jpg') }}" alt="Book">
-                            </div>
-                            <div class="content">
-                                <h3>Ruddho Dar</h3>
-                                <p>Rehena Roshid</p>
-                                <p><b>&#x09F3 500</b></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#">
-                        <div class="book-card">
-                            <div class="img">
-                                <img src="{{ asset('book1.jpg') }}" alt="Book">
-                            </div>
-                            <div class="content">
-                                <h3>Ruddho Dar</h3>
-                                <p>Rehena Roshid</p>
-                                <p><b>&#x09F3 500</b></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
+                
                 <div class="col-md-12 mt-5 text-center">
-                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand" style="width: 250px">@lang('More')..</a>
+                    <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand"
+                        style="width: 250px">@lang('More')..</a>
                 </div>
             </div>
         </div>

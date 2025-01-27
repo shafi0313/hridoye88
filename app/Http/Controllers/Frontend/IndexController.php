@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Header;
 use App\Models\Slider;
+use App\Models\Literature;
 use App\Models\Humanitarian;
 use App\Models\PhotoGallery;
 use App\Models\VideoGallery;
@@ -25,6 +26,7 @@ class IndexController extends Controller
         $data['blogs'] = Blog::with('user:id,name,image')->whereIsPublished(1)->limit(6)->get();
         $data['humanitarians'] = Humanitarian::with('user:id,name,image')->whereIsActive(1)->limit(6)->get();
         $data['members'] = User::wherePermission(2)->count();
+        $data['literatures'] = Literature::latest()->limit(4)->get();
 
         return view('frontend.index', $data);
     }
