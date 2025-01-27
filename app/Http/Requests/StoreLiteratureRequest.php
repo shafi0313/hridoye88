@@ -31,7 +31,7 @@ class StoreLiteratureRequest extends FormRequest
             'published_at' => ['nullable', 'date'],
             'cover_img' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
             'back_cover_img' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
-            'pdf' => ['nullable', ]
+            'pdf' => ['nullable', 'file', 'mimes:pdf']
         ];
     }
 }

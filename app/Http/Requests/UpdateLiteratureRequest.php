@@ -11,7 +11,7 @@ class UpdateLiteratureRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class UpdateLiteratureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'writer' => ['required', 'string', 'min:1', 'max:255'],
+            'price' => ['nullable', 'numeric'],
+            'discount' => ['nullable', 'numeric'],
+            'description' => ['nullable', 'string', 'min:1'],
+            'publisher' => ['nullable', 'string', 'min:1', 'max:255'],
+            'published_at' => ['nullable', 'date'],
+            'cover_img' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
+            'back_cover_img' => ['nullable', 'image', ' mimes:jpeg,png,jpg,svg,webp'],
+            'pdf' => ['nullable', 'file', 'mimes:pdf']
         ];
     }
 }

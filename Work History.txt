@@ -30,3 +30,6 @@ Hridoy 88
 
 26/01/25
 1. Literary publisher Design
+
+27/01/25
+1. Literary publisher backend

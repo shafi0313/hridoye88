@@ -87,14 +87,6 @@ class LiteratureController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Literature $literature)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request, Literature $literature)
@@ -112,14 +104,14 @@ class LiteratureController extends Controller
     public function update(UpdateLiteratureRequest $request, Literature $literature)
     {
         $data = $request->validated();
-        $image = $literature->image;
-        if ($request->hasFile('image')) {
-            $data['image'] = imgProcessAndStore($request->image, 'slider', [680, 548], $image);
+        $cover_img = $literature->cover_img;
+        if ($request->hasFile('cover_img')) {
+            $data['cover_img'] = imgProcessAndStore($request->cover_img, 'book', [null, null], $cover_img);
         }
 
-        $image2 = $literature->image2;
-        if ($request->hasFile('image2')) {
-            $data['image2'] = imgProcessAndStore($request->image2, 'slider', [562, 453], $image2);
+        $back_cover_img = $literature->back_cover_img;
+        if ($request->hasFile('back_cover_img')) {
+            $data['back_cover_img'] = imgProcessAndStore($request->back_cover_img, 'book', [null, null], $back_cover_img);
         }
 
         try {
