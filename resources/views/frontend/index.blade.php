@@ -554,69 +554,70 @@
 
 
     <!--== Literary Area Start ==-->
+    
+    <style>
+        .book-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .book-card .img {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .book-card .img img {
+            width: 100%;
+            object-fit: fill;
+            transition: transform 0.5s;
+        }
+
+        .book-card:hover .img img {
+            transform: scale(1.1);
+        }
+
+        .book-card .content {
+            padding: 12px;
+            text-align: center;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            line-height: 1.2;
+        }
+
+        .book-card .content h3 {
+            font-size: 20px;
+        }
+
+        .book-card .content p {
+            font-size: 14px;
+            line-height: 1;
+            margin: 5px 0px;
+        }
+
+        .book-card {
+            color: #000
+        }
+    </style>
     <section id="blog-area" class="section-padding" style="background: #ffffff">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>@lang('Literary publisher')</h2>
+                        <h2>@lang('Hridoye Literature Publication')</h2>
                     </div>
                 </div>
             </div>
-            <style>
-                .book-card {
-                    background: #fff;
-                    border-radius: 10px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                    overflow: hidden;
-                    position: relative;
-                    width: 100%;
-                }
-
-                .book-card .img {
-                    position: relative;
-                    overflow: hidden;
-                    height: 350px;
-                }
-
-                .book-card .img img {
-                    width: 100%;
-                    object-fit: fill;
-                    transition: transform 0.5s;
-                }
-
-                .book-card:hover .img img {
-                    transform: scale(1.1);
-                }
-
-                .book-card .content {
-                    padding: 12px;
-                    text-align: center;
-                }
-
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    line-height: 1.2;
-                }
-
-                .book-card .content h3 {
-                    font-size: 20px;
-                }
-
-                .book-card .content p {
-                    font-size: 14px;
-                    line-height: 1;
-                    margin: 5px 0px;
-                }
-
-                .book-card {
-                    color: #000
-                }
-            </style>
             <div class="row">
                 @foreach ($literatures as $literature)
                     <div class="col-md-3">
