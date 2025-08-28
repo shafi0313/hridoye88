@@ -1,35 +1,53 @@
 Hridoy 88
 
-24/10/2024
-1. Slider modify
+28/08/25
+1. Add publisher column in Humanitarian Assistances
+2. Humanitarian Assistances front design modify
 
-25/10/2024 - 27/10/2024
-1. Home page photo and video gallery change
+____________________________________________________________
+27/01/25
+1. Literary publisher backend
 
-28/10/2024
-1. Laravel 9 to 11 Upgrade
-2. Blog Page Fix
+26/01/25
+1. Literary publisher Design
+
+29/11/24
+1. Photo Gallery Edit Fix
+2. Add Website Hit Count
+
+10/11/24
+1. Humanitarian Assistance showing problem fix
+
+09/11/24
+1. Add share option
+
+06/11/2024
+1. Language problem fix
 
 29/10/2024
 1. Humanitarian Assistance backend
 2. Humanitarian Assistance Frontend
 3. Fix user add and update
 
-06/11/2024
-1. Language problem fix
+28/10/2024
+1. Laravel 9 to 11 Upgrade
+2. Blog Page Fix
 
-09/11/24
-1. Add share option
+25/10/2024 - 27/10/2024
+1. Home page photo and video gallery change
 
-10/11/24
-1. Humanitarian Assistance showing problem fix
+24/10/2024
+1. Slider modify
 
-29/11/24
-1. Photo Gallery Edit Fix
-2. Add Website Hit Count
 
-26/01/25
-1. Literary publisher Design
 
-27/01/25
-1. Literary publisher backend
+
+
+
+
+
+
+
+
+
+
