@@ -130,7 +130,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">@lang('Our Mission')</h5>
@@ -518,10 +518,6 @@
                                                     alt="Author">
                                             </div>
                                         @endif
-                                        <div class="author-info">
-                                            <h5>{{ $humanitarian->user->name }}</h5>
-                                            <p>{{ bdDate($humanitarian->created_at) }}</p>
-                                        </div>
                                     </a>
                                     {{-- <div class="like-comm pull-right">
                                         <a href="#"><i class="fa fa-comment-o"></i>77</a>
@@ -531,9 +527,17 @@
                             </figure>
 
                             <div class="blog-content">
-                                <h3><a
+                                <h3 class="mb-2">
+                                    <a
                                         href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}">{{ $humanitarian->title }}</a>
                                 </h3>
+                                <div class="author-info text-muted" style="font-size: 14px">
+                                    <p>
+                                        <i class="fa-solid fa-circle-user"></i>
+                                        {{ $humanitarian->publisher }}&nbsp;
+                                        <i class="fa-solid fa-calendar-days"></i> {{ bdDate($humanitarian->created_at) }}
+                                    </p>
+                                </div>
                                 <p>{{ strip_tags(Str::limit($humanitarian->content, 100)) }}</p>
                                 <a href="{{ route('frontend.humanitarian-assistance.show', $humanitarian->id) }}"
                                     class="btn btn-brand">@lang('More')</a>
@@ -554,7 +558,7 @@
 
 
     <!--== Literary Area Start ==-->
-    
+
     <style>
         .book-card {
             background: #fff;
@@ -624,7 +628,8 @@
                         <a href="#">
                             <div class="book-card">
                                 <div class="img">
-                                    <img src="{{ imagePath('book', $literature->cover_img) }}" alt="{{ $literature->name }}">
+                                    <img src="{{ imagePath('book', $literature->cover_img) }}"
+                                        alt="{{ $literature->name }}">
                                 </div>
                                 <div class="content">
                                     <h3>{{ $literature->name }}</h3>
@@ -635,7 +640,7 @@
                         </a>
                     </div>
                 @endforeach
-                
+
                 <div class="col-md-12 mt-5 text-center">
                     <a href="{{ route('frontend.blog.index') }}" class="btn btn-brand"
                         style="width: 250px">@lang('More')..</a>

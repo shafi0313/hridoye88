@@ -1607,11 +1607,11 @@ blockquote:before {
 }
 
 .single-blog-post .blog-thumb .blog-thumbnail {
-  height: 175px;
+  height: 220px;
   position: relative;
 }
 
-.single-blog-post .blog-thumb .blog-thumbnail:after {
+/* .single-blog-post .blog-thumb .blog-thumbnail:after {
   background: -webkit-gradient(linear,left bottom,left top,from(#000),color-stop(50%,rgba(0,0,0,0)),to(rgba(0,0,0,0)));
   background: -webkit-linear-gradient(bottom,#000 0,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 100%);
   background: -o-linear-gradient(bottom,#000 0,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 100%);
@@ -1622,7 +1622,7 @@ blockquote:before {
   height: 100%;
   bottom: 0;
   width: 100%;
-}
+} */
 
 .single-blog-post .blog-thumb .blog-meta {
   position: absolute;

@@ -1,5 +1,5 @@
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="createModalLabel">Add {{ $pageTitle }}</h5>
@@ -20,11 +20,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="publisher" class="required">Publisher </label>
+                                <input type="text" name="publisher" class="form-control" id="publisher" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <label for="date" class="required">Date </label>
                                 <input type="date" name="date" class="form-control" id="date" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="image" class="required">Image </label>
                                 <input type="file" name="image" class="form-control" id="image" required>
