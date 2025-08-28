@@ -534,7 +534,7 @@
                                 <div class="author-info text-muted" style="font-size: 14px">
                                     <p>
                                         <i class="fa-solid fa-circle-user"></i>
-                                        {{ $humanitarian->publisher }}&nbsp;
+                                        {{ $humanitarian->publisher ?? '' }}&nbsp;
                                         <i class="fa-solid fa-calendar-days"></i> {{ bdDate($humanitarian->created_at) }}
                                     </p>
                                 </div>

@@ -18,6 +18,11 @@
                                 <label for="title" class="required">title </label>
                                 <input type="text" name="title" value="{{ $humanitarianAssistance->title }}" class="form-control" id="title" required>
                             </div>
+                        </div><div class="col-md-6">
+                            <div class="form-group">
+                                <label for="publisher" class="required">Publisher </label>
+                                <input type="text" name="publisher" value="{{ $humanitarianAssistance->publisher }}" class="form-control" id="publisher" required>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
