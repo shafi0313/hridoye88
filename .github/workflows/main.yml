@@ -15,4 +15,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           local-dir: "./" # Source directory on your local machine (root of the repository)
-          server-dir: "/public_html/"
+          server-dir: "/hridoye88.com/"
