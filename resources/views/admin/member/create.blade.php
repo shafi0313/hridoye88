@@ -1,11 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Member')
 @section('content')
-    @php
-        $m = 'member';
-        $sm = 'member';
-        $ssm = '';
-    @endphp
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">

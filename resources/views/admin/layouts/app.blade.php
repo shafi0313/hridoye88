@@ -86,21 +86,16 @@
         {{-- <!-- End Sidebar --> --}}
 
         @yield('content')
-        <div id="ajax_modal_container"></div>
-        @include('admin.layouts.includes.footer')
+
+        {{-- @include('admin.layouts.includes.footer') --}}
     </div>
     </div>
 
     {{-- <!--   Core JS Files   --> --}}
     <script src="{{ asset('backend/js/core/jquery.3.2.1.min.js') }}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
-    {{-- <script src="{{ asset('backend/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('backend/js/core/bootstrap.min.js') }}"></script> --}}
 
     {{-- <!-- jQuery UI --> --}}
     <script src="{{ asset('backend/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
@@ -121,14 +116,7 @@
     {{-- <!-- CUSTOM JS --> --}}
     <script src="{{ asset('common/js/http.js') }}"></script>
     <script src="{{ asset('common/js/custom.js') }}"></script>
-    {{-- <script src="{{ asset('backend/js/custom.js') }}"></script>
-    <script src="{{ asset('backend/js/plugins-init.js') }}"></script> --}}
 
-    {{-- <script>
-        $("form").on('submit', function(e){
-            $(this).find('button[type="submit"]').attr('disabled', 'disabled');
-        });
-    </script> --}}
     @include('include.alert')
     @include('sweetalert::alert')
     @stack('custom_scripts')
