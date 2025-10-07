@@ -48,24 +48,21 @@ class MemberController extends Controller
             'pre_address' => 'required|max:255',
             'blood' => 'nullable|max:10',
             'fb' => 'nullable|max:80',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'cv' => 'nullable|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg',
+            'cv' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp,svg|max:2048',
             'password' => 'required|confirmed',
         ]);
         $data['permission'] = 2;
         $data['password'] = bcrypt($request->password);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = 'user'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/users/'.$imageName);
-            $data['image'] = $imageName;
+            $data['image'] = processAndStoreImage($request->image, 'users', [null, null]);
         }
 
         if ($request->hasFile('cv')) {
             $cv = $request->file('cv');
-            $cvName = 'user'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
-            $request->cv->move('uploads/images/users/'.$cvName);
+            $cvName = 'cv'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
+            $cv->move(public_path('uploads/images/users'), $cvName);
             $data['cv'] = $cvName;
         }
 
@@ -101,11 +98,12 @@ class MemberController extends Controller
         if ($error = $this->authorize('member-edit')) {
             return $error;
         }
+        $member = User::find($id);
         // return $request;
         $data = $request->validate([
             'name' => 'required|max:100',
             'name_b' => 'required|max:100',
-            // 'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,'.$id,
             'phone' => 'required',
             'school' => 'required|max:100',
             'profession' => 'nullable|exists:professions,id',
@@ -113,8 +111,8 @@ class MemberController extends Controller
             'pre_address' => 'required|max:255',
             'blood' => 'nullable|max:10',
             'fb' => 'nullable|max:80',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'cv' => 'nullable|max:1024',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,pdf',
+            'cv' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp,svg|max:2048',
         ]);
 
         $data['permission'] = 2;
@@ -122,25 +120,28 @@ class MemberController extends Controller
         if ($request->has('password')) {
             $data['password'] = bcrypt($request->password);
         }
-
+        
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = 'user'.rand(0, 10000).'.'.$image->getClientOriginalExtension();
-            $request->image->move('uploads/images/users/'.$imageName);
-            $data['image'] = $imageName;
+            $data['image'] = processAndStoreImage($request->image, 'users', [null, null], $member->image);
         }
 
         if ($request->hasFile('cv')) {
+            // Delete old CV if exists
+            if (! empty($member->cv) && file_exists(public_path('uploads/images/users/'.$member->cv))) {
+                unlink(public_path('uploads/images/users/'.$member->cv));
+            }
+
+            // Handle new CV upload
             $cv = $request->file('cv');
-            $cvName = 'user'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
-            $request->cv->move('uploads/images/users/'.$cvName);
+            $cvName = 'cv'.rand(0, 10000).'.'.$cv->getClientOriginalExtension();
+            $cv->move(public_path('uploads/images/users'), $cvName);
             $data['cv'] = $cvName;
         }
 
         try {
-            $member = User::find($id)->update($data);
+            $member->update($data);
             $permission = [
-                'role_id' => $request->permission,
+                'role_id' => 1,
                 'model_type' => "App\Models\User",
                 'model_id' => $member->id,
             ];
