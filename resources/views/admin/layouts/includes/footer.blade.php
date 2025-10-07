@@ -1,12 +1,7 @@
 <footer class="footer">
     <div class="container-fluid">
-        <nav class="pull-left">
+        {{-- <nav class="pull-left">
             <ul class="nav">
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="">
-
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         Help
@@ -18,9 +13,9 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+        </nav> --}}
         <div class="copyright ml-auto">
-            {{date('Y')}}, Developed <i class="fa fa-heart heart text-danger"></i> by <a href="https://shafi95.com">Shafi</a>
+            {{date('Y')}}, Developed by <a href="https://softgiantbd.com">Soft Giant BD</a>
         </div>
     </div>
 </footer>

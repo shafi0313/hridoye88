@@ -30,6 +30,7 @@
                                 <table id="multi-filter-select" class="display table table-striped table-hover" >
                                     <thead class="bg-secondary thw">
                                         <tr>
+                                            <th>SL</th>
                                             <th>Name</th>
                                             <th>Name (Bn)</th>
                                             <th>Email</th>
@@ -42,28 +43,16 @@
                                             <th class="no-sort" width="40px">Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         @foreach ($datum as $data)
                                         <tr>
+                                            <td>{{ @$x += 1 }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->name_b }}</td>
                                             <td>{{ $data->email }}</td>
                                             <td>{{ $data->phone }}</td>
                                             <td>{{ $data->school }}</td>
-                                            <td>{{ $data->designation->name }}</td>
+                                            <td>{{ $data->designation?->name }}</td>
                                             <td>{{ $data->hobby }}</td>
                                             <td>{{ $data->address }}</td>
                                             <td>{{ $data->pre_address }}</td>

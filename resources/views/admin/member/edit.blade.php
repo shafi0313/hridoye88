@@ -76,7 +76,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="profession" class="col-sm-2 col-form-label">{{__('register.profession')}} </label>
+                                            <label for="profession" class="col-sm-2 col-form-label">{{__('register.profession')}} <span class="t_r">*</span></label>
                                             <div class="col-sm-10">
                                                 <select name="profession" class="form-control" id="profession">
                                                     <option value="">Select</option>

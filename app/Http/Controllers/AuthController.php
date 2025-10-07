@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     public function loginProcess(Request $request)
     {
-        $credentials = $request->validate([
+       $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
@@ -51,12 +51,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required|max:100',
             'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'confirmed', Password::min(6)
-                ->letters()
-                                                            // ->mixedCase()
-                ->numbers()
-                ->symbols()
-                ->uncompromised()],
+            'password' => ['required', 'confirmed'],
         ]);
 
         $user = User::create([

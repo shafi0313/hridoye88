@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModelHasRole;
 use App\Models\Profession;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
@@ -43,22 +43,17 @@ class MemberController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone' => 'required',
             'school' => 'required|max:100',
-            'profession' => 'nullable|max:80',
+            'profession' => 'nullable|exists:professions,id',
             'address' => 'required|max:255',
             'pre_address' => 'required|max:255',
             'blood' => 'nullable|max:10',
             'fb' => 'nullable|max:80',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'cv' => 'nullable|max:1024',
-            'password' => ['required', 'confirmed', Password::min(6),
-                // ->letters()
-                // ->mixedCase()
-                // ->numbers()
-                // ->symbols()
-                // ->uncompromised()
-            ],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'cv' => 'nullable|max:2048',
+            'password' => 'required|confirmed',
         ]);
-        $data['permission'] = 1;
+        $data['permission'] = 2;
+        $data['password'] = bcrypt($request->password);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -75,17 +70,19 @@ class MemberController extends Controller
         }
 
         try {
-            User::create($data);
+            $member = User::create($data);
+            $permission = [
+                'role_id' => 1,
+                'model_type' => "App\Models\User",
+                'model_id' => $member->id,
+            ];
+            ModelHasRole::create($permission);
             toast('Success!', 'success');
-
-            // Alert::success('Success!');
-            return redirect()->route('admin.member.index');
         } catch (\Exception $ex) {
-            return $ex->getMessage();
             toast('error', 'error');
-
-            return redirect()->back();
         }
+
+        return back();
     }
 
     public function edit($id)
@@ -111,23 +108,17 @@ class MemberController extends Controller
             // 'email' => 'required|email|unique:users,email',
             'phone' => 'required',
             'school' => 'required|max:100',
-            'profession' => 'nullable|max:80',
+            'profession' => 'nullable|exists:professions,id',
             'address' => 'required|max:255',
             'pre_address' => 'required|max:255',
             'blood' => 'nullable|max:10',
             'fb' => 'nullable|max:80',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'cv' => 'nullable|max:1024',
-            // 'password' => ['required', 'confirmed', Password::min(6)
-            // ->letters()
-            // ->mixedCase()
-            // ->numbers()
-            // ->symbols()
-            // ->uncompromised()
-            // ],
         ]);
-        // $data['password'] = bcrypt($request->password);
+
         $data['permission'] = 2;
+
         if ($request->has('password')) {
             $data['password'] = bcrypt($request->password);
         }
@@ -147,7 +138,13 @@ class MemberController extends Controller
         }
 
         try {
-            User::find($id)->update($data);
+            $member = User::find($id)->update($data);
+            $permission = [
+                'role_id' => $request->permission,
+                'model_type' => "App\Models\User",
+                'model_id' => $member->id,
+            ];
+            ModelHasRole::whereModelId($member->id)->update($permission);
             toast('success', 'Success');
 
             // Alert::success('Success!');
