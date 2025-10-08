@@ -44,7 +44,7 @@
                 @foreach ($members as $member)
                     <div class="row member">
                         <div class="col-md-3">
-                            <img src="{{ asset('uploads/images/users/' . $member->image) }}" height="120px" alt="">
+                            <img src="{{ imagePath('users', $member->image) }}" height="120px" alt="{{ $member->name }}" style="border-radius: 5px">
                         </div>
                         <div class="col-md-9 text">
                             <h5 class="name">{{ $member->name }}</h5>

@@ -1,10 +1,13 @@
 Hridoy 88
 
 
-
+08/10/25
+Remove unnecessary code and data table
+1. Fix user permission and image issue
+2. Fix front member image and showing issue
 
 07/10/25
-1. Fix Member issue and login functionality for Blog, Humanitarian Assistances, Literature access
+1. Fix Member issue and login functionality for Blog, Humanitarian Assistances, Literature access only
 
 28/08/25
 1. Add publisher column in Humanitarian Assistances

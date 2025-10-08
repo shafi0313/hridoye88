@@ -9,7 +9,7 @@ class MemberController extends Controller
 {
     public function index()
     {
-        $members = User::with('designation')->wherePermission(2)->get();
+        $members = User::with('designation')->whereNot('email','dev.admin@shafi95.com')->get();
 
         return view('frontend.member', compact('members'));
     }
