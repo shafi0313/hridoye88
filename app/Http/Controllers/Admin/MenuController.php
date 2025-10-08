@@ -14,9 +14,6 @@ class MenuController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('menu-manage')) {
-            return $error;
-        }
         $menus = Menu::with('subMenus')->get();
 
         return view('admin.menu.index', compact('menus'));
@@ -24,9 +21,6 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('menu-add')) {
-            return $error;
-        }
         $data = $request->validate([
             'name' => 'required|max:80',
             'name_b' => 'required|max:80',
@@ -106,9 +100,6 @@ class MenuController extends Controller
 
     public function edit($id)
     {
-        if ($error = $this->authorize('menu-edit')) {
-            return $error;
-        }
         $menu = Menu::find($id);
 
         return view('admin.menu.edit', compact('menu'));
@@ -116,9 +107,6 @@ class MenuController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('menu-edit')) {
-            return $error;
-        }
         $data = $request->validate([
             'name' => 'required|max:80',
             'name_b' => 'required|max:80',
@@ -158,9 +146,6 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
-        if ($error = $this->authorize('menu-delete')) {
-            return $error;
-        }
         if (SubMenu::whereMenu_id($id)->count() > 0) {
             Alert::info('First Remove All Sun Menu');
 
@@ -182,3 +167,4 @@ class MenuController extends Controller
         }
     }
 }
+

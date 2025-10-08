@@ -13,9 +13,6 @@ class PhotoGalleryController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('photo-gallery-manage')) {
-            return $error;
-        }
         $galleries = PhotoGallery::all();
 
         return view('admin.photo_gallery.index', compact('galleries'));
@@ -23,9 +20,6 @@ class PhotoGalleryController extends Controller
 
     public function create()
     {
-        if ($error = $this->authorize('photo-gallery-add')) {
-            return $error;
-        }
         $galleryCats = GalleryCat::all();
 
         return view('admin.photo_gallery.create', compact('galleryCats'));
@@ -33,9 +27,6 @@ class PhotoGalleryController extends Controller
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('photo-gallery-add')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'gallery_cat_id' => 'required',
             'title' => 'sometimes',
@@ -63,9 +54,6 @@ class PhotoGalleryController extends Controller
 
     public function edit($id)
     {
-        if ($error = $this->authorize('photo-gallery-edit')) {
-            return $error;
-        }
         $data = PhotoGallery::find($id);
         $galleryCats = GalleryCat::all();
 
@@ -74,9 +62,6 @@ class PhotoGalleryController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('photo-gallery-edit')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'title' => 'sometimes',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -104,9 +89,6 @@ class PhotoGalleryController extends Controller
 
     public function destroy($id)
     {
-        if ($error = $this->authorize('photo-gallery-delete')) {
-            return $error;
-        }
         $data = PhotoGallery::find($id);
         $path = public_path('uploads/images/gallery/' . $data->image);
         if (file_exists($path)) {
@@ -122,3 +104,4 @@ class PhotoGalleryController extends Controller
         return back();
     }
 }
+

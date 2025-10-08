@@ -120,3 +120,4 @@ class VideoGalleryController extends Controller
         }
     }
 }
+

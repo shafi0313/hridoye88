@@ -68,3 +68,4 @@ class SubMenuController extends Controller
         }
     }
 }
+

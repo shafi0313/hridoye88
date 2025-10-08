@@ -12,9 +12,6 @@ class SliderController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('slider-manage')) {
-            return $error;
-        }
         $sliders = Slider::whereNotIn('id', [1])->get();
 
         return view('admin.slider.index', compact('sliders'));
@@ -22,18 +19,11 @@ class SliderController extends Controller
 
     public function create()
     {
-        if ($error = $this->authorize('slider-add')) {
-            return $error;
-        }
-
         return view('admin.slider.create');
     }
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('slider-add')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'text' => 'sometimes',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -73,9 +63,6 @@ class SliderController extends Controller
 
     public function edit($id)
     {
-        if ($error = $this->authorize('slider-edit')) {
-            return $error;
-        }
         $slider = Slider::find($id);
 
         return view('admin.slider.edit', compact('slider'));
@@ -83,9 +70,6 @@ class SliderController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('slider-edit')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'text' => 'sometimes',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -138,3 +122,4 @@ class SliderController extends Controller
         }
     }
 }
+

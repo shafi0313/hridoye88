@@ -16,10 +16,6 @@ class LiteratureController extends Controller
      */
     public function index(Request $request)
     {
-        if ($error = $this->authorize('literature-manage')) {
-            return $error;
-        }
-
         if ($request->ajax()) {
             $literatures = Literature::query();
             return DataTables::of($literatures)
@@ -53,9 +49,6 @@ class LiteratureController extends Controller
 
     function status(Literature $literature)
     {
-        if ($error = $this->authorize('literature-edit')) {
-            return $error;
-        }
         $literature->is_active = $literature->is_active  == 1 ? 0 : 1;
         try {
             $literature->save();
@@ -137,3 +130,4 @@ class LiteratureController extends Controller
         }
     }
 }
+

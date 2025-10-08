@@ -19,10 +19,6 @@ class HumanitarianController extends Controller
      */
     public function index(Request $request)
     {
-        if ($error = $this->authorize('humanitarian-assistance-manage')) {
-            return $error;
-        }
-
         if ($request->ajax()) {
             $notices = Humanitarian::query()->latest();
 
@@ -62,9 +58,6 @@ class HumanitarianController extends Controller
 
     public function status(Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('humanitarian-assistance-edit')) {
-            return $error;
-        }
         $humanitarianAssistance->is_active = $humanitarianAssistance->is_active == 1 ? 0 : 1;
         try {
             $humanitarianAssistance->save();
@@ -80,9 +73,6 @@ class HumanitarianController extends Controller
      */
     public function store(StoreHumanitarianRequest $request)
     {
-        if ($error = $this->authorize('humanitarian-assistance-add')) {
-            return $error;
-        }
         $data = $request->validated();
         $data['user_id'] = user()->id;
         $data['content'] = $this->summerNoteStore($request->content, 'content');
@@ -104,9 +94,6 @@ class HumanitarianController extends Controller
 
     public function edit(Request $request, Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('humanitarianAssistance-edit')) {
-            return $error;
-        }
         if ($request->ajax()) {
             $modal = view('admin.humanitarian-assistance.edit')->with(['humanitarianAssistance' => $humanitarianAssistance])->render();
 
@@ -121,9 +108,6 @@ class HumanitarianController extends Controller
      */
     public function update(UpdateHumanitarianRequest $request, Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('humanitarian-assistance-edit')) {
-            return $error;
-        }
         $data = $request->validated();
        $data['content'] = $request->content;
 
@@ -154,9 +138,6 @@ class HumanitarianController extends Controller
      */
     public function destroy(Humanitarian $humanitarianAssistance)
     {
-        if ($error = $this->authorize('humanitarian-assistance-delete')) {
-            return $error;
-        }
         $this->summerNoteAllImageDestroy($humanitarianAssistance->content);
 
         try {
@@ -169,3 +150,4 @@ class HumanitarianController extends Controller
         }
     }
 }
+

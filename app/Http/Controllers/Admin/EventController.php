@@ -15,9 +15,6 @@ class EventController extends Controller
      */
     public function index()
     {
-        if ($error = $this->authorize('event-manage')) {
-            return $error;
-        }
         $events = Event::all();
 
         return view('admin.event.index', compact('events'));
@@ -30,10 +27,6 @@ class EventController extends Controller
      */
     public function create()
     {
-        if ($error = $this->authorize('event-add')) {
-            return $error;
-        }
-
         return view('admin.event.create');
     }
 
@@ -44,9 +37,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        if ($error = $this->authorize('event-add')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'text' => 'required',
             'date' => 'required|date',
@@ -90,9 +80,6 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        if ($error = $this->authorize('event-update')) {
-            return $error;
-        }
         $event = Event::find($id);
 
         return view('admin.event.edit', compact('event'));
@@ -106,9 +93,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('event-update')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'text' => 'required',
             'status' => 'required',
@@ -140,9 +124,6 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        if ($error = $this->authorize('event-delete')) {
-            return $error;
-        }
         $event = Event::find($id);
         $path = public_path('uploads/images/events/'.$event->image);
         if (file_exists($path)) {
@@ -159,3 +140,4 @@ class EventController extends Controller
         }
     }
 }
+

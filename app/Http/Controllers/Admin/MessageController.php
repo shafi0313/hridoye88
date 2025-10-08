@@ -11,9 +11,6 @@ class MessageController extends Controller
 {
     public function edit($id)
     {
-        if ($error = $this->authorize('message-manage')) {
-            return $error;
-        }
         $message = Slider::find($id);
 
         return view('admin.message.edit', compact('message'));
@@ -21,9 +18,6 @@ class MessageController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('message-manage')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'text' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -56,3 +50,4 @@ class MessageController extends Controller
         }
     }
 }
+

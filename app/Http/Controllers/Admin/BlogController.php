@@ -10,9 +10,6 @@ class BlogController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('blog-manage')) {
-            return $error;
-        }
         $blogs = Blog::paginate(10);
 
         return view('admin.blog.index', compact('blogs'));
@@ -20,18 +17,11 @@ class BlogController extends Controller
 
     public function create()
     {
-        if ($error = $this->authorize('blog-add')) {
-            return $error;
-        }
-
         return view('admin.blog.create');
     }
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('blog-add')) {
-            return $error;
-        }
         $data = $request->validate([
             'title' => 'required|max:200',
             'text' => 'required',
@@ -61,9 +51,6 @@ class BlogController extends Controller
 
     public function edit($id)
     {
-        if ($error = $this->authorize('blog-edit')) {
-            return $error;
-        }
         $blog = Blog::find($id);
 
         return view('admin.blog.edit', compact('blog'));
@@ -71,9 +58,6 @@ class BlogController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('blog-edit')) {
-            return $error;
-        }
         $data = $request->validate([
             'title' => 'required|max:200',
             'text' => 'required',
@@ -103,9 +87,6 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
-        if ($error = $this->authorize('blog-delete')) {
-            return $error;
-        }
         $blog = Blog::find($id);
         $path = public_path('uploads/images/blog/'.$blog->image);
         if (file_exists($path)) {
@@ -122,3 +103,4 @@ class BlogController extends Controller
         }
     }
 }
+

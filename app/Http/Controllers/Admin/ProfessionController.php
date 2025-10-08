@@ -17,18 +17,11 @@ class ProfessionController extends Controller
 
     public function create()
     {
-        if ($error = $this->authorize('profession-add')) {
-            return $error;
-        }
-
         return view('admin.profession.create');
     }
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('profession-edit')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'name' => 'required',
         ]);
@@ -48,9 +41,6 @@ class ProfessionController extends Controller
 
     public function edit($id)
     {
-        if ($error = $this->authorize('profession-edit')) {
-            return $error;
-        }
         $profession = Profession::find($id);
 
         return view('admin.profession.edit', compact('profession'));
@@ -58,9 +48,6 @@ class ProfessionController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($error = $this->authorize('profession-edit')) {
-            return $error;
-        }
         $data = $this->validate($request, [
             'name' => 'required',
         ]);
@@ -80,9 +67,6 @@ class ProfessionController extends Controller
 
     public function destroy($id)
     {
-        if ($error = $this->authorize('profession-delete')) {
-            return $error;
-        }
         try {
             Profession::find($id)->delete();
             toast('Successfully Deleted', 'success');
@@ -95,3 +79,4 @@ class ProfessionController extends Controller
         }
     }
 }
+

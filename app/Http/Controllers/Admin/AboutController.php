@@ -10,9 +10,6 @@ class AboutController extends Controller
 {
     public function edit($id)
     {
-        if ($error = $this->authorize('about-manage')) {
-            return $error;
-        }
         $about = About::find($id);
 
         return view('admin.about.edit', compact('about'));
@@ -36,3 +33,4 @@ class AboutController extends Controller
         }
     }
 }
+
