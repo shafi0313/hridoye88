@@ -14,7 +14,6 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubMenuController;
-use App\Http\Controllers\Auth\Role\RoleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryCatController;
 use App\Http\Controllers\Admin\LiteratureController;
@@ -22,7 +21,6 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\HumanitarianController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\VideoGalleryController;
-use App\Http\Controllers\Auth\Permission\PermissionController;
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -44,9 +42,7 @@ Route::delete('delete-all/{model}', [AjaxController::class, 'deleteAll'])->name(
 Route::delete('force-delete-all/{model}', [AjaxController::class, 'forceDeleteAll'])->name('force_delete_all');
 Route::get('select-2-ajax/{model}', [AjaxController::class, 'select2'])->name('select2');
 
-Route::post('role/permission/{role}', [RoleController::class, 'assignPermission'])->name('role.permission');
-Route::resource('role', RoleController::class);
-Route::resource('permission', PermissionController::class);
+
 
 // Route::controller(UserController::class)->prefix('user')->name('user.')->group(function () {
 //     Route::get('/', 'index')->name('index');

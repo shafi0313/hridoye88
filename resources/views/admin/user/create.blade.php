@@ -12,13 +12,13 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <div id="permissionShow">
-                            <label for="permission">Permission <span class="t_r">*</span></label>
+                        <div class="form-group">
+                            <label for="permission">Permission Level <span class="t_r">*</span></label>
                             <select name="permission" id="permission" class="form-control">
-                                <option selected >Select</option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach
+                                <option value="0">No Login</option>
+                                <option value="1">Super Admin</option>
+                                <option value="2">Admin</option>
+                                <option value="3">User</option>
                             </select>
                         </div>
                     </div>

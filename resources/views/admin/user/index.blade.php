@@ -46,9 +46,7 @@
             </div>
         </div>
 
-        @can('user-add')
-            @include('admin.user.create')
-        @endcan
+        @include('admin.user.create')
 
         @push('custom_scripts')
             <!-- Datatables -->

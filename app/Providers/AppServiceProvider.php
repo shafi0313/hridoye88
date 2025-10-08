@@ -25,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::before(function ($user, $ability) {
-            return $user->hasRole('superadmin') ? true : null;
-        });
+        // Gate logic removed - no longer using spatie/laravel-permission
     }
 }

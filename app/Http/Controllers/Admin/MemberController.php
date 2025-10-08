@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ModelHasRole;
+// ModelHasRole removed - no longer using spatie/laravel-permission
 use App\Models\Profession;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,9 +13,10 @@ class MemberController extends Controller
 {
     public function index()
     {
-        if ($error = $this->authorize('member-manage')) {
-            return $error;
-        }
+        // Authorization removed - implement your own logic if needed
+        // if ($error = $this->authorize('member-manage')) {
+        //     return $error;
+        // }
         $datum = User::wherePermission(2)->get();
 
         return view('admin.member.index', compact('datum'));
@@ -68,12 +69,7 @@ class MemberController extends Controller
 
         try {
             $member = User::create($data);
-            $permission = [
-                'role_id' => 1,
-                'model_type' => "App\Models\User",
-                'model_id' => $member->id,
-            ];
-            ModelHasRole::create($permission);
+            // Role assignment removed - no longer using spatie/laravel-permission
             toast('Success!', 'success');
         } catch (\Exception $ex) {
             toast('error', 'error');
@@ -140,12 +136,7 @@ class MemberController extends Controller
 
         try {
             $member->update($data);
-            $permission = [
-                'role_id' => 1,
-                'model_type' => "App\Models\User",
-                'model_id' => $member->id,
-            ];
-            ModelHasRole::whereModelId($member->id)->update($permission);
+            // Role assignment removed - no longer using spatie/laravel-permission
             toast('success', 'Success');
 
             // Alert::success('Success!');

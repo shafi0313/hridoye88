@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $guarded = ['id'];
 
@@ -58,10 +57,7 @@ class User extends Authenticatable
         return $date->format('d/m/Y');
     }
 
-    public function accessPermission()
-    {
-        return $this->hasOne(ModelHasRole::class, 'model_id', 'id');
-    }
+    // accessPermission relationship removed - no longer using spatie/laravel-permission
 
     public function employee()
     {

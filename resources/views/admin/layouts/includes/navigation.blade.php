@@ -27,34 +27,34 @@
                         </a>
                         <div class="collapse {{ openNav($admin) }}" id="base">
                             <ul class="nav nav-collapse">
-                                @can('user-manage')
+                                {{-- @can removed --}}
                                     <li class="{{ activeSubNav('admin.user.*') }}">
                                         <a href="{{ route('admin.user.index') }}">
                                             <span class="sub-item">User</span>
                                         </a>
                                     </li>
-                                @endcan
-                                @can('profession-manage')
+                                {{-- @endcan removed --}}
+                                {{-- @can removed --}}
                                     <li class="{{ activeSubNav('admin.profession.*') }}">
                                         <a href="{{ route('admin.profession.index') }}">
                                             <span class="sub-item">Profession</span>
                                         </a>
                                     </li>
-                                @endcan
+                                {{-- @endcan removed --}}
                             </ul>
                         </div>
                     </li>
 
-                    @can('header-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item {{ activeNav('admin.header.*') }}">
                             <a href="{{ route('admin.header.index') }}">
                                 <i class="fa-solid fa-heading"></i>
                                 <p>Header</p>
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan removed --}}
 
-                    @can('member-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item{{ activeNav(['admin.member.*']) }} ">
                             <a data-toggle="collapse" href="#member">
                                 <i class="fas fa-users-cog"></i>
@@ -83,25 +83,25 @@
                             <p>Member</p>
                         </a>
                     </li> --}}
-                    @endcan
+                    {{-- @endcan removed --}}
 
-                    @can('menu-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item {{ activeNav('admin.menu.*') }}">
                             <a href="{{ route('admin.menu.index') }}">
                                 <i class="fas fa-bars"></i>
                                 <p>Menu</p>
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan removed --}}
 
-                    @can('slider-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item {{ activeNav('admin.slider.*') }}">
                             <a href="{{ route('admin.slider.index') }}">
                                 <i class="far fa-images"></i>
                                 <p>Slider</p>
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan removed --}}
                 @endif
 
 
@@ -116,74 +116,74 @@
                     </a>
                     <div class="collapse {{ openNav($gallery) }}" id="gallery">
                         <ul class="nav nav-collapse">
-                            @can('gallery-category-manage')
+                            {{-- @can removed --}}
                                 <li class="{{ activeSubNav('admin.gallery-cat.*') }}">
                                     <a href="{{ route('admin.gallery-cat.index') }}">
                                         <span class="sub-item">Category</span>
                                     </a>
                                 </li>
-                            @endcanany
-                            @canany('photo-gallery-manage')
+                            {{-- @endcan removed --}}any
+                            {{-- @canany removed --}}
                                 <li class="{{ activeSubNav('admin.photo-gallery.*') }}">
                                     <a href="{{ route('admin.photo-gallery.index') }}">
                                         <span class="sub-item">Photo</span>
                                     </a>
                                 </li>
-                            @endcanany
-                            @canany('video-gallery-manage')
+                            {{-- @endcan removed --}}any
+                            {{-- @canany removed --}}
                                 <li class="{{ activeSubNav('admin.video-gallery.*') }}">
                                     <a href="{{ route('admin.video-gallery.index') }}">
                                         <span class="sub-item">Video</span>
                                     </a>
                                 </li>
-                            @endcanany
+                            {{-- @endcan removed --}}any
                         </ul>
                     </div>
                 </li>
 
-                @can('event-manage')
+                {{-- @can removed --}}
                     <li class="nav-item {{ activeNav('admin.event.*') }}">
                         <a href="{{ route('admin.event.index') }}">
                             <i class="fas fa-envelope"></i>
                             <p>Event</p>
                         </a>
                     </li>
-                @endcan
+                {{-- @endcan removed --}}
                 @if (user()->permission == 1)
-                    @can('message-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item {{ activeNav('admin.message.*') }}">
                             <a href="{{ route('admin.message.edit', 1) }}">
                                 <i class="fas fa-envelope"></i>
                                 <p>Message</p>
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan removed --}}
 
-                    @can('about-manage')
+                    {{-- @can removed --}}
                         <li class="nav-item {{ activeNav('admin.about.*') }}">
                             <a href="{{ route('admin.about.edit', 1) }}">
                                 <i class="fas fa-info-circle"></i>
                                 <p>About</p>
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan removed --}}
                 @endif
-                @can('blog-manage')
+                {{-- @can removed --}}
                     <li class="nav-item {{ activeNav('admin.blog.*') }}">
                         <a href="{{ route('admin.blog.index') }}">
                             <i class="fab fa-blogger"></i>
                             <p>Blog</p>
                         </a>
                     </li>
-                @endcan
-                @can('humanitarian-assistance-manage')
+                {{-- @endcan removed --}}
+                {{-- @can removed --}}
                     <li class="nav-item {{ activeNav('admin.blog.*') }}">
                         <a href="{{ route('admin.humanitarian-assistance.index') }}">
                             <i class="fab fa-blogger"></i>
                             <p>Humanitarian Assistance</p>
                         </a>
                     </li>
-                @endcan
+                {{-- @endcan removed --}}
 
                 <li class="nav-item {{ activeNav('admin.literatures.*') }}">
                     <a href="{{ route('admin.literatures.index') }}">
@@ -202,20 +202,11 @@
                     <div class="collapse {{ openNav(['admin.role.*', 'admin.backup.*', 'admin.visitorInfo.*', 'admin.permission.*']) }}"
                         id="settings">
                         <ul class="nav nav-collapse">
-                            @canany('role-manage', 'permission-manage')
-                                <li class="{{ activeSubNav('admin.role.*', 'admin.permission.*') }}">
-                                    <a href="{{ route('admin.role.index') }}">
-                                        <span class="sub-item">@lang('nav.role-permission')</span>
-                                    </a>
-                                </li>
-                            @endcanany
-                            @canany('backup-manage')
                                 <li class="{{ activeSubNav('admin.backup.*') }}">
                                     <a href="{{ route('admin.backup.password') }}">
                                         <span class="sub-item">App Backup</span>
                                     </a>
                                 </li>
-                            @endcanany
                         </ul>
                     </div>
                 </li> --}}
