@@ -16,7 +16,8 @@ Hridoy 88
 1. Add publisher column in Humanitarian Assistances
 2. Humanitarian Assistances front design modify
 
-____________________________________________________________
+
+Paid____________________________________________________________
 27/01/25
 1. Literary publisher backend
 
