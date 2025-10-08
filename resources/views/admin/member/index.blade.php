@@ -40,6 +40,7 @@
                                             <th>Hobby</th>
                                             <th>Permanent Address</th>
                                             <th>Present Address</th>
+                                            <th>Image</th>
                                             <th class="no-sort" width="40px">Action</th>
                                         </tr>
                                     </thead>
@@ -56,6 +57,9 @@
                                             <td>{{ $data->hobby }}</td>
                                             <td>{{ $data->address }}</td>
                                             <td>{{ $data->pre_address }}</td>
+                                            <td>
+                                                <img src="{{ imagePath('users', $data->image) }}" height="60">
+                                            </td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <a href="{{ route('admin.member.edit', $data->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
