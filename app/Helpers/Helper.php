@@ -232,7 +232,7 @@ if (! function_exists('imagePath')) {
         if (@getimagesize($path)) {
             return asset($path);
         } else {
-            return asset('uploads/images/no-img.svg');
+            return asset('common/images/no-img.svg');
         }
     }
 }
