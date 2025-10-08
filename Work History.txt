@@ -1,5 +1,11 @@
 Hridoy 88
 
+
+
+
+07/10/25
+1. Fix Member issue and login functionality for Blog, Humanitarian Assistances, Literature access
+
 28/08/25
 1. Add publisher column in Humanitarian Assistances
 2. Humanitarian Assistances front design modify

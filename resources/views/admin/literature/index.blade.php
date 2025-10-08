@@ -8,7 +8,7 @@
                     <ul class="breadcrumbs">
                         <li class="nav-home"><a href="{{ route('admin.dashboard') }}"><i class="flaticon-home"></i></a></li>
                         <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                        <li class="nav-item">User</li>
+                        <li class="nav-item">Literature</li>
                     </ul>
                 </div>
                 <div class="row">
@@ -35,9 +35,7 @@
             </div>
         </div>
 
-        @can('literature-add')
-            @include('admin.literature.create')
-        @endcan
+        @include('admin.literature.create')
 
         @push('custom_scripts')
             <!-- Datatables -->
