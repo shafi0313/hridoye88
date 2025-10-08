@@ -9,27 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable;
 
     protected $guarded = ['id'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'type',
-    //     'phone',
-    //     'profession',
-    //     'permission',
-    //     'address',
-    //     'image',
-    //     'remember_token',
-    //     'password',
-    // ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -57,15 +39,8 @@ class User extends Authenticatable
         return $date->format('d/m/Y');
     }
 
-    // accessPermission relationship removed - no longer using spatie/laravel-permission
-
-    public function employee()
-    {
-        return $this->belongsTo(EmployeeInfo::class);
-    }
-
     public function designation()
     {
-        return $this->belongsTo(Profession::class, 'profession', 'id');
+        return $this->belongsTo(Profession::class);
     }
 }
