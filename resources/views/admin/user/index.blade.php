@@ -66,6 +66,7 @@
                                 name: 'DT_RowIndex',
                                 searchable: false,
                                 orderable: false,
+                                className: 'text-center',
                             },
                             {
                                 data: 'name',
@@ -73,7 +74,9 @@
                             },
                             {
                                 data: 'permission',
-                                name: 'permission'
+                                name: 'permission',
+                                searchable: false,
+                                orderable: false,
                             },
                             {
                                 data: 'email',
@@ -81,11 +84,14 @@
                             },
                             {
                                 data: 'phone',
-                                name: 'phone'
+                                name: 'phone',
                             },
                             {
                                 data: 'image',
-                                name: 'image'
+                                name: 'image',
+                                className: 'text-center',
+                                searchable: false,
+                                orderable: false,
                             },
                             {
                                 data: 'address',
@@ -95,7 +101,9 @@
                                 data: 'action',
                                 name: 'action',
                                 orderable: false,
-                                searchable: false
+                                searchable: false,
+                                className: 'text-center',
+                                width: '80px'
                             },
                         ],
                         scroller: {

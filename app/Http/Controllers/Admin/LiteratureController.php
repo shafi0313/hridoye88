@@ -72,10 +72,10 @@ class LiteratureController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('cover_img')) {
-            $data['cover_img'] = imgProcessAndStore($request->cover_img, 'book', [null, null]);
+            $data['cover_img'] = processAndStoreImage($request->cover_img, 'book', [null, null]);
         }
         if ($request->hasFile('back_cover_img')) {
-            $data['back_cover_img'] = imgProcessAndStore($request->back_cover_img, 'book', [null, null]);
+            $data['back_cover_img'] = processAndStoreImage($request->back_cover_img, 'book', [null, null]);
         }
 
         try {
@@ -106,12 +106,12 @@ class LiteratureController extends Controller
         $data = $request->validated();
         $cover_img = $literature->cover_img;
         if ($request->hasFile('cover_img')) {
-            $data['cover_img'] = imgProcessAndStore($request->cover_img, 'book', [null, null], $cover_img);
+            $data['cover_img'] = processAndStoreImage($request->cover_img, 'book', [null, null], $cover_img);
         }
 
         $back_cover_img = $literature->back_cover_img;
         if ($request->hasFile('back_cover_img')) {
-            $data['back_cover_img'] = imgProcessAndStore($request->back_cover_img, 'book', [null, null], $back_cover_img);
+            $data['back_cover_img'] = processAndStoreImage($request->back_cover_img, 'book', [null, null], $back_cover_img);
         }
 
         try {

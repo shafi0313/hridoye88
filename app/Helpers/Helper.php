@@ -139,62 +139,6 @@ if (! function_exists('imgWebpStore')) {
     }
 }
 
-if (! function_exists('imgProcessAndStore')) {
-    function imgProcessAndStore($image, string $path, ?array $size = null, $oldImage = null)
-    {
-        $dir = public_path('/uploads/images/'.$path);
-        if (! is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        $extension = strtolower($image->getClientOriginalExtension());
-
-        if ($oldImage != null) {
-            $checkPath = $dir.'/'.$oldImage;
-            if (file_exists($checkPath)) {
-                unlink($checkPath);
-            }
-        }
-
-        if ($extension == 'svg') {
-            $imageName = $path.'-'.uniqueId(10).'.svg';
-            $image->move($dir, $imageName);
-        } else {
-            $image = Image::make($image);
-
-            // Resize if size is provided
-            if (! is_null($size) && count($size) == 2) {
-                if (! empty($size[0]) && ! empty($size[1])) {
-                    // Fit to exact dimensions
-                    $image->fit($size[0], $size[1]);
-                } elseif (! empty($size[0])) {
-                    // Resize width and maintain aspect ratio
-                    $image->resize($size[0], null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                } elseif (! empty($size[1])) {
-                    // Resize height and maintain aspect ratio
-                    $image->resize(null, $size[1], function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-            }
-
-            $uniqueId = uniqueId(10);
-
-            if ($extension == 'png') {
-                $imageName = $path.'-'.$uniqueId.'.png';
-                $image->encode('png', 80)->save($dir.'/'.$imageName);
-            } else {
-                $imageName = $path.'-'.$uniqueId.'.webp';
-                $image->encode('webp', 80)->save($dir.'/'.$imageName);
-            }
-        }
-
-        return $imageName;
-    }
-}
-
 if (! function_exists('imgWebpUpdate')) {
     function imgWebpUpdate($image, string $path, ?array $size, $oldImage)
     {
@@ -288,7 +232,7 @@ if (! function_exists('imagePath')) {
         if (@getimagesize($path)) {
             return asset($path);
         } else {
-            return asset('uploads/images/no-img.jpg');
+            return asset('uploads/images/no-img.svg');
         }
     }
 }

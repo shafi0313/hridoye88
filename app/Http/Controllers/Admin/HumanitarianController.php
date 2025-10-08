@@ -88,7 +88,7 @@ class HumanitarianController extends Controller
         $data['content'] = $this->summerNoteStore($request->content, 'content');
 
         if ($request->hasFile('image')) {
-            $data['image'] = imgProcessAndStore($request->image, 'humanitarian');
+            $data['image'] = processAndStoreImage($request->image, 'humanitarian');
         }
 
         try {
@@ -128,7 +128,7 @@ class HumanitarianController extends Controller
        $data['content'] = $request->content;
 
         if ($request->hasFile('image')) {
-            $data['image'] = imgProcessAndStore($request->image, 'humanitarian', [null, null], $humanitarianAssistance->image);
+            $data['image'] = processAndStoreImage($request->image, 'humanitarian', [null, null], $humanitarianAssistance->image);
         }
 
         // if ($request->hasFile('file')) {

@@ -1,6 +1,9 @@
 <?php
 
 return [
-    // Permissions array removed - no longer using spatie/laravel-permission
-    // You can implement your own user level system if needed
+    'permissions' => [
+        '0' => 'No Login',
+        '1' => 'Admin',
+        '2' => 'Member',
+    ],
 ];
