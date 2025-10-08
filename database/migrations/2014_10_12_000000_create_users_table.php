@@ -14,20 +14,27 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('email')->unique();
-            $table->enum('type', ['0', '1', '2', '3'])->comment('0=No login,1=Admin,2=User,3=emp');
+            $table->id();            
+            $table->foreignId('profession_id')->nullable()->constrained()->onDeleteSetNull();
+            $table->string('name', 191);
+            $table->string('name_b', 191)->nullable();
+            $table->string('email', 80)->unique();
+            $table->tinyInteger('permission')->index()->default(0)->comment('0=No login,1=admin,2=member');
             $table->string('phone', 25)->nullable();
             $table->date('d_o_b')->nullable();
             $table->string('designation', 80)->nullable();
+            $table->text('hobby')->nullable();
+            $table->string('image', 32)->nullable();
+            $table->string('school', 191)->nullable();
+            $table->string('district', 80)->nullable();
+            $table->string('pre_address', 255)->nullable();
+            $table->string('blood', 10)->nullable();
+            $table->string('fb', 191)->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('image')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
