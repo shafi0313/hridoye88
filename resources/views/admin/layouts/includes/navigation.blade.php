@@ -27,81 +27,69 @@
                         </a>
                         <div class="collapse {{ openNav($admin) }}" id="base">
                             <ul class="nav nav-collapse">
-                                {{-- @can removed --}}
-                                    <li class="{{ activeSubNav('admin.user.*') }}">
-                                        <a href="{{ route('admin.user.index') }}">
-                                            <span class="sub-item">User</span>
-                                        </a>
-                                    </li>
-                                {{-- @endcan removed --}}
-                                {{-- @can removed --}}
-                                    <li class="{{ activeSubNav('admin.profession.*') }}">
-                                        <a href="{{ route('admin.profession.index') }}">
-                                            <span class="sub-item">Profession</span>
-                                        </a>
-                                    </li>
-                                {{-- @endcan removed --}}
+                                <li class="{{ activeSubNav('admin.user.*') }}">
+                                    <a href="{{ route('admin.user.index') }}">
+                                        <span class="sub-item">User</span>
+                                    </a>
+                                </li>
+
+                                <li class="{{ activeSubNav('admin.profession.*') }}">
+                                    <a href="{{ route('admin.profession.index') }}">
+                                        <span class="sub-item">Profession</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
 
-                    {{-- @can removed --}}
-                        <li class="nav-item {{ activeNav('admin.header.*') }}">
-                            <a href="{{ route('admin.header.index') }}">
-                                <i class="fa-solid fa-heading"></i>
-                                <p>Header</p>
-                            </a>
-                        </li>
-                    {{-- @endcan removed --}}
-
-                    {{-- @can removed --}}
-                        <li class="nav-item{{ activeNav(['admin.member.*']) }} ">
-                            <a data-toggle="collapse" href="#member">
-                                <i class="fas fa-users-cog"></i>
-                                <p>Member</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse {{ openNav(['admin.member.*']) }}" id="member">
-                                <ul class="nav nav-collapse">
-                                    <li class="{{ activeSubNav(['admin.member.index', 'admin.member.edit']) }}">
-                                        <a href="{{ route('admin.member.index') }}">
-                                            <span class="sub-item">Member Manage</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ activeSubNav('admin.member.create') }}">
-                                        <a href="{{ route('admin.member.create') }}">
-                                            <span class="sub-item">Add New Member</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        {{-- <li class="nav-item {{ activeNav('admin.member.*') }}">
-                        <a href="{{ route('admin.member.index') }}">
-                            <i class="fa-solid fa-users"></i>
-                            <p>Member</p>
+                    <li class="nav-item {{ activeNav('admin.header.*') }}">
+                        <a href="{{ route('admin.header.index') }}">
+                            <i class="fa-solid fa-heading"></i>
+                            <p>Header</p>
                         </a>
-                    </li> --}}
-                    {{-- @endcan removed --}}
+                    </li>
+                    <li class="nav-item {{ activeNav('admin.notices.*') }}">
+                        <a href="{{ route('admin.notices.index') }}">
+                            <i class="fa-solid fa-heading"></i>
+                            <p>Notice</p>
+                        </a>
+                    </li>
 
-                    {{-- @can removed --}}
-                        <li class="nav-item {{ activeNav('admin.menu.*') }}">
-                            <a href="{{ route('admin.menu.index') }}">
-                                <i class="fas fa-bars"></i>
-                                <p>Menu</p>
-                            </a>
-                        </li>
-                    {{-- @endcan removed --}}
+                    <li class="nav-item{{ activeNav(['admin.member.*']) }} ">
+                        <a data-toggle="collapse" href="#member">
+                            <i class="fas fa-users-cog"></i>
+                            <p>Member</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse {{ openNav(['admin.member.*']) }}" id="member">
+                            <ul class="nav nav-collapse">
+                                <li class="{{ activeSubNav(['admin.member.index', 'admin.member.edit']) }}">
+                                    <a href="{{ route('admin.member.index') }}">
+                                        <span class="sub-item">Member Manage</span>
+                                    </a>
+                                </li>
+                                <li class="{{ activeSubNav('admin.member.create') }}">
+                                    <a href="{{ route('admin.member.create') }}">
+                                        <span class="sub-item">Add New Member</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-                    {{-- @can removed --}}
-                        <li class="nav-item {{ activeNav('admin.slider.*') }}">
-                            <a href="{{ route('admin.slider.index') }}">
-                                <i class="far fa-images"></i>
-                                <p>Slider</p>
-                            </a>
-                        </li>
-                    {{-- @endcan removed --}}
+                    <li class="nav-item {{ activeNav('admin.menu.*') }}">
+                        <a href="{{ route('admin.menu.index') }}">
+                            <i class="fas fa-bars"></i>
+                            <p>Menu</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ activeNav('admin.slider.*') }}">
+                        <a href="{{ route('admin.slider.index') }}">
+                            <i class="far fa-images"></i>
+                            <p>Slider</p>
+                        </a>
+                    </li>
                 @endif
 
 
@@ -116,74 +104,61 @@
                     </a>
                     <div class="collapse {{ openNav($gallery) }}" id="gallery">
                         <ul class="nav nav-collapse">
-                            {{-- @can removed --}}
-                                <li class="{{ activeSubNav('admin.gallery-cat.*') }}">
-                                    <a href="{{ route('admin.gallery-cat.index') }}">
-                                        <span class="sub-item">Category</span>
-                                    </a>
-                                </li>
-                            {{-- @endcan removed --}}any
-                            {{-- @canany removed --}}
-                                <li class="{{ activeSubNav('admin.photo-gallery.*') }}">
-                                    <a href="{{ route('admin.photo-gallery.index') }}">
-                                        <span class="sub-item">Photo</span>
-                                    </a>
-                                </li>
-                            {{-- @endcan removed --}}any
-                            {{-- @canany removed --}}
-                                <li class="{{ activeSubNav('admin.video-gallery.*') }}">
-                                    <a href="{{ route('admin.video-gallery.index') }}">
-                                        <span class="sub-item">Video</span>
-                                    </a>
-                                </li>
-                            {{-- @endcan removed --}}any
+                            <li class="{{ activeSubNav('admin.gallery-cat.*') }}">
+                                <a href="{{ route('admin.gallery-cat.index') }}">
+                                    <span class="sub-item">Category</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav('admin.photo-gallery.*') }}">
+                                <a href="{{ route('admin.photo-gallery.index') }}">
+                                    <span class="sub-item">Photo</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeSubNav('admin.video-gallery.*') }}">
+                                <a href="{{ route('admin.video-gallery.index') }}">
+                                    <span class="sub-item">Video</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
 
-                {{-- @can removed --}}
-                    <li class="nav-item {{ activeNav('admin.event.*') }}">
-                        <a href="{{ route('admin.event.index') }}">
-                            <i class="fas fa-envelope"></i>
-                            <p>Event</p>
-                        </a>
-                    </li>
-                {{-- @endcan removed --}}
-                @if (user()->permission == 1)
-                    {{-- @can removed --}}
-                        <li class="nav-item {{ activeNav('admin.message.*') }}">
-                            <a href="{{ route('admin.message.edit', 1) }}">
-                                <i class="fas fa-envelope"></i>
-                                <p>Message</p>
-                            </a>
-                        </li>
-                    {{-- @endcan removed --}}
+                <li class="nav-item {{ activeNav('admin.event.*') }}">
+                    <a href="{{ route('admin.event.index') }}">
+                        <i class="fas fa-envelope"></i>
+                        <p>Event</p>
+                    </a>
+                </li>
 
-                    {{-- @can removed --}}
-                        <li class="nav-item {{ activeNav('admin.about.*') }}">
-                            <a href="{{ route('admin.about.edit', 1) }}">
-                                <i class="fas fa-info-circle"></i>
-                                <p>About</p>
-                            </a>
-                        </li>
-                    {{-- @endcan removed --}}
+                @if (user()->permission == 1)
+                    <li class="nav-item {{ activeNav('admin.message.*') }}">
+                        <a href="{{ route('admin.message.edit', 1) }}">
+                            <i class="fas fa-envelope"></i>
+                            <p>Message</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ activeNav('admin.about.*') }}">
+                        <a href="{{ route('admin.about.edit', 1) }}">
+                            <i class="fas fa-info-circle"></i>
+                            <p>About</p>
+                        </a>
+                    </li>
                 @endif
-                {{-- @can removed --}}
-                    <li class="nav-item {{ activeNav('admin.blog.*') }}">
-                        <a href="{{ route('admin.blog.index') }}">
-                            <i class="fab fa-blogger"></i>
-                            <p>Blog</p>
-                        </a>
-                    </li>
-                {{-- @endcan removed --}}
-                {{-- @can removed --}}
-                    <li class="nav-item {{ activeNav('admin.blog.*') }}">
-                        <a href="{{ route('admin.humanitarian-assistance.index') }}">
-                            <i class="fab fa-blogger"></i>
-                            <p>Humanitarian Assistance</p>
-                        </a>
-                    </li>
-                {{-- @endcan removed --}}
+
+                <li class="nav-item {{ activeNav('admin.blog.*') }}">
+                    <a href="{{ route('admin.blog.index') }}">
+                        <i class="fab fa-blogger"></i>
+                        <p>Blog</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ activeNav('admin.blog.*') }}">
+                    <a href="{{ route('admin.humanitarian-assistance.index') }}">
+                        <i class="fab fa-blogger"></i>
+                        <p>Humanitarian Assistance</p>
+                    </a>
+                </li>
 
                 <li class="nav-item {{ activeNav('admin.literatures.*') }}">
                     <a href="{{ route('admin.literatures.index') }}">

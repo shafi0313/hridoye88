@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\UserController;
@@ -78,6 +79,8 @@ Route::controller(BlogController::class)->prefix('blog')->group(function () {
     Route::put('/update/{id}', 'update')->name('blog.update');
     Route::get('/destroy/{id}', 'destroy')->name('blog.destroy');
 });
+
+Route::resource('/notices', NoticeController::class);
 
 Route::resource('/humanitarian-assistance', HumanitarianController::class);
 Route::patch('/humanitarian-assistance/is-active/{humanitarian}', [HumanitarianController::class, 'status'])->name('humanitarian_assistance.is_active');
