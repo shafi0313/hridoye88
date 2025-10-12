@@ -23,7 +23,6 @@ trait SummerNoteTrait
             );
 
             $imageFile = $dom->getElementsByTagName('img');
-
             $manager = new ImageManager(new Driver);
             foreach ($imageFile as $item => $image) {
                 $src = $image->getAttribute('src');
@@ -47,7 +46,6 @@ trait SummerNoteTrait
                     }
                 }
             }
-
             return $dom->saveHTML();
         }
     }
