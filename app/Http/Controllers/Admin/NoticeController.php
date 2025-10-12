@@ -26,14 +26,13 @@ class NoticeController extends Controller
             return DataTables::of($notices)
                 ->addIndexColumn()
                 ->addColumn('content', function ($row) {
-                    return '<div>'.$row->content.'</div>';
+                    return '<div style="max-width:300px; overflow:hidden;">'
+                        .str_replace('<img', '<img style="max-width:100px; height:auto; border-radius:6px;"', $row->content)
+                        .'</div>';
                 })
                 ->addColumn('date', function ($row) {
                     return bdDate($row->date);
                 })
-                // ->addColumn('image', function ($row) {
-                //     return '<img src="'.imagePath('humanitarian', $row->image).'" width="80px">';
-                // })
                 // ->addColumn('is_active', function ($row) {
                 //     return view('button', ['type' => 'is_active', 'route' => route('admin.humanitarian_assistance.is_active', $row->id), 'row' => $row->is_active]);
                 // })
