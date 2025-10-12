@@ -82,7 +82,7 @@ class HumanitarianController extends Controller
         }
 
         try {
-           Humanitarian::create($data);
+            Humanitarian::create($data);
 
             return response()->json(['message' => 'The information has been inserted'], 200);
         } catch (\Exception $e) {
@@ -109,7 +109,7 @@ class HumanitarianController extends Controller
     public function update(UpdateHumanitarianRequest $request, Humanitarian $humanitarianAssistance)
     {
         $data = $request->validated();
-       $data['content'] = $request->content;
+        $data['content'] = $request->content;
 
         if ($request->hasFile('image')) {
             $data['image'] = processAndStoreImage($request->image, 'humanitarian', [null, null], $humanitarianAssistance->image);
@@ -150,4 +150,3 @@ class HumanitarianController extends Controller
         }
     }
 }
-

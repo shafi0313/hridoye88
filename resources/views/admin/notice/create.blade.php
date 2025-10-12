@@ -20,8 +20,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="publisher" class="required">Publisher </label>
-                                <input type="text" name="publisher" class="form-control" id="publisher" required>
+                                <label for="user_id" class="required">Publisher </label>
+                                <select name="user_id" id="user_id" class="form-control" required>
+                                    <option value="" selected disabled>Select Publisher</option>
+                                    @foreach ($users as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -30,12 +35,12 @@
                                 <input type="date" name="date" class="form-control" id="date" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        {{-- <div class="col-md-3">
                             <div class="form-group">
                                 <label for="image" class="required">Image </label>
                                 <input type="file" name="image" class="form-control" id="image" required>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="content" class="required">Content </label>

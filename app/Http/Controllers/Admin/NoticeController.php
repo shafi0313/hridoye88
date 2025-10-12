@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Notice;
-use Illuminate\Http\Request;
-use App\Traits\SummerNoteTrait;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreNoticeRequest;
 use App\Http\Requests\UpdateNoticeRequest;
+use App\Models\Notice;
+use App\Models\User;
+use App\Traits\SummerNoteTrait;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class NoticeController extends Controller
 {
@@ -37,16 +38,18 @@ class NoticeController extends Controller
                 //     return view('button', ['type' => 'is_active', 'route' => route('admin.humanitarian_assistance.is_active', $row->id), 'row' => $row->is_active]);
                 // })
                 ->addColumn('action', function ($row) {
-                    $btn = '';$btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.notices.edit', $row->id), 'row' => $row]);
+                    $btn = '';
+                    $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.notices.edit', $row->id), 'row' => $row]);
                     $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.notices.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
-                
+
                     return $btn;
                 })
                 ->rawColumns(['content', 'is_active', 'action'])
                 ->make(true);
         }
+        $users = User::select('id', 'name')->whereNot('email', 'dev.admin@shafi95.com')->pluck('name', 'id');
 
-        return view('admin.notice.index');
+        return view('admin.notice.index', compact('users'));
     }
 
     public function status(Notice $notice)
@@ -67,12 +70,12 @@ class NoticeController extends Controller
     public function store(StoreNoticeRequest $request)
     {
         $data = $request->validated();
-        $data['user_id'] = user()->id;
-        $data['content'] = $this->summerNoteStore($request->content, 'content');
+        // $data['user_id'] = user()->id;
+        $data['content'] = $this->summerNoteStore($request->content, 'notice');
 
-        if ($request->hasFile('image')) {
-            $data['image'] = processAndStoreImage($request->image, 'humanitarian');
-        }
+        // if ($request->hasFile('image')) {
+        //     $data['image'] = processAndStoreImage($request->image, 'humanitarian');
+        // }
 
         try {
             Notice::create($data);
@@ -88,7 +91,8 @@ class NoticeController extends Controller
     public function edit(Request $request, Notice $notice)
     {
         if ($request->ajax()) {
-            $modal = view('admin.notice.edit')->with(['notice' => $notice])->render();
+            $users = User::select('id', 'name')->whereNot('email', 'dev.admin@shafi95.com')->pluck('name', 'id');
+            $modal = view('admin.notice.edit')->with(['notice' => $notice, 'users' => $users])->render();
 
             return response()->json(['modal' => $modal], 200);
         }
@@ -102,19 +106,11 @@ class NoticeController extends Controller
     public function update(UpdateNoticeRequest $request, Notice $notice)
     {
         $data = $request->validated();
-       $data['content'] = $request->content;
+        // $data['content'] = $request->content;
+        $data['content'] = $this->summerNoteStore($request->content, 'notice');
 
-        if ($request->hasFile('image')) {
-            $data['image'] = processAndStoreImage($request->image, 'humanitarian', [null, null], $notice->image);
-        }
-
-        // if ($request->hasFile('file')) {
-        //     $fileName = uniqid(10).'.'.$request->file->getClientOriginalExtension();
-        //     // $type = $request->file->getClientMimeType();
-        //     // $size = $request->file->getSize();
-        //     $request->file->move(public_path('/uploads/images/humanitarian/'), $fileName);
-        //     imgUnlink('notice', $humanitarianAssistance->file);
-        //     $data['file'] = $fileName;
+        // if ($request->hasFile('image')) {
+        //     $data['image'] = processAndStoreImage($request->image, 'humanitarian', [null, null], $notice->image);
         // }
 
         try {
@@ -134,7 +130,7 @@ class NoticeController extends Controller
         $this->summerNoteAllImageDestroy($notice->content);
 
         try {
-            imgUnlink('humanitarian', $notice->image);
+            // imgUnlink('humanitarian', $notice->image);
             $notice->delete();
 
             return response()->json(['message' => 'The information has been deleted'], 200);
@@ -143,4 +139,3 @@ class NoticeController extends Controller
         }
     }
 }
-

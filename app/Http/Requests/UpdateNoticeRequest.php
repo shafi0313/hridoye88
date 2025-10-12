@@ -11,7 +11,7 @@ class UpdateNoticeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,11 @@ class UpdateNoticeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', 'exists:users,id'],
+            'title' => ['required', 'string', 'min:1', 'max:255'],
+            'content' => ['required'],
+            'date' => ['required', 'date'],
+            'file' => ['nullable', 'string', 'min:1', 'max:32'],
         ];
     }
 }
-
