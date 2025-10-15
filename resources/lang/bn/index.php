@@ -19,6 +19,7 @@ return [
     'm-photo' => 'ফটো',
     'm-video' => 'ভিডিও',
     'm-blog' => 'ব্লগ',
+    'm-notice' => 'নোটিশ',
     'm-contact' => 'যোগাযোগ',
     'm-about' => 'আমাদের সম্পর্কে',
     'm-member' => 'সদস্য',

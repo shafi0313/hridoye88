@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\MenuController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\MemberController;
+use App\Http\Controllers\Frontend\NoticeController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\HumanitarianController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Frontend\HumanitarianController;
 Route::resource('/', IndexController::class)->only('index');
 
 Route::resource('/blog', BlogController::class)->only(['index', 'show']);
+Route::resource('/notices', NoticeController::class)->only(['show']);
 Route::resource('/humanitarian-assistance', HumanitarianController::class)->only(['index', 'show']);
 Route::resource('/about', AboutController::class)->only('index');
 

@@ -19,6 +19,7 @@ return [
     'm-photo' => 'Photo',
     'm-video' => 'Video',
     'm-blog' => 'Blog',
+    'm-notice' => 'Notice',
     'm-contact' => 'Contact',
     'm-about' => 'About',
     'm-member' => 'Member',

@@ -1,9 +1,28 @@
 @extends('frontend.layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-    <style>
+    {{-- <style>
         .single-slide-wra {}
-    </style>
+    </style> --}}
+    @if ($notices)
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center mt-2">
+                        <marquee behavior="" direction="" onmouseover="this.stop();" onmouseout="this.start();">
+                            @foreach ($notices as $notice)
+                                <a href="{{ route('frontend.notices.show', $notice->id) }}" class="text-dark">
+                                    <i class="fa fa-bullhorn"></i> {{ $notice->title ?? 'No notice found' }}. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                            @endforeach
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
     <!--== Slider Area Start ==-->
     <section id="slider-area">
         <div class="slider-active-wrap owl-carousel text-center text-md-left">
