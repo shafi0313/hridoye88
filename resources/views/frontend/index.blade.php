@@ -4,7 +4,7 @@
     {{-- <style>
         .single-slide-wra {}
     </style> --}}
-    @if ($notices)
+    @if ($notices->count() > 0)
         <section>
             <div class="container">
                 <div class="row">
@@ -12,7 +12,8 @@
                         <marquee behavior="" direction="" onmouseover="this.stop();" onmouseout="this.start();">
                             @foreach ($notices as $notice)
                                 <a href="{{ route('frontend.notices.show', $notice->id) }}" class="text-dark">
-                                    <i class="fa fa-bullhorn"></i> {{ $notice->title ?? 'No notice found' }}. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-bullhorn"></i> {{ $notice->title ?? 'No notice found' }}.
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </a>
                             @endforeach
                         </marquee>
