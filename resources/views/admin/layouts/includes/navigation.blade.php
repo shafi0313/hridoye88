@@ -50,7 +50,7 @@
                     </li>
                     <li class="nav-item {{ activeNav('admin.notices.*') }}">
                         <a href="{{ route('admin.notices.index') }}">
-                            <i class="fa-solid fa-heading"></i>
+                            <i class="fa fa-bullhorn"></i>
                             <p>Notice</p>
                         </a>
                     </li>
